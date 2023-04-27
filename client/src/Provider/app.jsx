@@ -1,8 +1,10 @@
 import React from 'react'
+import { store } from '../stores/store'
+import { Provider } from 'react-redux'
 
 function AppProvider({children}) {
   return (
-    <div>{children}</div>
+    <Provider store={store}>{children}</Provider>
   )
 }
 

@@ -5,6 +5,7 @@ import {
 } from "react-router-dom";
 import { useRouteError } from "react-router-dom";
 import MainLayout from '../components/Layout/MainLayout';
+import { Counter } from '../features/counter/Counter';
 
 //Error handling
 const ErrorPage = () => {
@@ -30,8 +31,8 @@ const router = createBrowserRouter([
       errorElement: <ErrorPage />,
       children: [
         {
-          path: "contacts/:contactId",
-          element: <div>contacts</div>,
+          path: "counter",
+          element: <Counter/>,
         },
       ],
     },
