@@ -1,7 +1,7 @@
 import React from 'react'
 import "./Home.css"
 import image from "../../assets/Gaming.gif"
-import NavBar from './components/navBar/NavBar'
+import NavBar from '../Elements/navbar/NavBar'
 
 
 
