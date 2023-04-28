@@ -1,10 +1,11 @@
 import React from 'react'
-import { store } from '../stores/store'
+import { persistor,store } from '../stores/store'
 import { Provider } from 'react-redux'
+import { PersistGate } from "redux-persist/integration/react";
 
 function AppProvider({children}) {
   return (
-    <Provider store={store}>{children}</Provider>
+    <Provider store={store}><PersistGate loading={"loading"} persistor={persistor}>{children}</PersistGate></Provider>
   )
 }
 
