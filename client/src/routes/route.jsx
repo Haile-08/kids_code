@@ -6,7 +6,7 @@ import {
 import { useRouteError } from "react-router-dom";
 import MainLayout from '../components/Layout/MainLayout';
 import { Counter } from '../features/counter/Counter';
-import { Home } from "../components";
+import { Home}  from "../components"
 
 //Error handling
 const ErrorPage = () => {

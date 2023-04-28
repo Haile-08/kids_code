@@ -5,7 +5,7 @@ import NavBar from '../Elements/navbar/NavBar'
 
 
 
-export const Home = () => {
+const Home = () => {
   return (
     <div className="main">
       <NavBar/>
@@ -20,3 +20,5 @@ export const Home = () => {
     </div>
   )
 }
+
+export default Home;
