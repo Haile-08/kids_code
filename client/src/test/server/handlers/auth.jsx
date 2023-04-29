@@ -1,14 +1,16 @@
 import { rest } from 'msw';
-import { API_URL } from '../../../config/index';
+import API_URL from '../../../config/index';
 
 const authHandlers = [
-  rest.post(`${API_URL}/auth/login`, (req, res, ctx) => {
+  rest.get(`${API_URL}/auth/login`, (req, res, ctx) => {
     try {
       const result = { name: 'haile', password: 'password' };
       return res(ctx.status(200), ctx.json(result));
     } catch (error) {
-      ctx.status(400);
-      ctx.json({ message: error?.message || 'server error' });
+      return res(
+        ctx.status(400),
+        ctx.json({ message: error?.message || 'server error' })
+      );
     }
   }),
 ];

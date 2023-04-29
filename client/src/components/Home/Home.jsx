@@ -9,16 +9,17 @@ function Home() {
   useEffect(() => {
     // fetch data
     const dataFetch = async () => {
-      const data = await (
+      const res = await (
         await fetch('https://api.kidscode.com/auth/login')
       ).json();
 
       // set state when the data received
-      setData(data);
+      setData(res);
     };
 
     dataFetch();
   }, []);
+
   console.log(data);
   return (
     <div className="main">

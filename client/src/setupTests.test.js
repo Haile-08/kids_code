@@ -1,6 +1,10 @@
-import '@testing-library/jest-dom/extend-expect';
-import { server } from './test/server/server';
+import { afterAll, afterEach, beforeAll } from 'vitest';
+import { fetch } from 'cross-fetch';
 
-beforeAll(() => server.listen());
+import server from './test/server/server';
+
+global.fetch = fetch;
+
+beforeAll(() => server.listen({ onUnhandledRequest: 'error' }));
 afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
