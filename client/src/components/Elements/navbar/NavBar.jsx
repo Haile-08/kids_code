@@ -9,7 +9,7 @@ function NavBar() {
         <img src={logo} alt="logo" />
       </div>
       <div className="signin">
-        <button>Sign In</button>
+        <button type="button">Sign In</button>
       </div>
     </div>
   );
