@@ -1,27 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import './Home.css';
 import introImage from '../../assets/Gaming.gif';
 import NavBar from '../Elements/navbar/NavBar';
 
 function Home() {
-  const [data, setData] = useState();
-
-  useEffect(() => {
-    // fetch data
-    const dataFetch = async () => {
-      const res = await (
-        await fetch('https://api.kidscode.com/auth/login')
-      ).json();
-
-      // set state when the data received
-      setData(res);
-    };
-
-    dataFetch();
-  }, []);
-
-  console.log(data);
-
   return (
     <div className="main">
       <NavBar />

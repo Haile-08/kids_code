@@ -7,6 +7,7 @@ import {
 import MainLayout from '../components/Layout/MainLayout';
 import { Counter } from '../features/counter/Counter';
 import { Home } from '../components';
+import Login from '../components/Login/Login';
 
 // Error handling
 function ErrorPage() {
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
       {
         path: '/counter',
         element: <Counter />,
+      },
+      {
+        path: '/login',
+        element: <Login />,
       },
     ],
   },
