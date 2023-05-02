@@ -1,5 +1,5 @@
 import AppProvider from './Provider/app';
-import RoutesPath from './routes/route';
+import RoutesPath from './routes/index';
 import './style/App.css';
 
 function App() {

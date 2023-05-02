@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -11,6 +11,7 @@ import './style.css';
 
 function Login() {
   const dispatch = useDispatch();
+  const token = useSelector((state) => state.token);
   const navigate = useNavigate();
 
   const schema = yup.object().shape({

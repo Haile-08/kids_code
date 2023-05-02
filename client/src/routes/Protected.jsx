@@ -1,13 +1,7 @@
 import React from 'react';
-import {
-  createBrowserRouter,
-  RouterProvider,
-  useRouteError,
-} from 'react-router-dom';
+import { createBrowserRouter, useRouteError } from 'react-router-dom';
 import MainLayout from '../components/Layout/MainLayout';
-import { Home } from '../components';
-import Login from '../components/Login/Login';
-import Register from '../components/Register/Register';
+import { Home, Login, Register } from '../components';
 
 // Error handling
 function ErrorPage() {
@@ -25,7 +19,8 @@ function ErrorPage() {
 }
 
 // Routes
-const router = createBrowserRouter([
+// eslint-disable-next-line import/prefer-default-export
+export const protectedRoutes = createBrowserRouter([
   {
     path: '/',
     element: <MainLayout />,
@@ -40,15 +35,9 @@ const router = createBrowserRouter([
         element: <Login />,
       },
       {
-        path: '/Register',
+        path: '/register',
         element: <Register />,
       },
     ],
   },
 ]);
-
-function RoutesPath() {
-  return <RouterProvider router={router} />;
-}
-
-export default RoutesPath;
