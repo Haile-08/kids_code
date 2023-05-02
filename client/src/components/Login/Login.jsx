@@ -3,6 +3,8 @@ import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
 
 import { setLogin } from '../../state/authSlice';
 import './style.css';
@@ -11,11 +13,18 @@ function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const schema = yup.object().shape({
+    email: yup.string().email().required(),
+    password: yup.string().min(8).max(32).required(),
+  });
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+    reset,
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
   const onSubmit = (data) => {
     axios
       .post('https://api.kidscode.com/auth/login', {
@@ -41,16 +50,23 @@ function Login() {
       .catch(function (err) {
         console.log(err);
       });
+    reset();
   };
   return (
     <div className="login">
       <form onSubmit={handleSubmit(onSubmit)}>
+        <p>Login</p>
         {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-        <input {...register('email', { required: true })} />
-        {errors.email && <span>This field is required</span>}
+        <input placeholder="email" {...register('email', { required: true })} />
+        <span>{errors.email?.message}</span>
         {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-        <input {...register('password', { required: true })} />
-        {errors.password && <span>This field is required</span>}
+        <input
+          placeholder="password"
+          // eslint-disable-next-line react/jsx-props-no-spreading
+          {...register('password', { required: true })}
+          type="password"
+        />
+        <span>{errors.password?.message}</span>
         <button type="submit">login</button>
       </form>
     </div>
