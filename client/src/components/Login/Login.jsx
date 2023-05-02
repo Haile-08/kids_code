@@ -43,7 +43,7 @@ function Login() {
       });
   };
   return (
-    <div className="log">
+    <div className="login">
       <form onSubmit={handleSubmit(onSubmit)}>
         {/* eslint-disable-next-line react/jsx-props-no-spreading */}
         <input {...register('email', { required: true })} />

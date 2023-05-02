@@ -5,9 +5,9 @@ import {
   useRouteError,
 } from 'react-router-dom';
 import MainLayout from '../components/Layout/MainLayout';
-import { Counter } from '../features/counter/Counter';
 import { Home } from '../components';
 import Login from '../components/Login/Login';
+import Register from '../components/Register/Register';
 
 // Error handling
 function ErrorPage() {
@@ -36,12 +36,12 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: '/counter',
-        element: <Counter />,
-      },
-      {
         path: '/login',
         element: <Login />,
+      },
+      {
+        path: '/Register',
+        element: <Register />,
       },
     ],
   },
