@@ -1,5 +1,6 @@
 import AppProvider from './Provider/app';
-import Approute from './routes/index';
+import Route from './routes/route';
+
 import './style/App.css';
 
 function App() {
@@ -7,7 +8,7 @@ function App() {
     // eslint-disable-next-line react/react-in-jsx-scope
     <AppProvider>
       {/* eslint-disable-next-line react/react-in-jsx-scope */}
-      <Approute />
+      <Route />
     </AppProvider>
   );
 }
