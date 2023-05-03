@@ -1,5 +1,4 @@
-import { configureStore } from '@reduxjs/toolkit'
-import counterReducer from "../features/counter/counterSlice"
+import { configureStore } from '@reduxjs/toolkit';
 import {
   persistStore,
   persistReducer,
@@ -9,21 +8,21 @@ import {
   PERSIST,
   PURGE,
   REGISTER,
-} from "redux-persist";
-import storage from "redux-persist/lib/storage";
+} from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+import authReducer from '../state/authSlice';
 
 const persistConfig = {
-  key: "root",
+  key: 'root',
   version: 1,
   storage,
 };
 
-const persistedReducer = persistReducer(persistConfig, counterReducer);
-
+const persistedReducer = persistReducer(persistConfig, authReducer);
 
 export const store = configureStore({
   reducer: {
-    counter: persistedReducer,
+    auth: persistedReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
@@ -31,6 +30,6 @@ export const store = configureStore({
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     }),
-})
+});
 
-export let persistor = persistStore(store);
+export const persistor = persistStore(store);

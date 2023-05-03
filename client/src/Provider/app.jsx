@@ -1,12 +1,17 @@
-import React from 'react'
-import { persistor,store } from '../stores/store'
-import { Provider } from 'react-redux'
-import { PersistGate } from "redux-persist/integration/react";
+import React from 'react';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+import { persistor, store } from '../stores/store';
 
-function AppProvider({children}) {
+// eslint-disable-next-line react/prop-types
+function AppProvider({ children }) {
   return (
-    <Provider store={store}><PersistGate loading={"loading"} persistor={persistor}>{children}</PersistGate></Provider>
-  )
+    <Provider store={store}>
+      <PersistGate loading="loading" persistor={persistor}>
+        {children}
+      </PersistGate>
+    </Provider>
+  );
 }
 
-export default AppProvider
+export default AppProvider;

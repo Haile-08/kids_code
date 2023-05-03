@@ -3,10 +3,11 @@ import {
   createBrowserRouter,
   RouterProvider,
   useRouteError,
+  Navigate,
 } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import MainLayout from '../components/Layout/MainLayout';
-import { Counter } from '../features/counter/Counter';
-import { Home } from '../components';
+import { Home, Login, Register } from '../components';
 
 // Error handling
 function ErrorPage() {
@@ -23,26 +24,31 @@ function ErrorPage() {
   );
 }
 
-// Routes
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <MainLayout />,
-    errorElement: <ErrorPage />,
-    children: [
-      {
-        path: '/',
-        element: <Home />,
-      },
-      {
-        path: '/counter',
-        element: <Counter />,
-      },
-    ],
-  },
-]);
-
 function RoutesPath() {
+  const isAuth = Boolean(useSelector((state) => state.token));
+  // Routes
+  const router = createBrowserRouter([
+    {
+      path: '/',
+      element: <MainLayout />,
+      errorElement: <ErrorPage />,
+      children: [
+        {
+          path: '/',
+          element: <Home />,
+        },
+        {
+          path: '/login',
+          element: <Login />,
+        },
+        {
+          path: '/register',
+          element: isAuth ? <Register /> : <Navigate to="/login" />,
+        },
+      ],
+    },
+  ]);
+
   return <RouterProvider router={router} />;
 }
 
