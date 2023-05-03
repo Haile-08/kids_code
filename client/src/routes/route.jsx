@@ -1,35 +1,55 @@
 import React from 'react';
-
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import {
+  createBrowserRouter,
+  RouterProvider,
+  useRouteError,
+  Navigate,
+} from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { Error, Home, Login, Register } from '../components';
+import MainLayout from '../components/Layout/MainLayout';
+import { Home, Login, Register } from '../components';
 
-function Route() {
-  const isAuth = Boolean(useSelector((state) => state.token));
-  console.log(isAuth);
-  const routers =
-    createBrowserRouter[
-      {
-        path: '/',
-        element: <Home />,
-        errorElement: <Error />,
-        children: [
-          {
-            path: '/login',
-            element: <Login />,
-          },
-          {
-            path: '/register',
-            element: <Register />,
-          },
-        ],
-      }
-    ];
+// Error handling
+function ErrorPage() {
+  const error = useRouteError();
+
   return (
-    <div>
-      <RouterProvider router={routers} />
+    <div id="error-page">
+      <h1>Oops!</h1>
+      <p>Sorry, an unexpected error has occurred.</p>
+      <p>
+        <i>{error.statusText || error.message}</i>
+      </p>
     </div>
   );
 }
 
-export default Route;
+function RoutesPath() {
+  const isAuth = Boolean(useSelector((state) => state.token));
+  // Routes
+  const router = createBrowserRouter([
+    {
+      path: '/',
+      element: <MainLayout />,
+      errorElement: <ErrorPage />,
+      children: [
+        {
+          path: '/',
+          element: <Home />,
+        },
+        {
+          path: '/login',
+          element: <Login />,
+        },
+        {
+          path: '/register',
+          element: isAuth ? <Register /> : <Navigate to="/login" />,
+        },
+      ],
+    },
+  ]);
+
+  return <RouterProvider router={router} />;
+}
+
+export default RoutesPath;
