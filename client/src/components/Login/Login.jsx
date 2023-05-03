@@ -6,13 +6,12 @@ import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 
-import { increment, setLogin } from '../../state/authSlice';
+import { setLogin } from '../../state/authSlice';
 import './style.css';
 
 function Login() {
   const dispatch = useDispatch();
-  const token = useSelector((state) => state.token);
-  const value = useSelector((state) => state.value);
+  const token = useSelector((state) => state.auth.token);
   const navigate = useNavigate();
 
   const schema = yup.object().shape({
@@ -48,8 +47,7 @@ function Login() {
           })
         );
         console.log(`login token ${token}`);
-        dispatch(increment(3));
-        navigate('/register');
+        navigate('/main');
       })
       .catch(function (err) {
         console.log(err);
@@ -59,7 +57,6 @@ function Login() {
   return (
     <div className="login">
       <form onSubmit={handleSubmit(onSubmit)}>
-        <p> value: {value}</p>
         <p>Login</p>
         {/* eslint-disable-next-line react/jsx-props-no-spreading */}
         <input placeholder="email" {...register('email', { required: true })} />

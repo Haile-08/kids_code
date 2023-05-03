@@ -24,8 +24,7 @@ function ErrorPage() {
 }
 
 function RoutesPath() {
-  const isAuth = Boolean(useSelector((state) => state.isAuth));
-  console.log(`route token: ${useSelector((state) => state.isAuth)}`);
+  const isAuth = Boolean(useSelector((state) => state.auth.token));
   // Routes
   const router = createBrowserRouter([
     {
