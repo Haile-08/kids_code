@@ -10,6 +10,8 @@ export const authSlice = createSlice({
   initialState,
   reducers: {
     setLogin: (state, action) => {
+      console.log(`setlogin ${state.user}`);
+      console.log(`setlogin ${state.token}`);
       // eslint-disable-next-line no-param-reassign
       state.user = action.payload.user;
       // eslint-disable-next-line no-param-reassign

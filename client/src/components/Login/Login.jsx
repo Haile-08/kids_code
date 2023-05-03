@@ -42,11 +42,12 @@ function Login() {
         // });
         dispatch(
           setLogin({
-            user: resData.data.user,
-            token: resData.data.token,
+            user: resData?.data.user,
+            token: resData?.data.token,
           })
         );
-        navigate('/');
+        console.log(`login token ${token}`);
+        navigate('/register');
       })
       .catch(function (err) {
         console.log(err);

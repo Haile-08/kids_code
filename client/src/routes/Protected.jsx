@@ -1,30 +1,10 @@
-import React from 'react';
-import { createBrowserRouter, useRouteError } from 'react-router-dom';
-import MainLayout from '../components/Layout/MainLayout';
-import { Home, Login, Register } from '../components';
+import { Error, Home, Login, Register } from '../components';
 
-// Error handling
-function ErrorPage() {
-  const error = useRouteError();
-
-  return (
-    <div id="error-page">
-      <h1>Oops!</h1>
-      <p>Sorry, an unexpected error has occurred.</p>
-      <p>
-        <i>{error.statusText || error.message}</i>
-      </p>
-    </div>
-  );
-}
-
-// Routes
-// eslint-disable-next-line import/prefer-default-export
-export const protectedRoutes = createBrowserRouter([
+const protectedRoutes = [
   {
     path: '/',
-    element: <MainLayout />,
-    errorElement: <ErrorPage />,
+    element: <Home />,
+    errorElement: <Error />,
     children: [
       {
         path: '/',
@@ -40,4 +20,6 @@ export const protectedRoutes = createBrowserRouter([
       },
     ],
   },
-]);
+];
+
+export default protectedRoutes;
