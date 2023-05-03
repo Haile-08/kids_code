@@ -6,8 +6,7 @@ import {
   Navigate,
 } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import MainLayout from '../components/Layout/MainLayout';
-import { Home, Login, Register } from '../components';
+import { Home, Login, MainLayout, Mainpage, Register } from '../components';
 
 // Error handling
 function ErrorPage() {
@@ -25,8 +24,8 @@ function ErrorPage() {
 }
 
 function RoutesPath() {
-  const isAuth = Boolean(useSelector((state) => state.token));
-  console.log(`toekn ${useSelector((state) => state.token)}`);
+  const isAuth = Boolean(useSelector((state) => state.isAuth));
+  console.log(`route token: ${useSelector((state) => state.isAuth)}`);
   // Routes
   const router = createBrowserRouter([
     {
@@ -45,6 +44,10 @@ function RoutesPath() {
         {
           path: '/register',
           element: isAuth ? <Register /> : <Navigate to="/login" />,
+        },
+        {
+          path: '/main',
+          element: isAuth ? <Mainpage /> : <Navigate to="/login" />,
         },
       ],
     },
