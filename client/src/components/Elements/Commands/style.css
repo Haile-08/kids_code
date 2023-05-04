@@ -1,0 +1,38 @@
+.Commands {
+    background-color: var(--buttons-container-background);
+    margin: 10px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .Reset_Code button {
+    margin: 50px 10px;
+    outline: none;
+    background-color: var(--run-reset-button-color);
+    border: none;
+    width: 4.5rem;
+    height: 4.5rem;
+    border-radius: 50%;
+    font-size: 20px;
+    font-family: var(--font-fam);
+    cursor: pointer;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px,
+      rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
+  }
+  .Run_code button,
+  .Undo_Code button {
+    margin: 50px 10px;
+    outline: none;
+    background-color: var(--run-reset-button-color);
+    border: none;
+    width: 4.5rem;
+    height: 4.5rem;
+    border-radius: 50%;
+    font-size: 20px;
+    font-family: var(--font-fam);
+    cursor: pointer;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px,
+      rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
+  }
+  

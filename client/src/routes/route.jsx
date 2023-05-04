@@ -6,7 +6,14 @@ import {
   Navigate,
 } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { Home, Login, MainLayout, Mainpage, Register } from '../components';
+import {
+  Home,
+  Level1,
+  Login,
+  MainLayout,
+  Mainpage,
+  Register,
+} from '../components';
 
 // Error handling
 function ErrorPage() {
@@ -47,6 +54,10 @@ function RoutesPath() {
         {
           path: '/main',
           element: isAuth ? <Mainpage /> : <Navigate to="/login" />,
+        },
+        {
+          path: '/level',
+          element: isAuth ? <Level1 /> : <Navigate to="/login" />,
         },
       ],
     },
