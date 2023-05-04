@@ -17,9 +17,11 @@ function Mainpage() {
     <div className="mainpage">
       <div className="profile">
         <div className="nav">
-          <img src={image} alt="image" />
+          <img src={image} alt="profileimage" />
           <p>Haile</p>
-          <button onClick={() => handleLogout()}>Logout</button>
+          <button onClick={() => handleLogout()} type="button">
+            Logout
+          </button>
         </div>
       </div>
       <div className="mainpart">
