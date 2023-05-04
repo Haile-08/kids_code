@@ -7,7 +7,7 @@ import { persistor, store } from '../stores/store';
 function AppProvider({ children }) {
   return (
     <Provider store={store}>
-      <PersistGate loading="loading" persistor={persistor}>
+      <PersistGate loading={null} persistor={persistor}>
         {children}
       </PersistGate>
     </Provider>

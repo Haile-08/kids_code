@@ -11,7 +11,7 @@ import './style.css';
 
 function Login() {
   const dispatch = useDispatch();
-  const token = useSelector((state) => state.token);
+  const token = useSelector((state) => state.auth.token);
   const navigate = useNavigate();
 
   const schema = yup.object().shape({
@@ -47,7 +47,7 @@ function Login() {
           })
         );
         console.log(`login token ${token}`);
-        navigate('/register');
+        navigate('/main');
       })
       .catch(function (err) {
         console.log(err);
