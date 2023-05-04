@@ -49,6 +49,7 @@ const Canvas = ({ EngineOutput, GameAnswer }) => {
       const image = new Image();
       image.src = img2;
       ctx.drawImage(image, 0, 0, 600, 400);
+      // eslint-disable-next-line react/prop-types
       const index = EngineOutput.length - 1;
       if (index >= 0) {
         BallMovement(ctx, ObjVar.x, ObjVar.y, ObjVar.color, 20);
@@ -61,6 +62,7 @@ const Canvas = ({ EngineOutput, GameAnswer }) => {
       requestAnimationFrame(render);
     };
     render();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [EngineOutput]);
 
   return (

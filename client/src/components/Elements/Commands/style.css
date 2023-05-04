@@ -1,5 +1,5 @@
 .Commands {
-    background-color: var(--buttons-container-background);
+    background-color: bisque;
     margin: 10px;
     border-radius: 10px;
     display: flex;
@@ -9,7 +9,7 @@
   .Reset_Code button {
     margin: 50px 10px;
     outline: none;
-    background-color: var(--run-reset-button-color);
+    background-color: #e84118;
     border: none;
     width: 4.5rem;
     height: 4.5rem;
@@ -24,7 +24,7 @@
   .Undo_Code button {
     margin: 50px 10px;
     outline: none;
-    background-color: var(--run-reset-button-color);
+    background-color: #e84118;
     border: none;
     width: 4.5rem;
     height: 4.5rem;
