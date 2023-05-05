@@ -1,14 +1,28 @@
 import React from 'react';
 import './style.css';
+import { useDispatch } from 'react-redux';
+import { resetCode, runCode, undoCode } from '../../../state/actionSlice';
 
-function Commands({ inputObj, parseCode, resetCode, undoCode }) {
+function Commands() {
+  const dispatch = useDispatch();
+
+  const handleRun = () => {
+    dispatch(runCode());
+  };
+  const handleReste = () => {
+    dispatch(resetCode());
+  };
+  const handleUndo = () => {
+    dispatch(undoCode());
+  };
   return (
     <div className="Commands">
       <div className="Run_code">
         <button
           onClick={() => {
-            parseCode(inputObj);
+            handleRun();
           }}
+          type="button"
         >
           Run
         </button>
@@ -17,8 +31,9 @@ function Commands({ inputObj, parseCode, resetCode, undoCode }) {
       <div className="Reset_Code">
         <button
           onClick={() => {
-            resetCode();
+            handleReste();
           }}
+          type="button"
         >
           Reset
         </button>
@@ -27,8 +42,9 @@ function Commands({ inputObj, parseCode, resetCode, undoCode }) {
       <div className="Undo_Code">
         <button
           onClick={() => {
-            undoCode();
+            handleUndo();
           }}
+          type="button"
         >
           undo
         </button>

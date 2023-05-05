@@ -1,8 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { Engine } from '../utils';
 
 const initialState = {
-  EngineInput: [{ name: 'move', value: 'move' }],
-  EngineOutput: [{ name: 'move', value: 'move' }],
+  EngineInput: [],
+  EngineOutput: [],
   GameResult: { check: false, optimum: false },
 };
 
@@ -10,22 +11,73 @@ export const actionSlice = createSlice({
   name: 'action',
   initialState,
   reducers: {
-    setLogin: (state, action) => {
-      console.log(`setlogin ${state.user}`);
-      console.log(`setlogin ${state.token}`);
-      // eslint-disable-next-line no-param-reassign
-      state.user = action.payload.user;
-      // eslint-disable-next-line no-param-reassign
-      state.token = action.payload.token;
+    runCode: (state) => {
+      console.log(`input: ${state.EngineInput}`);
+      const newArray = Engine(state.EngineInput);
+      console.log(`output: ${newArray}`);
+      state.EngineOutput = newArray;
     },
-    setLogout: (state) => {
-      // eslint-disable-next-line no-param-reassign
-      state.user = null;
-      // eslint-disable-next-line no-param-reassign
-      state.user = null;
+    resetCode: (state) => {
+      state.EngineInput = [];
+      state.EngineOutput = [];
+    },
+    undoCode: (state) => {
+      const inputarray = [...state.EngineInput];
+      const ouputarray = [...state.EngineOutput];
+      inputarray.pop();
+      ouputarray.pop();
+      state.EngineInput = inputarray;
+      state.EngineOutput = ouputarray;
+    },
+    colorAction: (state) => {
+      const inputArray = state.EngineInput;
+      const id = inputArray.length;
+      const index = inputArray.length - 1;
+      if (id === 0) {
+        const newArray = [
+          ...inputArray,
+          { id, hasValue: false, value: '', functionName: 'color' },
+        ];
+        console.log(newArray);
+        state.EngineInput = newArray;
+      } else if (inputArray[index].hasValue === true) {
+        const newArray = [
+          ...inputArray,
+          { id, hasValue: false, value: '', functionName: 'color' },
+        ];
+        console.log(newArray);
+        state.EngineInput = newArray;
+      } else {
+        // eslint-disable-next-line no-useless-return
+        return;
+      }
+    },
+    colorTypeAction: (state, action) => {
+      const inputArray = state.EngineInput;
+      inputArray.map((item) => {
+        if (!item.hasValue) {
+          if (item.functionName === 'color') {
+            const newArray = [...inputArray];
+            newArray[item.id].value = action.payload;
+            newArray[item.id].hasValue = true;
+            state.EngineInput = newArray;
+          } else {
+            // eslint-disable-next-line no-useless-return
+            return;
+          }
+        } else if (item.id === inputArray.length - 1) {
+          if (item.functionName === 'color') {
+            const newArray = [...inputArray];
+            newArray[item.id].value = action.payload;
+            newArray[item.id].hasValue = true;
+            state.EngineInput = newArray;
+          }
+        }
+      });
     },
   },
 });
 
-export const { setLogin, setLogout } = actionSlice.actions;
+export const { runCode, resetCode, undoCode, colorAction, colorTypeAction } =
+  actionSlice.actions;
 export default actionSlice.reducer;

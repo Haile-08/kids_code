@@ -1,4 +1,5 @@
 const checkMode = (DropBox, ObjVar, modeName, value, mode) => {
+  console.log(`function value: ${value}`);
   if (modeName === 'move') {
     switch (mode[ObjVar.mode]) {
       case 'straight':
