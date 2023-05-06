@@ -1,33 +1,34 @@
-const checkMode = (DropBox, ObjVar, modeName, value, mode) => {
+export default function checkMode(varObj, dropBox, modeName, value, mode) {
   console.log(`function value: ${value}`);
+  console.log(`modename: ${modeName}`);
   if (modeName === 'move') {
-    switch (mode[ObjVar.mode]) {
+    switch (mode[varObj.mode]) {
       case 'straight':
-        ObjVar.x += ObjVar.dx;
+        varObj.x += varObj.dx;
         break;
       case 'up':
-        ObjVar.y -= ObjVar.dy;
+        varObj.y -= varObj.dy;
         break;
       case 'down':
-        ObjVar.y += ObjVar.dy;
+        varObj.y += varObj.dy;
         break;
       case 'back':
-        ObjVar.x -= ObjVar.dx;
+        varObj.x -= varObj.dx;
         break;
       default:
         break;
     }
   } else if (modeName === 'color') {
-    ObjVar.color == value;
+    varObj.color == value;
   } else if (modeName === 'turn') {
-    if (ObjVar.mode === 3) {
-      ObjVar.mode = 0;
+    if (varObj.mode === 3) {
+      varObj.mode = 0;
     } else {
-      ObjVar.mode++;
+      varObj.mode++;
     }
   } else if (modeName === 'dropBox') {
-    DropBox.push({ x: ObjVar.x, y: ObjVar.y });
+    dropBox.push({ x: varObj.x, y: varObj.y });
+  } else {
+    console.log('hi');
   }
-};
-
-export default checkMode;
+}

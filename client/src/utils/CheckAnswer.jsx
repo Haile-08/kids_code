@@ -1,4 +1,4 @@
-const checkAnswer = (objVar, GameAnswer, name, value, index) => {
+export default function checkAnswer(objVar, GameAnswer, name, value, index) {
   if (index > GameAnswer.length - 1) {
     // eslint-disable-next-line no-param-reassign
     objVar.checker = false;
@@ -9,6 +9,4 @@ const checkAnswer = (objVar, GameAnswer, name, value, index) => {
       objVar.checker = false;
     }
   }
-};
-
-export default checkAnswer;
+}

@@ -30,13 +30,11 @@ const Canvas = ({ EngineOutput, GameAnswer }) => {
   let mode = ['straight', 'up', 'back', 'down'];
 
   const handleEngineOutput = (obj, index) => {
-    const name = obj.name;
-    const value = obj.value;
-    console.log(`loop name: ${name}`);
-    console.log(`loop value: ${value}`);
-    checkMode(dropBox, varObj, name, value, mode);
+    console.log(`loop name: ${obj.name}`);
+    console.log(`loop value: ${obj.value}`);
+    checkMode(varObj, dropBox, obj.name, obj.value, mode);
     WallCollision(varObj, mode[varObj.mode]);
-    checkAnswer(varObj, GameAnswer, name, value, index);
+    checkAnswer(varObj, GameAnswer, obj.name, obj.value, index);
   };
   if (varObj.checker === true) {
     console.log('correct');
