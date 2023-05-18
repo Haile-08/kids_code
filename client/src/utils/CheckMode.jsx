@@ -19,7 +19,7 @@ export default function checkMode(varObj, dropBox, modeName, value, mode) {
         break;
     }
   } else if (modeName === 'color') {
-    varObj.color == value;
+    return value;
   } else if (modeName === 'turn') {
     if (varObj.mode === 3) {
       varObj.mode = 0;
@@ -31,4 +31,6 @@ export default function checkMode(varObj, dropBox, modeName, value, mode) {
   } else {
     console.log('hi');
   }
+
+  return 'blue';
 }

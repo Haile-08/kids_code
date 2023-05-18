@@ -10,7 +10,17 @@ import { setLogout } from '../../../state/authSlice';
 function Level1() {
   const dispatch = useDispatch();
   const EngineOutput = useSelector((state) => state.action.EngineOutput);
-  const GameAnswer = [{ name: 'move', value: 'move' }];
+  const GameAnswer = [
+    { name: 'move', value: 'move' },
+    { name: 'move', value: 'move' },
+    { name: 'move', value: 'move' },
+    { name: 'move', value: 'move' },
+    { name: 'move', value: 'move' },
+    { name: 'move', value: 'move' },
+    { name: 'move', value: 'move' },
+    { name: 'move', value: 'move' },
+    { name: 'move', value: 'move' },
+  ];
   const navigate = useNavigate();
 
   useEffect(() => {});
@@ -54,8 +64,8 @@ function Level1() {
         </div>
       </div>
       <div className="canvasout">
-        <Canvas EngineOutput={GameAnswer} GameAnswer={GameAnswer} />
         <Canvas EngineOutput={EngineOutput} GameAnswer={GameAnswer} />
+        <Canvas EngineOutput={GameAnswer} GameAnswer={GameAnswer} />
       </div>
     </div>
   );

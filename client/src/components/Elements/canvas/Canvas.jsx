@@ -16,33 +16,33 @@ const Canvas = ({ EngineOutput, GameAnswer }) => {
   // Canvas Variables
   // eslint-disable-next-line prefer-const
   let dropBox = [];
+  let drawLine = [];
   // eslint-disable-next-line prefer-const
   let varObj = {
     x: 100,
     y: 100,
     dx: 50,
     dy: 50,
-    color: 'blue',
     mode: 0,
     checker: true,
   };
+  let color = 'blue';
   // eslint-disable-next-line prefer-const
   let mode = ['straight', 'up', 'back', 'down'];
 
   const handleEngineOutput = (obj, index) => {
     console.log(`loop name: ${obj.name}`);
     console.log(`loop value: ${obj.value}`);
-    checkMode(varObj, dropBox, obj.name, obj.value, mode);
+    color = checkMode(varObj, dropBox, obj.name, obj.value, mode);
     WallCollision(varObj, mode[varObj.mode]);
     checkAnswer(varObj, GameAnswer, obj.name, obj.value, index);
+    drawLine.push({ x: varObj.x, y: varObj.y });
   };
   if (varObj.checker === true) {
     console.log('correct');
   } else {
     console.log('fail');
   }
-  console.log(`color: ${varObj.color}`);
-  console.log(`x: ${varObj.x}`);
   // eslint-disable-next-line react/prop-types
   EngineOutput.forEach(handleEngineOutput);
 
@@ -57,7 +57,7 @@ const Canvas = ({ EngineOutput, GameAnswer }) => {
       // eslint-disable-next-line react/prop-types
       const index = EngineOutput.length - 1;
       if (index >= 0) {
-        BallMovement(ctx, varObj.x, varObj.y, varObj.color, 20);
+        BallMovement(ctx, varObj.x, varObj.y, color, 20);
       } else {
         BallMovement(ctx, varObj.x, varObj.y, 'blue', 20);
       }
