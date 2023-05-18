@@ -5,6 +5,7 @@ import {
   checkAnswer,
   WallCollision,
   checkMode,
+  DrawLine,
 } from '../../../utils';
 import img2 from '../../../assets/img2.png';
 import './style.css';
@@ -63,6 +64,9 @@ const Canvas = ({ EngineOutput, GameAnswer }) => {
       }
       dropBox.forEach((item) => {
         DropBox(ctx, item.x, item.y);
+      });
+      drawLine.forEach((item) => {
+        DrawLine(ctx, item.x, item.y);
       });
       requestAnimationFrame(render);
     };

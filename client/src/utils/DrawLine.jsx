@@ -6,8 +6,8 @@ class Line {
 
   draw(ctx) {
     ctx.beginPath();
-    ctx.fillStyle = this.color;
-    ctx.fillRect(this.x - 50, this.y, 60, 80);
+    ctx.fillStyle = 'blue';
+    ctx.fillRect(this.x - 50, this.y, 50, 5);
     ctx.strokeStyle = 'blue';
     ctx.strokeWidth = 4;
     ctx.fill();
