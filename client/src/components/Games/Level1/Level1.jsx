@@ -15,11 +15,6 @@ function Level1() {
     { name: 'move', value: 'move' },
     { name: 'move', value: 'move' },
     { name: 'move', value: 'move' },
-    { name: 'move', value: 'move' },
-    { name: 'move', value: 'move' },
-    { name: 'move', value: 'move' },
-    { name: 'move', value: 'move' },
-    { name: 'move', value: 'move' },
   ];
   const navigate = useNavigate();
 
