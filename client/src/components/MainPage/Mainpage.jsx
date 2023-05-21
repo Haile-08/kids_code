@@ -17,13 +17,17 @@ function Mainpage() {
     <div className="mainpage">
       <div className="profile">
         <div className="nav">
-          <img src={image} alt="image" />
+          <img src={image} alt="profileimage" />
           <p>Haile</p>
-          <button onClick={() => handleLogout()}>Logout</button>
+          <button onClick={() => handleLogout()} type="button">
+            Logout
+          </button>
         </div>
       </div>
       <div className="mainpart">
-        <div className="level">level 1</div>
+        <div className="level" onClick={() => navigate('/level')}>
+          level 1
+        </div>
         <div className="level">level 2</div>
         <div className="level">level 3</div>
       </div>
