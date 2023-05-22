@@ -15,6 +15,7 @@ import {
   Register,
 } from '../components';
 
+import QuizApp from '../features/Quiz/QuizApp';
 // Error handling
 function ErrorPage() {
   const error = useRouteError();
@@ -59,6 +60,10 @@ function RoutesPath() {
         {
           path: '/level',
           element: isAuth ? <Level1 /> : <Navigate to="/login" />,
+        },
+        {
+          path: '/level/quiz',
+          element: isAuth ? <QuizApp /> : <Navigate to="/login" />,
         },
       ],
     },
