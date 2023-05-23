@@ -17,7 +17,6 @@
 h1 {
   margin-top: 50px;
 }
-
 button {
   padding: 10px 20px;
   border: 1px solid #000;
@@ -44,7 +43,7 @@ button {
   font-size: 18px;
 }
 
-button:hover {
+.quiz-app button:hover {
   background: rgb(92, 199, 209);
   /* color: #fff;
   border-color: #fff; */

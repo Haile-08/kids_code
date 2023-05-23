@@ -1,3 +1,4 @@
+/* eslint-disable no-lonely-if */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-undef */
 /* eslint-disable no-plusplus */
@@ -9,18 +10,30 @@ import { QuestionsList } from './QuestionsList';
 
 const Quiz = ({ setScore, score, setGameState }) => {
   const [chosenAnswer, setChosenAnswer] = useState('');
-  let currentQuestion = 0;
+  const [enableErrMsg, setEnableErrMsg] = useState(false);
+  const [currentQuestion, setcurrentQuestion] = useState(0);
+
   const handleAnswer = () => {
     const rightAnswer = QuestionsList[currentQuestion].answer;
-    if (chosenAnswer === rightAnswer) {
+    if (currentQuestion === QuestionsList.length - 1) {
       setScore(score + 1);
-      currentQuestion++;
+      setEnableErrMsg(false);
+      setGameState('endScreen');
+    } else {
+      if (chosenAnswer === rightAnswer) {
+        setScore(score + 1);
+        setEnableErrMsg(false);
+      } else {
+        setcurrentQuestion(currentQuestion + 1);
+        setEnableErrMsg(true);
+      }
     }
-    setGameState('endScreen');
   };
   return (
     <>
       <h1>quiz(?)</h1>
+      {currentQuestion}
+      {enableErrMsg ? <h2 style={{ color: 'red' }}>Think again</h2> : null}
       <h2>{QuestionsList[currentQuestion].prompt}</h2>
       <div className="options">
         <button onClick={() => setChosenAnswer('A')}>
@@ -35,11 +48,11 @@ const Quiz = ({ setScore, score, setGameState }) => {
         <button onClick={() => setChosenAnswer('C')}>
           {QuestionsList[currentQuestion].optionD}
         </button>
-
-        <button className="nextBtn" onClick={() => handleAnswer()}>
-          {currentQuestion === QuestionsList.length ? 'finish quiz' : 'next'}
-        </button>
       </div>
+
+      <button className="nextBtn" onClick={() => handleAnswer()}>
+        {currentQuestion === QuestionsList.length - 1 ? 'finish quiz' : 'next'}
+      </button>
     </>
   );
 };
