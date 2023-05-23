@@ -51,6 +51,12 @@ function Level1() {
           <button type="button" onClick={() => handleColor()}>
             Color()
           </button>
+<<<<<<< HEAD
+=======
+          <button type="button" onClick={() => handleColorType('blue')}>
+            Variable
+          </button>
+>>>>>>> 9cb55873bb50368bc40ccc6f12960a24f776267a
           <button type="button" onClick={() => handleColorType('red')}>
             red
           </button>
