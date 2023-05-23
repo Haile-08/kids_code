@@ -1,3 +1,10 @@
+/* eslint-disable import/named */
+/* eslint-disable quotes */
+/* eslint-disable import/named */
+/* eslint-disable import/no-duplicates */
+/* eslint-disable prettier/prettier */
+/* eslint-disable react/function-component-definition */
+
 import React, { useEffect } from 'react';
 import { HiOutlineChevronLeft } from 'react-icons/hi';
 import { useNavigate } from 'react-router-dom';
@@ -5,11 +12,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Canvas, CodeView, Commands } from '../../Elements';
 import '../style.css';
 import { colorAction, colorTypeAction } from '../../../state/actionSlice';
-import { setLogout } from '../../../state/authSlice';
+import { selectEngineOutput } from '../../../state/actionSlice';
 
 function Level1() {
   const dispatch = useDispatch();
-  const EngineOutput = useSelector((state) => state.action.EngineOutput);
+  const EngineOutput = useSelector(selectEngineOutput);
   const GameAnswer = [
     { name: 'move', value: 'move' },
     { name: 'move', value: 'move' },
@@ -20,8 +27,7 @@ function Level1() {
 
   useEffect(() => {});
   const handleExit = () => {
-    dispatch(setLogout());
-    navigate('/');
+    navigate('/main');
   };
   const handleColor = () => {
     console.log('hit');
@@ -60,7 +66,7 @@ function Level1() {
       </div>
       <div className="canvasout">
         <Canvas EngineOutput={EngineOutput} GameAnswer={GameAnswer} />
-        <Canvas EngineOutput={GameAnswer} GameAnswer={GameAnswer} />
+        <Canvas EngineOutput={EngineOutput} GameAnswer={GameAnswer} />
       </div>
     </div>
   );

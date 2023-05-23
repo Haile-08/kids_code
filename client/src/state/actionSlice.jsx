@@ -80,4 +80,6 @@ export const actionSlice = createSlice({
 
 export const { runCode, resetCode, undoCode, colorAction, colorTypeAction } =
   actionSlice.actions;
+
+export const selectEngineOutput = (state) => state.action.EngineOutput;
 export default actionSlice.reducer;
