@@ -48,13 +48,16 @@ function Level1() {
             Color()
           </button>
           <button type="button" onClick={() => handleColorType('blue')}>
-            blue
+            Variable
           </button>
           <button type="button" onClick={() => handleColorType('red')}>
             red
           </button>
           <button type="button" onClick={() => handleColorType('green')}>
             Green
+          </button>
+          <button type="button" onClick={() => handleColorType('green')}>
+            yellow
           </button>
         </div>
       </div>
