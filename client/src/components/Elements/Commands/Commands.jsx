@@ -9,7 +9,7 @@ function Commands() {
   const handleRun = () => {
     dispatch(runCode());
   };
-  const handleReste = () => {
+  const handleReset = () => {
     dispatch(resetCode());
   };
   const handleUndo = () => {
@@ -31,7 +31,7 @@ function Commands() {
       <div className="Reset_Code">
         <button
           onClick={() => {
-            handleReste();
+            handleReset();
           }}
           type="button"
         >

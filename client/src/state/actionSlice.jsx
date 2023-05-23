@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { createSlice } from '@reduxjs/toolkit';
 import { Engine } from '../utils';
 
@@ -14,10 +15,11 @@ export const actionSlice = createSlice({
     runCode: (state) => {
       console.log(`input: ${state.EngineInput}`);
       const newArray = Engine(state.EngineInput);
-      console.log(`output: ${newArray}`);
+      // console.log(`output: ${newArray}`);
       state.EngineOutput = newArray;
     },
     resetCode: (state) => {
+      console.log(state.EngineInput);
       state.EngineInput = [];
       state.EngineOutput = [];
     },
@@ -35,17 +37,14 @@ export const actionSlice = createSlice({
       const index = inputArray.length - 1;
       if (id === 0) {
         const newArray = [
-          ...inputArray,
           { id, hasValue: false, value: '', functionName: 'color' },
         ];
-        console.log(newArray);
         state.EngineInput = newArray;
       } else if (inputArray[index].hasValue === true) {
         const newArray = [
           ...inputArray,
           { id, hasValue: false, value: '', functionName: 'color' },
         ];
-        console.log(newArray);
         state.EngineInput = newArray;
       } else {
         // eslint-disable-next-line no-useless-return
@@ -75,11 +74,37 @@ export const actionSlice = createSlice({
         }
       });
     },
+    variableAction: (state) => {
+      const engineInput = state.EngineInput;
+      const id = engineInput.length;
+      const index = engineInput.length - 1;
+      if (id === 0) {
+        const newArray = [
+          { id, hasValue: false, value: '', functionName: 'variable' },
+        ];
+        console.log(newArray);
+        state.EngineInput = newArray;
+      } else if (engineInput[index].hasValue === true) {
+        const newArray = [
+          ...engineInput,
+          { id, hasValue: false, value: '', functionName: 'variable' },
+        ];
+        console.log(newArray);
+        state.EngineInput = newArray;
+      }
+    },
   },
 });
 
-export const { runCode, resetCode, undoCode, colorAction, colorTypeAction } =
-  actionSlice.actions;
+export const {
+  runCode,
+  resetCode,
+  undoCode,
+  colorAction,
+  colorTypeAction,
+  variableAction,
+} = actionSlice.actions;
 
 export const selectEngineOutput = (state) => state.action.EngineOutput;
+export const selectEngineInput = (state) => state.action.EngineInput;
 export default actionSlice.reducer;

@@ -9,15 +9,33 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Canvas, CodeView, Commands } from '../../Elements';
 import '../style.css';
 import { colorAction } from '../../../state/actionSlice';
-import { selectEngineOutput } from '../../../state/actionSlice';
+import {
+  selectEngineOutput,
+  variableAction,
+  colorTypeAction,
+} from '../../../state/actionSlice';
 
 const Level2 = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const handleColor = () => {
     dispatch(colorAction());
   };
+  const handleVariable = () => {
+    dispatch(variableAction());
+  };
+  const handleColorType = () => {
+    dispatch(colorTypeAction());
+  };
+
   const EngineOutput = useSelector(selectEngineOutput);
+  const GameAnswer = [
+    { name: 'move', value: 'move' },
+    { name: 'move', value: 'move' },
+    { name: 'move', value: 'move' },
+    { name: 'move', value: 'move' },
+  ];
   return (
     <div className="game-page-container">
       <div className="exit">
@@ -32,17 +50,25 @@ const Level2 = () => {
           <Commands />
         </div>
         <div className="actions">
-          <button type="button" onClick={handleColor()}>
+          <button type="button" onClick={() => handleColor()}>
             Color()
           </button>
-          <button type="button">var1</button>
-          <button type="button">var2</button>
-          <button type="button">red</button>
-          <button type="button">blue</button>
+          <button type="button" onClick={() => handleVariable()}>
+            var1
+          </button>
+          <button type="button" onClick={() => handleVariable()}>
+            var2
+          </button>
+          <button type="button" onClick={() => handleColorType()}>
+            red
+          </button>
+          <button type="button" onClick={() => handleColorType()}>
+            blue
+          </button>
         </div>
       </div>
       <div className="canvasout">
-        <Canvas EngineOutput={EngineOutput} />
+        <Canvas EngineOutput={EngineOutput} GameAnswer={GameAnswer} />
         {/* <Canvas EngineOutput={GameAnswer} GameAnswer={GameAnswer} /> */}
       </div>
     </div>

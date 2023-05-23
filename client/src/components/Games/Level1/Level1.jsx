@@ -5,7 +5,7 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable react/function-component-definition */
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import { HiOutlineChevronLeft } from 'react-icons/hi';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -25,12 +25,10 @@ function Level1() {
   ];
   const navigate = useNavigate();
 
-  useEffect(() => {});
   const handleExit = () => {
     navigate('/main');
   };
   const handleColor = () => {
-    console.log('hit');
     dispatch(colorAction());
   };
   const handleColorType = (text) => {
@@ -53,14 +51,14 @@ function Level1() {
           <button type="button" onClick={() => handleColor()}>
             Color()
           </button>
-          <button type="button" onClick={() => handleColorType('blue')}>
-            blue
-          </button>
           <button type="button" onClick={() => handleColorType('red')}>
             red
           </button>
           <button type="button" onClick={() => handleColorType('green')}>
             Green
+          </button>
+          <button type="button" onClick={() => handleColorType('green')}>
+            yellow
           </button>
         </div>
       </div>
