@@ -19,7 +19,6 @@ export const actionSlice = createSlice({
       state.EngineOutput = newArray;
     },
     resetCode: (state) => {
-      console.log(state.EngineInput);
       state.EngineInput = [];
       state.EngineOutput = [];
     },
@@ -34,69 +33,129 @@ export const actionSlice = createSlice({
     colorAction: (state) => {
       const inputArray = state.EngineInput;
       const id = inputArray.length;
-      const index = inputArray.length - 1;
+      const last_idx = inputArray.length - 1;
       if (id === 0) {
         const newArray = [
-          { id, hasValue: false, value: '', functionName: 'color' },
+          {
+            Argument: 'outSide',
+            hasAction: true,
+            property: {
+              actions: [
+                { id: 0, hasValue: false, value: '', functionName: 'color' },
+              ],
+            },
+          },
         ];
         state.EngineInput = newArray;
-      } else if (inputArray[index].hasValue === true) {
-        const newArray = [
-          ...inputArray,
-          { id, hasValue: false, value: '', functionName: 'color' },
-        ];
-        state.EngineInput = newArray;
+      } else if (inputArray[last_idx].hasAction === true) {
+        const action_id = inputArray[last_idx].property.actions.length;
+        const action_last_idx =
+          inputArray[last_idx].property.actions.length - 1;
+        if (
+          inputArray[last_idx].property.actions[action_last_idx].hasValue ===
+          true
+        ) {
+          const newArray = [
+            ...inputArray[last_idx].property.actions,
+            {
+              id: action_id,
+              hasValue: false,
+              value: '',
+              functionName: 'color',
+            },
+          ];
+          inputArray[last_idx].property.actions = newArray;
+        } else {
+          return;
+        }
       } else {
-        // eslint-disable-next-line no-useless-return
         return;
       }
     },
     colorTypeAction: (state, action) => {
       const inputArray = state.EngineInput;
       inputArray.map((item) => {
-        if (!item.hasValue) {
-          if (item.functionName === 'color') {
-            const newArray = [...inputArray];
-            newArray[item.id].value = action.payload;
-            newArray[item.id].hasValue = true;
-            state.EngineInput = newArray;
-          } else {
-            // eslint-disable-next-line no-useless-return
-            return;
+        if (!item.hasAction) {
+          if (item.Argument === 'outSide') {
+            const actionArray = item.property.actions;
+            item.property.actions.map((act) => {
+              if (!act.hasValue) {
+                if (act.functionName === 'color') {
+                  const newArray = [...actionArray];
+                  newArray[act.id].value = action.payload;
+                  newArray[act.id].hasValue = true;
+                  item.property.actions = newArray;
+                  return;
+                } else {
+                  // eslint-disable-next-line no-useless-return
+                  return;
+                }
+              } else if (act.id === inputArray.length - 1) {
+                if (act.functionName === 'color') {
+                  const newArray = [...inputArray];
+                  newArray[act.id].value = action.payload;
+                  newArray[act.id].hasValue = true;
+                  item.property.actions = newArray;
+                  return;
+                }
+              }
+            });
           }
-        } else if (item.id === inputArray.length - 1) {
-          if (item.functionName === 'color') {
-            const newArray = [...inputArray];
-            newArray[item.id].value = action.payload;
-            newArray[item.id].hasValue = true;
-            state.EngineInput = newArray;
+          if (item.Argument === 'variable') {
+            console.log('execute');
+            console.log('var');
+            if (!item.hasAction) {
+              item.property.varValue = action.payload;
+              item.hasAction = true;
+            } else {
+              return;
+            }
           }
         }
       });
     },
-<<<<<<< HEAD
-    VariableAction: (state, action) => {},
-=======
-    variableAction: (state) => {
-      const engineInput = state.EngineInput;
-      const id = engineInput.length;
-      const index = engineInput.length - 1;
+    variableAction: (state, action) => {
+      const inputArray = state.EngineInput;
+      const id = inputArray.length;
+      const last_idx = inputArray.length - 1;
+      const last_action_idx = 0;
+      const var_hasvalue = false;
+      if (inputArray[last_idx] != undefined) {
+        if (inputArray[last_idx].Argument != 'variable') {
+          last_action_idx = inputArray[last_idx].property?.actions.length - 1;
+          var_hasvalue =
+            inputArray[last_idx].property.actions[last_action_idx].hasValue;
+        }
+      }
       if (id === 0) {
         const newArray = [
-          { id, hasValue: false, value: '', functionName: 'variable' },
+          {
+            Argument: 'variable',
+            hasAction: false,
+            property: {
+              varName: action.payload,
+              varValue: '',
+            },
+          },
         ];
-        console.log(newArray);
         state.EngineInput = newArray;
-      } else if (engineInput[index].hasValue === true) {
+      } else if (var_hasvalue) {
         const newArray = [
-          ...engineInput,
-          { id, hasValue: false, value: '', functionName: 'variable' },
+          ...inputArray,
+          {
+            Argument: 'variable',
+            hasAction: false,
+            property: {
+              varName: action.payload,
+              varValue: '',
+            },
+          },
         ];
-        console.log(newArray);
         state.EngineInput = newArray;
+      } else {
+        return;
       }
     },
->>>>>>> f0d4084f8ecff7e3d24302e8832d0c627987e76d
   },
 });
 
@@ -106,14 +165,9 @@ export const {
   undoCode,
   colorAction,
   colorTypeAction,
-<<<<<<< HEAD
-  VariableAction,
-} = actionSlice.actions;
-=======
   variableAction,
 } = actionSlice.actions;
 
 export const selectEngineOutput = (state) => state.action.EngineOutput;
 export const selectEngineInput = (state) => state.action.EngineInput;
->>>>>>> f0d4084f8ecff7e3d24302e8832d0c627987e76d
 export default actionSlice.reducer;

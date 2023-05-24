@@ -9,7 +9,6 @@ import { useSelector } from 'react-redux';
 import {
   Home,
   Level1,
-  Level2,
   Login,
   MainLayout,
   Mainpage,
@@ -66,10 +65,6 @@ function RoutesPath() {
         {
           path: 'level/quiz',
           element: isAuth ? <QuizApp /> : <Navigate to="/login" />,
-        },
-        {
-          path: 'level2',
-          element: isAuth ? <Level2 /> : <Navigate to="/login" />,
         },
       ],
     },

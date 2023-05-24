@@ -11,17 +11,12 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Canvas, CodeView, Commands } from '../../Elements';
 import '../style.css';
-<<<<<<< HEAD
 import {
-  VariableAction,
+  variableAction,
   colorAction,
   colorTypeAction,
 } from '../../../state/actionSlice';
-import { setLogout } from '../../../state/authSlice';
-=======
-import { colorAction, colorTypeAction } from '../../../state/actionSlice';
 import { selectEngineOutput } from '../../../state/actionSlice';
->>>>>>> f0d4084f8ecff7e3d24302e8832d0c627987e76d
 
 function Level1() {
   const dispatch = useDispatch();
@@ -44,7 +39,7 @@ function Level1() {
     dispatch(colorTypeAction(text));
   };
   const handleVariable = (text) => {
-    dispatch(VariableAction(text));
+    dispatch(variableAction(text));
   };
   return (
     <div className="game-page-container">
@@ -63,20 +58,17 @@ function Level1() {
           <button type="button" onClick={() => handleColor()}>
             Color()
           </button>
-<<<<<<< HEAD
-          <button type="button" onClick={() => handleVariable('color')}>
-            color
+          <button type="button" onClick={() => handleVariable('var1')}>
+            var1
           </button>
-=======
->>>>>>> f0d4084f8ecff7e3d24302e8832d0c627987e76d
+          <button type="button" onClick={() => handleVariable('var2')}>
+            var2
+          </button>
           <button type="button" onClick={() => handleColorType('red')}>
             red
           </button>
           <button type="button" onClick={() => handleColorType('green')}>
             Green
-          </button>
-          <button type="button" onClick={() => handleColorType('yellow')}>
-            yellow
           </button>
         </div>
       </div>
