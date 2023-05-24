@@ -1,0 +1,74 @@
+.quiz-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.quiz-app {
+  min-height: 50%;
+  max-width: 30%;
+  /* background: rgb(92, 199, 209); */
+  border-radius: 40px;
+  text-align: center;
+  color: #fff;
+  background: rgb(118, 148, 150);
+}
+h1 {
+  margin-top: 50px;
+}
+button {
+  padding: 10px 20px;
+  border: 1px solid #000;
+  border-radius: 5px;
+  /* background: none; */
+  cursor: pointer;
+  font-size: 18px;
+}
+.startBtn {
+  padding: 10px 55px;
+  border: 1px solid #000;
+  border-radius: 5px;
+  background: none;
+  cursor: pointer;
+  font-size: 18px;
+  margin-top: 40px;
+}
+.nextBtn {
+  background: rgb(209, 154, 92);
+  padding: 10px 20px;
+  border: 1px solid #000;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.quiz-app button:hover {
+  background: rgb(92, 199, 209);
+  /* color: #fff;
+  border-color: #fff; */
+}
+
+.options {
+  margin-left: 20px;
+}
+.options button {
+  display: block;
+  width: 300px;
+  border: 1px solid #000;
+  border-radius: 5px;
+  background: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: #fff;
+  margin: 5px auto;
+}
+
+.endScreen,
+.Menu {
+  margin: auto;
+}
+
+.options button:focus {
+  background-color: rgb(23, 160, 184);
+}

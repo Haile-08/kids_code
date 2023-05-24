@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -28,7 +30,9 @@ function Mainpage() {
         <div className="level" onClick={() => navigate('/level')}>
           level 1
         </div>
-        <div className="level">level 2</div>
+        <div className="level" onClick={() => navigate('/level2')}>
+          level 2
+        </div>
         <div className="level">level 3</div>
       </div>
     </div>

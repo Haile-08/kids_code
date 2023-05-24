@@ -13,7 +13,7 @@ import './style.css';
 // eslint-disable-next-line react/prop-types, react/function-component-definition
 const Canvas = ({ EngineOutput, GameAnswer }) => {
   const CanvasRef = useRef(null);
-  console.log(EngineOutput);
+  // console.log('engine out put ' + EngineOutput);
   // Canvas Variables
   // eslint-disable-next-line prefer-const
   let dropBox = [];
