@@ -47,7 +47,10 @@ export const actionSlice = createSlice({
           },
         ];
         state.EngineInput = newArray;
-      } else if (inputArray[last_idx].hasAction === true) {
+      } else if (
+        inputArray[last_idx].hasAction === true &&
+        inputArray[last_idx].Argument !== 'variable'
+      ) {
         const action_id = inputArray[last_idx].property.actions.length;
         const action_last_idx =
           inputArray[last_idx].property.actions.length - 1;
@@ -118,8 +121,8 @@ export const actionSlice = createSlice({
       const inputArray = state.EngineInput;
       const id = inputArray.length;
       const last_idx = inputArray.length - 1;
-      const last_action_idx = 0;
-      const var_hasvalue = false;
+      let last_action_idx = 0;
+      let var_hasvalue = false;
       if (inputArray[last_idx] != undefined) {
         if (inputArray[last_idx].Argument != 'variable') {
           last_action_idx = inputArray[last_idx].property?.actions.length - 1;
