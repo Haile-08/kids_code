@@ -75,9 +75,16 @@ export const actionSlice = createSlice({
         }
       });
     },
+    VariableAction: (state, action) => {},
   },
 });
 
-export const { runCode, resetCode, undoCode, colorAction, colorTypeAction } =
-  actionSlice.actions;
+export const {
+  runCode,
+  resetCode,
+  undoCode,
+  colorAction,
+  colorTypeAction,
+  VariableAction,
+} = actionSlice.actions;
 export default actionSlice.reducer;

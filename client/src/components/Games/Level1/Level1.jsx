@@ -4,7 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Canvas, CodeView, Commands } from '../../Elements';
 import '../style.css';
-import { colorAction, colorTypeAction } from '../../../state/actionSlice';
+import {
+  VariableAction,
+  colorAction,
+  colorTypeAction,
+} from '../../../state/actionSlice';
 import { setLogout } from '../../../state/authSlice';
 
 function Level1() {
@@ -30,6 +34,9 @@ function Level1() {
   const handleColorType = (text) => {
     dispatch(colorTypeAction(text));
   };
+  const handleVariable = (text) => {
+    dispatch(VariableAction(text));
+  };
   return (
     <div className="game-page-container">
       <div className="exit">
@@ -47,8 +54,8 @@ function Level1() {
           <button type="button" onClick={() => handleColor()}>
             Color()
           </button>
-          <button type="button" onClick={() => handleColorType('blue')}>
-            Variable
+          <button type="button" onClick={() => handleVariable('color')}>
+            color
           </button>
           <button type="button" onClick={() => handleColorType('red')}>
             red
@@ -56,7 +63,7 @@ function Level1() {
           <button type="button" onClick={() => handleColorType('green')}>
             Green
           </button>
-          <button type="button" onClick={() => handleColorType('green')}>
+          <button type="button" onClick={() => handleColorType('yellow')}>
             yellow
           </button>
         </div>
