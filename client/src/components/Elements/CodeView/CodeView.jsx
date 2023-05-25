@@ -36,9 +36,9 @@ function CodeView() {
         <>
           {item.Argument === 'outSide' ? (
             <FormatColorFunction item={item} />
-          ) : (
+          ) : item.Argument === 'variable' ? (
             <FormatVariableFunction item={item} />
-          )}
+          ) : null}
         </>
       ))}
     </div>
