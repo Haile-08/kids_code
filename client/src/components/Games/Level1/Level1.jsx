@@ -15,6 +15,7 @@ import {
   variableAction,
   colorAction,
   colorTypeAction,
+  emptEngineInput,
 } from '../../../state/actionSlice';
 import { selectEngineOutput } from '../../../state/actionSlice';
 
@@ -30,6 +31,7 @@ function Level1() {
   const navigate = useNavigate();
 
   const handleExit = () => {
+    dispatch(emptEngineInput());
     navigate('/main');
   };
   const handleColor = () => {

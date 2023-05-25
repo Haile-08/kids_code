@@ -15,6 +15,7 @@ import {
   variableAction,
   colorAction,
   colorTypeAction,
+  emptEngineStates,
 } from '../../../state/actionSlice';
 import { selectEngineOutput } from '../../../state/actionSlice';
 
@@ -30,6 +31,7 @@ function Level2() {
   const navigate = useNavigate();
 
   const handleExit = () => {
+    dispatch(emptEngineStates());
     navigate('/main');
   };
   const handleColor = () => {
@@ -41,10 +43,17 @@ function Level2() {
   const handleVariable = (text) => {
     dispatch(variableAction(text));
   };
+
+  const handleOperators = () => {
+    console.log('oprators');
+  };
+
+  const handleConditionals = () => {
+    console.log('conditionals');
+  };
   return (
     <div className="game-page-container">
       <div className="exit">
-        {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
         <div className="exitbtn" onClick={handleExit}>
           <HiOutlineChevronLeft />
         </div>
@@ -64,15 +73,19 @@ function Level2() {
           <button type="button" onClick={() => handleVariable('var2')}>
             var2
           </button>
-          <button type="button" onClick={() => handleVariable('var1')}>
+          <button type="button" onClick={() => handleOperators('if')}>
             If
           </button>
-          <button type="button" onClick={() => handleVariable('var2')}>
+          <button type="button" onClick={() => handleOperators('else')}>
             else
           </button>
-          <button type="button">==</button>
-          <button type="button">!=</button>
-          <button type="button" onClick={() => handleColorType('green')}>
+          <button type="button" onClick={() => handleOperators('==')}>
+            ==
+          </button>
+          <button type="button" onClick={() => handleOperators('!=')}>
+            !=
+          </button>
+          <button type="button" onClick={() => handleColorType('red')}>
             red
           </button>
           <button type="button" onClick={() => handleColorType('green')}>
