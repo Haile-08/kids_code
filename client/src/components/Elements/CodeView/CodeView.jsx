@@ -21,7 +21,10 @@ const FormatColorFunction = ({ item }) => (
 );
 
 const FormatVariableFunction = ({ item }) => (
-  <h2>{item?.property?.varName ? `${item.property.varName} =` : null}</h2>
+  <h3>
+    {item?.property?.varName ? `${item.property.varName} =` : null}{' '}
+    {`" ${item.property.varValue} "`}
+  </h3>
 );
 
 function CodeView() {
