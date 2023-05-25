@@ -21,7 +21,7 @@
 }
 .Buttons-Codespace {
   background-color: var(--Buttons-Codespace-background);
-  margin: 10px;
+  margin: 5px;
   border-radius: 10px;
   min-height: 70vh;
   display: flex;
@@ -44,7 +44,7 @@
 .actions button {
   width: 150px;
   height: 50px;
-  margin: 0px 40px;
+  margin: 0px 10px;
   border-radius: 5px;
   outline: none;
   border: none;

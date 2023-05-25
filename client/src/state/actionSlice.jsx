@@ -30,10 +30,6 @@ export const actionSlice = createSlice({
       state.EngineInput = inputarray;
       state.EngineOutput = ouputarray;
     },
-    emptEngineInput: (state) => {
-      const emptyArr = [];
-      state.EngineInput = emptyArr;
-    },
     colorAction: (state) => {
       const inputArray = state.EngineInput;
       const id = inputArray.length;
@@ -239,7 +235,6 @@ export const {
   colorAction,
   colorTypeAction,
   variableAction,
-  emptEngineInput,
 } = actionSlice.actions;
 
 export const selectEngineOutput = (state) => state.action.EngineOutput;
