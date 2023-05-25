@@ -49,7 +49,8 @@ export const actionSlice = createSlice({
         state.EngineInput = newArray;
       } else if (
         inputArray[last_idx].hasAction === true &&
-        inputArray[last_idx].Argument !== 'variable'
+        inputArray[last_idx].Argument !== 'variable' &&
+        inputArray[last_idx].Argument !== 'if'
       ) {
         const action_id = inputArray[last_idx].property.actions.length;
         const action_last_idx =
@@ -90,8 +91,36 @@ export const actionSlice = createSlice({
           },
         ];
         state.EngineInput = newArray;
-      } else {
-        return;
+      } else if (
+        inputArray[last_idx].hasAction === true &&
+        inputArray[last_idx].Argument === 'if'
+      ) {
+        const last_action_idx =
+          inputArray[last_idx].property.if_Action.length - 1;
+        if (
+          inputArray[last_idx].property.obj4 !== '' &&
+          inputArray[last_idx].property.if_Action.length === 0
+        ) {
+          const idx = inputArray[last_idx].property.if_Action.length;
+
+          const newArray = [
+            ...inputArray[last_idx].property.if_Action,
+            { id: idx, hasValue: false, value: '', functionName: 'color' },
+          ];
+          inputArray[last_idx].property.if_Action = newArray;
+        } else if (
+          inputArray[last_idx].property.obj4 !== '' &&
+          inputArray[last_idx].property.if_Action[last_action_idx].hasValue ===
+            true
+        ) {
+          const newArray = [
+            ...inputArray[last_idx].property.if_Action,
+            { id: idx, hasValue: false, value: '', functionName: 'color' },
+          ];
+          inputArray[last_idx].property.if_Action = newArray;
+        } else {
+          return;
+        }
       }
     },
     colorTypeAction: (state, action) => {
@@ -136,6 +165,31 @@ export const actionSlice = createSlice({
             item.property.hasValue = true;
           } else {
             return;
+          }
+        } else if (item.Argument === 'if' && idx === inputArray.length - 1) {
+          const last_idx = item.property.if_Action.length - 1;
+          if (item.property.obj2 === '' && item.property.obj3 === '') {
+            item.property.obj2 = action.payload;
+          } else if (item.property.obj2 !== '' && item.property.obj3 === '') {
+            item.property.obj2 = action.payload;
+          } else if (
+            item.property.obj2 !== '' &&
+            item.property.obj4 === '' &&
+            item.property.obj3 !== ''
+          ) {
+            item.hasAction = true;
+            item.property.obj4 = action.payload;
+          } else if (
+            item.property.obj4 !== '' &&
+            item.property.if_Action.length === 0
+          ) {
+            item.hasAction = true;
+            item.property.obj4 = action.payload;
+          } else if (
+            item.property.if_Action.length !== 0 &&
+            item.property.if_Action[last_idx].hasAction === true
+          ) {
+            item.property.if_Action[last_idx].value = action.payload;
           }
         }
       });
@@ -225,6 +279,114 @@ export const actionSlice = createSlice({
         return;
       }
     },
+    operatorsAction: (state, action) => {
+      const inputArray = state.EngineInput;
+      const last_idx = inputArray.length - 1;
+      if (
+        inputArray[last_idx].Argument == 'if' &&
+        inputArray[last_idx].property.obj2 !== ''
+      ) {
+        const action_Object = inputArray[last_idx].property;
+        action_Object.obj3 = action.payload;
+      }
+    },
+    conditionalAction: (state, action) => {
+      const inputArray = state.EngineInput;
+      const id = inputArray.length;
+      const last_idx = inputArray.length - 1;
+      if (id === 0) {
+        const newArray = [
+          {
+            Argument: 'if',
+            hasAction: false,
+            property: {
+              obj1: 'if',
+              obj2: '',
+              obj3: '',
+              obj4: '',
+              if_Action: [],
+              obj5: '',
+              else_Action: [],
+            },
+          },
+        ];
+        state.EngineInput = newArray;
+      } else if (
+        inputArray[last_idx].Argument === 'variable' &&
+        inputArray[last_idx].property.hasValue
+      ) {
+        const newArray = [
+          ...inputArray,
+          {
+            Argument: 'if',
+            hasAction: false,
+            property: {
+              obj1: 'if',
+              obj2: '',
+              obj3: '',
+              obj4: '',
+              if_Action: [],
+              obj5: '',
+              else_Action: [],
+            },
+          },
+        ];
+        state.EngineInput = newArray;
+      } else if (inputArray[last_idx].Argument === 'outSide') {
+        const last_action_idx = inputArray[last_idx].property.actions - 1;
+        const action_Array = inputArray[last_idx].property.actions;
+        if (action_Array[last_action_idx].hasValue == true) {
+          const newArray = [
+            ...inputArray,
+            {
+              Argument: 'if',
+              hasAction: false,
+              property: {
+                obj1: 'if',
+                obj2: '',
+                obj3: '',
+                obj4: '',
+                if_Action: [],
+                obj5: '',
+                else_Action: [],
+              },
+            },
+          ];
+          state.EngineInput = newArray;
+        }
+      } else if (
+        action.payload === 'else' &&
+        inputArray[last_idx].Argument === 'if'
+      ) {
+        if (
+          inputArray[last_idx].property.obj2 != '' &&
+          inputArray[last_idx].property.obj3 != '' &&
+          inputArray[last_idx].property.obj4 != '' &&
+          inputArray[last_idx].property.if_Action != []
+        ) {
+          const newArray = [
+            ...inputArray,
+            {
+              Argument: 'if',
+              hasAction: false,
+              property: {
+                obj1: 'if',
+                obj2: '',
+                obj3: '',
+                obj4: '',
+                if_Action: [],
+                obj5: action.payload,
+                else_Action: [],
+              },
+            },
+          ];
+          state.EngineInput = newArray;
+        }
+      }
+      {
+        return;
+      }
+    },
   },
 });
 
@@ -235,6 +397,8 @@ export const {
   colorAction,
   colorTypeAction,
   variableAction,
+  conditionalAction,
+  operatorsAction,
 } = actionSlice.actions;
 
 export const selectEngineOutput = (state) => state.action.EngineOutput;

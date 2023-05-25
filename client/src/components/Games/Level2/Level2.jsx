@@ -16,6 +16,8 @@ import {
   colorAction,
   colorTypeAction,
   resetCode,
+  conditionalAction,
+  operatorsAction,
 } from '../../../state/actionSlice';
 import { selectEngineOutput } from '../../../state/actionSlice';
 
@@ -44,12 +46,12 @@ function Level2() {
     dispatch(variableAction(text));
   };
 
-  const handleOperators = () => {
-    console.log('oprators');
+  const handleOperators = (text) => {
+    dispatch(operatorsAction(text));
   };
 
-  const handleConditionals = () => {
-    console.log('conditionals');
+  const handleConditionals = (text) => {
+    dispatch(conditionalAction(text));
   };
   return (
     <div className="game-page-container">
@@ -73,10 +75,10 @@ function Level2() {
           <button type="button" onClick={() => handleVariable('var2')}>
             var2
           </button>
-          <button type="button" onClick={() => handleOperators('if')}>
+          <button type="button" onClick={() => handleConditionals('if')}>
             If
           </button>
-          <button type="button" onClick={() => handleOperators('else')}>
+          <button type="button" onClick={() => handleConditionals('else')}>
             else
           </button>
           <button type="button" onClick={() => handleOperators('==')}>
