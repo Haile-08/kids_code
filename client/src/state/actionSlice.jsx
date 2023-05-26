@@ -98,10 +98,11 @@ export const actionSlice = createSlice({
         const last_action_idx =
           inputArray[last_idx].property.if_Action.length - 1;
         if (
-          inputArray[last_idx].property.obj4 !== '' &&
+          inputArray[last_idx].property.secondArg !== '' &&
           inputArray[last_idx].property.if_Action.length === 0
         ) {
           const idx = inputArray[last_idx].property.if_Action.length;
+          console.log('property.if_Action.length === 0 ');
 
           const newArray = [
             ...inputArray[last_idx].property.if_Action,
@@ -109,10 +110,12 @@ export const actionSlice = createSlice({
           ];
           inputArray[last_idx].property.if_Action = newArray;
         } else if (
-          inputArray[last_idx].property.obj4 !== '' &&
-          inputArray[last_idx].property.if_Action[last_action_idx].hasValue ===
-            true
+          inputArray[last_idx].property.secondArg !== '' &&
+          // inputArray[last_idx].property.if_Action[last_action_idx].hasValue ===
+          //   true &&
+          inputArray[last_idx].property.if_Action.length !== 0
         ) {
+          console.log('color after color in the if ');
           const newArray = [
             ...inputArray[last_idx].property.if_Action,
             { id: idx, hasValue: false, value: '', functionName: 'color' },
@@ -168,27 +171,32 @@ export const actionSlice = createSlice({
           }
         } else if (item.Argument === 'if' && idx === inputArray.length - 1) {
           const last_idx = item.property.if_Action.length - 1;
-          if (item.property.obj2 === '' && item.property.obj3 === '') {
-            item.property.obj2 = action.payload;
-          } else if (item.property.obj2 !== '' && item.property.obj3 === '') {
-            item.property.obj2 = action.payload;
+          if (item.property.firstArg === '' && item.property.operator === '') {
+            item.property.firstArg = action.payload;
+            // first;
           } else if (
-            item.property.obj2 !== '' &&
-            item.property.obj4 === '' &&
-            item.property.obj3 !== ''
+            item.property.firstArg !== '' &&
+            item.property.operator === ''
+          ) {
+            item.property.firstArg = action.payload;
+          } else if (
+            item.property.firstArg !== '' &&
+            item.property.secondArg === '' &&
+            item.property.operator !== ''
           ) {
             item.hasAction = true;
-            item.property.obj4 = action.payload;
+            item.property.secondArg = action.payload;
           } else if (
-            item.property.obj4 !== '' &&
+            item.property.secondArg !== '' &&
             item.property.if_Action.length === 0
           ) {
             item.hasAction = true;
-            item.property.obj4 = action.payload;
+            item.property.secondArg = action.payload;
           } else if (
             item.property.if_Action.length !== 0 &&
             item.property.if_Action[last_idx].hasAction === true
           ) {
+            //but what are the values that goes in to the this array
             item.property.if_Action[last_idx].value = action.payload;
           }
         }
@@ -202,7 +210,7 @@ export const actionSlice = createSlice({
       let color_hasvalue = false;
       let var_hasValue = false;
       if (inputArray[last_idx] != undefined) {
-        if (inputArray[last_idx].Argument != 'variable') {
+        if (inputArray[last_idx].Argument === 'outSide') {
           last_action_idx = inputArray[last_idx].property?.actions.length - 1;
           color_hasvalue =
             inputArray[last_idx].property.actions[last_action_idx].hasValue;
@@ -282,12 +290,25 @@ export const actionSlice = createSlice({
     operatorsAction: (state, action) => {
       const inputArray = state.EngineInput;
       const last_idx = inputArray.length - 1;
+      console.log('operator: ', inputArray[last_idx].property.operator !== '');
+
       if (
-        inputArray[last_idx].Argument == 'if' &&
-        inputArray[last_idx].property.obj2 !== ''
+        inputArray[last_idx].Argument === 'if' &&
+        inputArray[last_idx].property.operator !== ''
       ) {
         const action_Object = inputArray[last_idx].property;
-        action_Object.obj3 = action.payload;
+        action_Object.operator = action.payload;
+        console.log(action.payload);
+        inputArray[last_idx].property = action_Object;
+        state.EngineInput = inputArray;
+      } else if (
+        inputArray[last_idx].Argument === 'if' &&
+        inputArray[last_idx].property.operator === ''
+      ) {
+        const action_Object = inputArray[last_idx].property;
+        action_Object.operator = action.payload;
+        console.log(action.payload);
+        inputArray[last_idx].property = action_Object;
       }
     },
     conditionalAction: (state, action) => {
@@ -300,12 +321,12 @@ export const actionSlice = createSlice({
             Argument: 'if',
             hasAction: false,
             property: {
-              obj1: 'if',
-              obj2: '',
-              obj3: '',
-              obj4: '',
+              actionNameIf: 'if',
+              firstArg: '',
+              operator: '',
+              secondArg: '',
               if_Action: [],
-              obj5: '',
+              actionNameElse: '',
               else_Action: [],
             },
           },
@@ -321,12 +342,12 @@ export const actionSlice = createSlice({
             Argument: 'if',
             hasAction: false,
             property: {
-              obj1: 'if',
-              obj2: '',
-              obj3: '',
-              obj4: '',
+              actionNameIf: 'if',
+              firstArg: '',
+              operator: '',
+              secondArg: '',
               if_Action: [],
-              obj5: '',
+              actionNameElse: '',
               else_Action: [],
             },
           },
@@ -335,6 +356,7 @@ export const actionSlice = createSlice({
       } else if (inputArray[last_idx].Argument === 'outSide') {
         const last_action_idx = inputArray[last_idx].property.actions - 1;
         const action_Array = inputArray[last_idx].property.actions;
+        console.log(action_Array);
         if (action_Array[last_action_idx].hasValue == true) {
           const newArray = [
             ...inputArray,
@@ -342,12 +364,12 @@ export const actionSlice = createSlice({
               Argument: 'if',
               hasAction: false,
               property: {
-                obj1: 'if',
-                obj2: '',
-                obj3: '',
-                obj4: '',
+                actionNameIf: 'if',
+                firstArg: '',
+                operator: '',
+                secondArg: '',
                 if_Action: [],
-                obj5: '',
+                actionNameElse: '',
                 else_Action: [],
               },
             },
@@ -359,9 +381,9 @@ export const actionSlice = createSlice({
         inputArray[last_idx].Argument === 'if'
       ) {
         if (
-          inputArray[last_idx].property.obj2 != '' &&
-          inputArray[last_idx].property.obj3 != '' &&
-          inputArray[last_idx].property.obj4 != '' &&
+          inputArray[last_idx].property.firstArg != '' &&
+          inputArray[last_idx].property.operator != '' &&
+          inputArray[last_idx].property.secondArg != '' &&
           inputArray[last_idx].property.if_Action != []
         ) {
           const newArray = [
@@ -370,12 +392,12 @@ export const actionSlice = createSlice({
               Argument: 'if',
               hasAction: false,
               property: {
-                obj1: 'if',
-                obj2: '',
-                obj3: '',
-                obj4: '',
+                actionNameIf: 'if',
+                firstArg: '',
+                operator: '',
+                secondArg: '',
                 if_Action: [],
-                obj5: action.payload,
+                actionNameElse: action.payload,
                 else_Action: [],
               },
             },
