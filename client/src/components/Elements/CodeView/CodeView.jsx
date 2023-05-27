@@ -29,29 +29,56 @@ const FormatVariableFunction = ({ item }) => (
 
 const FormatIfFunction = ({ item }) => (
   <h3>
-    {`${item.property.actionNameIf}(`}
+    {item.property.actionNameElse
+      ? `${item.property.actionNameElse} {`
+      : `${item.property.actionNameIf}(`}
+    {/* {`${item.property.actionNameIf}(`} */}
 
-    {item?.property?.firstArg
-      ? ` ${item?.property?.firstArg}`
+    {item.property.actionNameElse
+      ? null
+      : item?.property?.firstArg
+      ? ` ${item?.property?.firstArg} `
       : ` ${item?.property?.secondArg} `}
     {item.property.operator}
 
-    {item?.property?.secondArg ? ` ${item?.property?.secondArg}` : null}
+    {item.property.actionNameElse
+      ? null
+      : item?.property?.secondArg
+      ? ` ${item?.property?.secondArg}`
+      : null}
 
-    {item.property.actionNameIf && ')'}
+    {item.property.actionNameIf ? `)` : null}
+    {/* {item.property.actionNameIf && ')'} */}
 
     {item.hasAction && '{'}
 
-    {item?.property?.if_Action?.length !== 0
+    {item?.property?.if_Action?.length !== 0 &&
+    item.property.actionNameElse === ''
       ? item.property?.if_Action.map((unitAction) => (
           <>
             <br />
-            <>{unitAction.functionName}</>
+            {unitAction.functionName}
+            {unitAction.functionName ? '(' : ''}
+            {unitAction.hasValue ? unitAction.value : null}
+            {unitAction.functionName ? ')' : ''}
+          </>
+        ))
+      : null}
+
+    {item?.property?.else_Action?.length !== 0 &&
+    item.property.actionNameElse === 'else'
+      ? item.property?.else_Action.map((unitAction) => (
+          <>
             <br />
+            {unitAction.functionName}
+            {unitAction.functionName ? '(' : ''}
+            {unitAction.hasValue ? unitAction.value : null}
+            {unitAction.functionName ? ')' : ''}
           </>
         ))
       : null}
     <br />
+    {item.property.actionNameElse ? '}' : null}
     {item.hasAction && '}'}
   </h3>
 );
