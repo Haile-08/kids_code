@@ -84,6 +84,12 @@ function Level3() {
           <button type="button" onClick={() => handleOperators('=')}>
             =
           </button>
+          <button type="button" onClick={() => handleOperators('++')}>
+            ++
+          </button>
+          <button type="button" onClick={() => handleOperators('--')}>
+            --
+          </button>
           <button type="button" onClick={() => handleOperators('>')}>
             {`>`}
           </button>
