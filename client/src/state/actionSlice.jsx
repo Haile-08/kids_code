@@ -159,6 +159,44 @@ export const actionSlice = createSlice({
             { id: idx, hasValue: false, value: '', functionName: 'color' },
           ];
           inputArray[last_idx].property.else_Action = newArray;
+        } else if (
+          inputArray[last_idx].Argument === 'for' &&
+          inputArray[last_idx].property.thirdArg !== '' &&
+          inputArray[last_idx].property.for_Action === []
+        ) {
+          const newArray = [
+            { id: idx, hasValue: false, value: '', functionName: 'color' },
+          ];
+          inputArray[last_idx].property.for_Action = newArray;
+        } else if (
+          inputArray[last_idx].Argument === 'for' &&
+          inputArray[last_idx].property.thirdArg !== '' &&
+          inputArray[last_idx].property.for_Action !== []
+        ) {
+          const newArray = [
+            ...inputArray[last_idx].property.for_Action,
+            { id: idx, hasValue: false, value: '', functionName: 'color' },
+          ];
+          inputArray[last_idx].property.for_Action = newArray;
+        } else if (
+          inputArray[last_idx].Argument === 'while' &&
+          inputArray[last_idx].property.thirdArg !== '' &&
+          inputArray[last_idx].property.for_Action === []
+        ) {
+          const newArray = [
+            { id: idx, hasValue: false, value: '', functionName: 'color' },
+          ];
+          inputArray[last_idx].property.while_Action = newArray;
+        } else if (
+          inputArray[last_idx].Argument === 'while' &&
+          inputArray[last_idx].property.thirdArg !== '' &&
+          inputArray[last_idx].property.for_Action !== []
+        ) {
+          const newArray = [
+            ...inputArray[last_idx].property.while_Action,
+            { id: idx, hasValue: false, value: '', functionName: 'color' },
+          ];
+          inputArray[last_idx].property.while_Action = newArray;
         } else {
           return;
         }
@@ -419,7 +457,6 @@ export const actionSlice = createSlice({
         ];
         state.EngineInput = newArray;
       } else if (inputArray[last_idx].Argument === 'if' && isThereVariable) {
-        console.log(isThereVariable);
         const item = inputArray[last_idx];
         if (!item.property.actionNameElse) {
           if (item.property.firstArg === '' && item.property.operator === '') {
@@ -443,6 +480,91 @@ export const actionSlice = createSlice({
             item.hasAction = true;
             item.property.secondArg = action.payload;
           }
+        }
+      } else if (inputArray[last_idx].Argument === 'for' && isThereVariable) {
+        const item = inputArray[last_idx];
+        if (
+          item.property.firstArg === '' &&
+          item.property.firstOperator === ''
+        ) {
+          item.property.firstArg = action.payload;
+        } else if (
+          item.property.secondArg === '' &&
+          item.property.thirdArg === ''
+        ) {
+          item.property.secondArg = action.payload;
+        } else if (
+          item.property.thirdArg === '' &&
+          item.property.secondArg === ''
+        ) {
+          item.property.thirdArg = action.payload;
+        } else if (
+          item.property.fourthArg === '' &&
+          item.property.fifthArg === ''
+        ) {
+          item.property.fourthArg = action.payload;
+        } else if (
+          item.property.fifthArg === '' &&
+          item.property.thirdOperator === ''
+        ) {
+          item.property.fifthArg = action.payload;
+        } else if (
+          item.property.firstArg !== '' &&
+          item.property.firstOperator === ''
+        ) {
+          item.property.firstArg = action.payload;
+        } else if (
+          item.property.secondArg !== '' &&
+          item.property.thirdArg === ''
+        ) {
+          item.property.secondArg = action.payload;
+        } else if (
+          item.property.thirdArg !== '' &&
+          item.property.secondArg === ''
+        ) {
+          item.property.thirdArg = action.payload;
+        } else if (
+          item.property.fourthArg !== '' &&
+          item.property.fifthArg === ''
+        ) {
+          item.property.fourthArg = action.payload;
+        } else if (
+          item.property.fifthArg !== '' &&
+          item.property.thirdOperator === ''
+        ) {
+          item.property.fifthArg = action.payload;
+        }
+      } else if (inputArray[last_idx].Argument === 'while' && isThereVariable) {
+        if (
+          item.property.firstArg === '' &&
+          item.property.firstOperator === ''
+        ) {
+          item.property.firstArg = action.payload;
+        } else if (
+          item.property.firstArg !== '' &&
+          item.property.firstOperator === ''
+        ) {
+          item.property.firstArg = action.payload;
+        } else if (
+          item.property.secondArg === '' &&
+          item.property.while_Action == []
+        ) {
+          item.property.secondArg = action.payload;
+        } else if (
+          item.property.secondArg !== '' &&
+          item.property.while_Action == []
+        ) {
+          item.property.secondArg = action.payload;
+        } else if (
+          item.property.thirdArg === '' &&
+          item.property.secondOperator === ''
+        ) {
+          item.property.thirdArg = action.payload;
+        } else if (
+          item.property.thirdArg !== '' &&
+          item.property.secondOperator === ''
+        ) {
+          item.property.thirdArg = action.payload;
         }
       } else {
         return;
