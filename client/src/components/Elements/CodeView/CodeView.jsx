@@ -75,6 +75,59 @@ const FormatIfFunction = ({ item }) => (
   </h3>
 );
 
+const FormatForFunction = ({ item }) => (
+  <h3>
+    {`${item.property.actionNameFor}(`}
+
+    {item.property.actionNameFor ? ` ${item?.property?.firstArg} ` : null}
+    {item.property.firstOperator}
+    {item.property.actionNameFor ? ` ${item?.property?.secondArg} ;` : null}
+    {item.property.actionNameFor ? ` ${item?.property?.thirdArg} ` : null}
+    {item.property.secondOperator}
+    {item.property.actionNameFor ? ` ${item?.property?.fourthArg} ;` : null}
+    {item.property.actionNameFor ? ` ${item?.property?.fifthArg} ` : null}
+    {item.property.thirdOperator}
+    {`)`}
+    {item.hasAction && '{'}
+    <br />
+    {item.property.for_Action.map((unitAction) => (
+      <>
+        <br />
+        {unitAction.functionName}
+        {unitAction.functionName ? '(' : ''}
+        {unitAction.hasValue ? unitAction.value : null}
+        {unitAction.functionName ? ')' : ''}
+      </>
+    ))}
+    <br />
+    {item.hasAction && '}'}
+  </h3>
+);
+const FormatWhileFunction = ({ item }) => (
+  <h3>
+    {`${item.property.actionNameWhile}(`}
+
+    {item.property.actionNameWhile ? ` ${item?.property?.firstArg} ` : null}
+    {item.property.firstOperator}
+    {item.property.actionNameWhile ? ` ${item?.property?.secondArg} )` : null}
+    {item.hasAction && '{'}
+
+    {item.property.while_Action.map((unitAction) => (
+      <>
+        <br />
+        {unitAction.functionName}
+        {unitAction.functionName ? '(' : ''}
+        {unitAction.hasValue ? unitAction.value : null}
+        {unitAction.functionName ? ')' : ''}
+      </>
+    ))}
+
+    {item.property.actionNameWhile ? ` ${item?.property?.thirdArg} ` : null}
+    {item.property.secondOperator}
+    {item.hasAction && '}'}
+  </h3>
+);
+
 function CodeView() {
   const EngineInput = useSelector(selectEngineInput);
   return (
@@ -88,6 +141,10 @@ function CodeView() {
             <FormatVariableFunction item={item} />
           ) : item.Argument === 'if' ? (
             <FormatIfFunction item={item} />
+          ) : item.Argument === 'for' ? (
+            <FormatForFunction item={item} />
+          ) : item.Argument === 'while' ? (
+            <FormatWhileFunction item={item} />
           ) : null}
         </>
       ))}
