@@ -16,10 +16,12 @@ import {
   colorAction,
   colorTypeAction,
   resetCode,
+  conditionalAction,
+  operatorsAction,
 } from '../../../state/actionSlice';
 import { selectEngineOutput } from '../../../state/actionSlice';
 
-function Level1() {
+function Level2() {
   const dispatch = useDispatch();
   const EngineOutput = useSelector(selectEngineOutput);
   const GameAnswer = [
@@ -43,10 +45,17 @@ function Level1() {
   const handleVariable = (text) => {
     dispatch(variableAction(text));
   };
+
+  const handleOperators = (text) => {
+    dispatch(operatorsAction(text));
+  };
+
+  const handleConditionals = (text) => {
+    dispatch(conditionalAction(text));
+  };
   return (
     <div className="game-page-container">
       <div className="exit">
-        {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
         <div className="exitbtn" onClick={handleExit}>
           <HiOutlineChevronLeft />
         </div>
@@ -66,6 +75,18 @@ function Level1() {
           <button type="button" onClick={() => handleVariable('var2')}>
             var2
           </button>
+          <button type="button" onClick={() => handleConditionals('if')}>
+            If
+          </button>
+          <button type="button" onClick={() => handleConditionals('else')}>
+            else
+          </button>
+          <button type="button" onClick={() => handleOperators('==')}>
+            ==
+          </button>
+          <button type="button" onClick={() => handleOperators('!=')}>
+            !=
+          </button>
           <button type="button" onClick={() => handleColorType('red')}>
             red
           </button>
@@ -82,4 +103,4 @@ function Level1() {
   );
 }
 
-export default Level1;
+export default Level2;
