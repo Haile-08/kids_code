@@ -470,6 +470,34 @@ export const actionSlice = createSlice({
         action_Object.operator = action.payload;
         console.log(action.payload);
         inputArray[last_idx].property = action_Object;
+      } else if (
+        inputArray[last_idx].Argument === 'for' &&
+        inputArray[last_idx].property.firstOperator === '' &&
+        inputArray[last_idx].property.firstArg !== ''
+      ) {
+        const action_Object = inputArray[last_idx].property;
+        action_Object.firstOperator = action.payload;
+      } else if (
+        inputArray[last_idx].Argument === 'for' &&
+        inputArray[last_idx].property.secondOperator === '' &&
+        inputArray[last_idx].property.thirdArg !== ''
+      ) {
+        const action_Object = inputArray[last_idx].property;
+        action_Object.secondOperator = action.payload;
+      } else if (
+        inputArray[last_idx].Argument === 'while' &&
+        inputArray[last_idx].property.firstOperator === '' &&
+        inputArray[last_idx].property.firstArg !== ''
+      ) {
+        const action_Object = inputArray[last_idx].property;
+        action_Object.firstOperator = action.payload;
+      } else if (
+        inputArray[last_idx].Argument === 'while' &&
+        inputArray[last_idx].property.secondOperator === '' &&
+        inputArray[last_idx].property.thirdArg !== ''
+      ) {
+        const action_Object = inputArray[last_idx].property;
+        action_Object.secondOperator = action.payload;
       }
     },
     loopAction: (state, action) => {
