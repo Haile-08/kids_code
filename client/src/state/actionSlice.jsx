@@ -587,12 +587,12 @@ export const actionSlice = createSlice({
           item.property.firstArg = action.payload;
         } else if (
           item.property.secondArg === '' &&
-          item.property.while_Action == []
+          item.property.while_Action.length == 0
         ) {
           item.property.secondArg = action.payload;
         } else if (
           item.property.secondArg !== '' &&
-          item.property.while_Action == []
+          item.property.while_Action.length == 0
         ) {
           item.property.secondArg = action.payload;
         } else if (
@@ -663,21 +663,21 @@ export const actionSlice = createSlice({
       } else if (
         inputArray[last_idx].Argument === 'for' &&
         inputArray[last_idx].property.thirdOperator === '' &&
-        inputArray[last_idx].property.for_Action !== []
+        inputArray[last_idx].property.for_Action.length !== 0
       ) {
         const action_Object = inputArray[last_idx].property;
         action_Object.thirdOperator = action.payload;
       } else if (
         inputArray[last_idx].Argument === 'for' &&
         inputArray[last_idx].property.thirdOperator !== '' &&
-        inputArray[last_idx].property.for_Action !== []
+        inputArray[last_idx].property.for_Action.length !== 0
       ) {
         const action_Object = inputArray[last_idx].property;
         action_Object.thirdOperator = action.payload;
       } else if (
         inputArray[last_idx].Argument === 'for' &&
         inputArray[last_idx].property.thirdOperator !== '' &&
-        inputArray[last_idx].property.for_Action !== []
+        inputArray[last_idx].property.for_Action.length !== 0
       ) {
         const action_Object = inputArray[last_idx].property;
         action_Object.thirdOperator = action.payload;
@@ -758,6 +758,7 @@ export const actionSlice = createSlice({
         action.payload === 'for'
       ) {
         const newArray = [
+          ...inputArray,
           {
             Argument: 'for',
             hasAction: false,
@@ -782,6 +783,7 @@ export const actionSlice = createSlice({
         action.payload === 'while'
       ) {
         const newArray = [
+          ...inputArray,
           {
             Argument: 'while',
             hasAction: false,
