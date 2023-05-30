@@ -637,12 +637,15 @@ export const actionSlice = createSlice({
         inputArray[last_idx].property.firstOperator === '' &&
         inputArray[last_idx].property.firstArg !== ''
       ) {
-        const action_Object = inputArray[last_idx].property;
-        action_Object.firstOperator = action.payload;
+        if (action.payload === '=') {
+          const action_Object = inputArray[last_idx].property;
+          action_Object.firstOperator = action.payload;
+        }
       } else if (
         inputArray[last_idx].Argument === 'for' &&
         inputArray[last_idx].property.firstOperator !== '' &&
-        inputArray[last_idx].property.firstArg !== ''
+        inputArray[last_idx].property.firstArg !== '' &&
+        inputArray[last_idx].property.secondArg === ''
       ) {
         const action_Object = inputArray[last_idx].property;
         action_Object.firstOperator = action.payload;
@@ -656,30 +659,26 @@ export const actionSlice = createSlice({
       } else if (
         inputArray[last_idx].Argument === 'for' &&
         inputArray[last_idx].property.secondOperator !== '' &&
-        inputArray[last_idx].property.thirdArg !== ''
+        inputArray[last_idx].property.thirdArg !== '' &&
+        inputArray[last_idx].property.fourthArg === ''
       ) {
         const action_Object = inputArray[last_idx].property;
         action_Object.secondOperator = action.payload;
       } else if (
         inputArray[last_idx].Argument === 'for' &&
         inputArray[last_idx].property.thirdOperator === '' &&
-        inputArray[last_idx].property.for_Action.length !== 0
+        inputArray[last_idx].property.fifthArg !== ''
       ) {
         const action_Object = inputArray[last_idx].property;
         action_Object.thirdOperator = action.payload;
       } else if (
         inputArray[last_idx].Argument === 'for' &&
         inputArray[last_idx].property.thirdOperator !== '' &&
+        inputArray[last_idx].property.firstArg !== '' &&
         inputArray[last_idx].property.for_Action.length !== 0
       ) {
         const action_Object = inputArray[last_idx].property;
-        action_Object.thirdOperator = action.payload;
-      } else if (
-        inputArray[last_idx].Argument === 'for' &&
-        inputArray[last_idx].property.thirdOperator !== '' &&
-        inputArray[last_idx].property.for_Action.length !== 0
-      ) {
-        const action_Object = inputArray[last_idx].property;
+
         action_Object.thirdOperator = action.payload;
       } else if (
         inputArray[last_idx].Argument === 'while' &&
@@ -715,6 +714,7 @@ export const actionSlice = createSlice({
       const inputArray = state.EngineInput;
       const id = inputArray.length;
       const last_idx = inputArray.length - 1;
+
       if (id === 0 && action.payload === 'for') {
         const newArray = [
           {

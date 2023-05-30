@@ -89,7 +89,6 @@ const FormatForFunction = ({ item }) => (
     {item.property.thirdOperator}
     {`)`}
     {item.hasAction && '{'}
-    <br />
     {item.property.for_Action.map((unitAction) => (
       <>
         <br />
