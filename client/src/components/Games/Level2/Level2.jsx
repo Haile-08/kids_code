@@ -18,6 +18,7 @@ import {
   resetCode,
   conditionalAction,
   operatorsAction,
+  closeBlockAction,
 } from '../../../state/actionSlice';
 import { selectEngineOutput } from '../../../state/actionSlice';
 
@@ -53,6 +54,12 @@ function Level2() {
   const handleConditionals = (text) => {
     dispatch(conditionalAction(text));
   };
+
+  const handleCloseBlock = (text) => {
+    dispatch(closeBlockAction(text));
+  };
+
+  const closeAction = (text) => {};
   return (
     <div className="game-page-container">
       <div className="exit">
@@ -92,6 +99,9 @@ function Level2() {
           </button>
           <button type="button" onClick={() => handleColorType('green')}>
             Green
+          </button>
+          <button type="button" onClick={() => handleCloseBlock('}')}>
+            {'}'}
           </button>
         </div>
       </div>

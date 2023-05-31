@@ -52,7 +52,8 @@ const FormatIfFunction = ({ item }) => (
         ))
       : null}
     <br />
-    {item.hasAction && '}'}
+    {/* {item.hasAction && '}'} */}
+    {item.property.IfblockComplete}
 
     <br />
     {item.property.actionNameElse}
@@ -71,7 +72,8 @@ const FormatIfFunction = ({ item }) => (
         ))
       : null}
     <br />
-    {item.property.actionNameElse ? '}' : null}
+    {/* {item.property.actionNameElse ? '}' : null} */}
+    {item.property.else_Action.length !== 0 && item.property.ElseblockComplete}
   </h3>
 );
 
@@ -121,8 +123,10 @@ const FormatWhileFunction = ({ item }) => (
       </>
     ))}
 
+    <br />
     {item.property.actionNameWhile ? ` ${item?.property?.thirdArg} ` : null}
     {item.property.secondOperator}
+    <br />
     {item.hasAction && '}'}
   </h3>
 );
