@@ -101,7 +101,8 @@ const FormatForFunction = ({ item }) => (
       </>
     ))}
     <br />
-    {item.hasAction && '}'}
+    {/* {item.hasAction && '}'} */}
+    {item.property.completeForBlock}
   </h3>
 );
 const FormatWhileFunction = ({ item }) => (
@@ -127,7 +128,8 @@ const FormatWhileFunction = ({ item }) => (
     {item.property.actionNameWhile ? ` ${item?.property?.thirdArg} ` : null}
     {item.property.secondOperator}
     <br />
-    {item.hasAction && '}'}
+    {/* {item.hasAction && '}'} */}
+    {item.property.completeWhileBlock}
   </h3>
 );
 

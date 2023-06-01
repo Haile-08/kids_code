@@ -56,4 +56,6 @@ if condition
         ];
 
 
-        for after while
+must var before while 
+var used in arg1 || arg2 and 
+arg3

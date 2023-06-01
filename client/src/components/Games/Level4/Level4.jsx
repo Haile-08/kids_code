@@ -15,7 +15,7 @@ import {
 } from '../../../state/actionSlice';
 import { selectEngineOutput } from '../../../state/actionSlice';
 
-function Level3() {
+function Level4() {
   const dispatch = useDispatch();
   const EngineOutput = useSelector(selectEngineOutput);
   const GameAnswer = [
@@ -74,17 +74,8 @@ function Level3() {
           <button type="button" onClick={() => handleVariable('var2')}>
             var2
           </button>
-          <button type="button" onClick={() => handleLoops('for')}>
-            for
-          </button>
-          <button type="button" onClick={() => handleOperators('=')}>
-            =
-          </button>
-          <button type="button" onClick={() => handleOperators('++')}>
-            ++
-          </button>
-          <button type="button" onClick={() => handleOperators('--')}>
-            --
+          <button type="button" onClick={() => handleLoops('while')}>
+            while
           </button>
           <button type="button" onClick={() => handleOperators('>')}>
             {`>`}
@@ -97,6 +88,12 @@ function Level3() {
           </button>
           <button type="button" onClick={() => handleColorType('green')}>
             Green
+          </button>
+          <button type="button" onClick={() => handleOperators('++')}>
+            ++
+          </button>
+          <button type="button" onClick={() => handleOperators('--')}>
+            --
           </button>
           <button type="button" onClick={() => handleCloseBlock('}')}>
             {'}'}
@@ -111,4 +108,4 @@ function Level3() {
   );
 }
 
-export default Level3;
+export default Level4;

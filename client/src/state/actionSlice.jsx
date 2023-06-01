@@ -223,7 +223,8 @@ export const actionSlice = createSlice({
         }
       } else if (
         inputArray[last_idx].Argument === 'for' &&
-        inputArray[last_idx].property.thirdOperator !== ''
+        inputArray[last_idx].property.thirdOperator !== '' &&
+        inputArray[last_idx].property.completeForBlock === ''
       ) {
         const last_else_action_idx =
           inputArray[last_idx].property.for_Action.length - 1;
@@ -250,14 +251,33 @@ export const actionSlice = createSlice({
           return;
         }
       } else if (
-        inputArray[last_idx].Argument === 'while' &&
+        inputArray[last_idx].Argument === 'for' &&
         inputArray[last_idx].property.thirdOperator !== '' &&
-        inputArray[last_idx].property.for_Action.length !== 0
+        inputArray[last_idx].property.completeForBlock !== ''
+      ) {
+        const newArray = [
+          ...inputArray,
+          {
+            Argument: 'outSide',
+            hasAction: true,
+            property: {
+              actions: [
+                { id: 0, hasValue: false, value: '', functionName: 'color' },
+              ],
+            },
+          },
+        ];
+        state.EngineInput = newArray;
+      } else if (
+        inputArray[last_idx].Argument === 'while' &&
+        inputArray[last_idx].property.firstOperator !== '' &&
+        inputArray[last_idx].property.secondArg !== '' &&
+        inputArray[last_idx].property.completeWhileBlock === ''
       ) {
         const last_else_action_idx =
           inputArray[last_idx].property.while_Action.length - 1;
         if (inputArray[last_idx].property.while_Action.length === 0) {
-          const idx = inputArray[last_idx].property.while_Action;
+          const idx = inputArray[last_idx].property.while_Action.length;
           const newArray = [
             { id: idx, hasValue: false, value: '', functionName: 'color' },
           ];
@@ -280,16 +300,28 @@ export const actionSlice = createSlice({
         }
       } else if (
         inputArray[last_idx].Argument === 'while' &&
-        inputArray[last_idx].property.thirdOperator !== '' &&
-        inputArray[last_idx].property.for_Action.length !== 0
+        inputArray[last_idx].property.thirdArg !== '' &&
+        inputArray[last_idx].property.completeWhileBlock !== ''
       ) {
-        const idx = inputArray[last_idx].property.else_Action;
-        const newArray = [
-          ...inputArray[last_idx].property.while_Action,
-          { id: idx, hasValue: false, value: '', functionName: 'color' },
-        ];
-        inputArray[last_idx].property.while_Action = newArray;
-        inputArray[last_idx].hasAction = true;
+        if (inputArray[last_idx].property.secondOperator !== '') {
+          const newArray = [
+            ...inputArray,
+            {
+              Argument: 'outSide',
+              hasAction: true,
+              property: {
+                actions: [
+                  { id: 0, hasValue: false, value: '', functionName: 'color' },
+                ],
+              },
+            },
+          ];
+          state.EngineInput = newArray;
+        } else {
+          console.log(
+            'finish the incremental condition in the while loop first'
+          );
+        }
       }
     },
     colorTypeAction: (state, action) => {
@@ -394,7 +426,9 @@ export const actionSlice = createSlice({
             item.property.thirdArg === '' &&
             item.property.fourthArg === ''
           ) {
-            item.property.thirdArg = action.payload;
+            if (action.payload === item.property.firstArg) {
+              item.property.thirdArg = action.payload;
+            }
           } else if (
             item.property.fourthArg === '' &&
             item.property.fifthArg === ''
@@ -404,7 +438,9 @@ export const actionSlice = createSlice({
             item.property.fifthArg === '' &&
             item.property.thirdOperator === ''
           ) {
-            item.property.fifthArg = action.payload;
+            if (action.payload === item.property.firstArg) {
+              item.property.fifthArg = action.payload;
+            }
           } else if (
             item.property.firstArg !== '' &&
             item.property.firstOperator === ''
@@ -419,7 +455,9 @@ export const actionSlice = createSlice({
             item.property.thirdArg !== '' &&
             item.property.secondArg === ''
           ) {
-            item.property.thirdArg = action.payload;
+            if (action.payload === item.property.firstArg) {
+              item.property.thirdArg = action.payload;
+            }
           } else if (
             item.property.fourthArg !== '' &&
             item.property.fifthArg === ''
@@ -429,7 +467,9 @@ export const actionSlice = createSlice({
             item.property.fifthArg !== '' &&
             item.property.thirdOperator === ''
           ) {
-            item.property.fifthArg = action.payload;
+            if (action.payload === item.property.firstArg) {
+              item.property.fifthArg = action.payload;
+            }
           } else {
             //but what are the values that goes in to the this array
             const forActionList = item.property.for_Action;
@@ -476,7 +516,8 @@ export const actionSlice = createSlice({
           else if (
             item.property.firstOperator !== '' &&
             item.property.secondArg !== '' &&
-            item.property.firstArg !== ''
+            item.property.firstArg !== '' &&
+            item.property.completeWhileBlock === ''
           ) {
             //but what are the values that goes in to the this array
             const whileActionList = item.property.while_Action;
@@ -493,9 +534,12 @@ export const actionSlice = createSlice({
       let last_action_idx = 0;
       let color_hasvalue = false;
       let var_hasValue = false;
+      const item = inputArray[last_idx];
+
       const isThereVariable = inputArray.some(
         (inP) => inP.property.varName === action.payload
       );
+
       if (inputArray[last_idx] != undefined) {
         if (inputArray[last_idx].Argument === 'outSide') {
           last_action_idx = inputArray[last_idx].property?.actions.length - 1;
@@ -593,7 +637,11 @@ export const actionSlice = createSlice({
             item.property.secondArg = action.payload;
           }
         }
-      } else if (inputArray[last_idx].Argument === 'for' && isThereVariable) {
+      } else if (
+        inputArray[last_idx].Argument === 'for' &&
+        isThereVariable &&
+        inputArray[last_idx].property.completeForBlock === ''
+      ) {
         const item = inputArray[last_idx];
         if (
           item.property.firstArg === '' &&
@@ -610,7 +658,9 @@ export const actionSlice = createSlice({
           item.property.thirdArg === '' &&
           item.property.secondArg !== ''
         ) {
-          item.property.thirdArg = action.payload;
+          if (action.payload === item.property.firstArg) {
+            item.property.thirdArg = action.payload;
+          }
         } else if (
           item.property.fourthArg === '' &&
           item.property.fifthArg === '' &&
@@ -622,7 +672,9 @@ export const actionSlice = createSlice({
           item.property.thirdOperator === '' &&
           item.property.fourthArg !== ''
         ) {
-          item.property.fifthArg = action.payload;
+          if (action.payload === item.property.firstArg) {
+            item.property.fifthArg = action.payload;
+          }
         } else if (
           item.property.firstArg !== '' &&
           item.property.firstOperator === ''
@@ -637,7 +689,9 @@ export const actionSlice = createSlice({
           item.property.thirdArg !== '' &&
           item.property.secondArg === ''
         ) {
-          item.property.thirdArg = action.payload;
+          if (action.payload === item.property.firstArg) {
+            item.property.thirdArg = action.payload;
+          }
         } else if (
           item.property.fourthArg !== '' &&
           item.property.fifthArg === ''
@@ -647,9 +701,33 @@ export const actionSlice = createSlice({
           item.property.fifthArg !== '' &&
           item.property.thirdOperator === ''
         ) {
-          item.property.fifthArg = action.payload;
+          if (action.payload === item.property.firstArg) {
+            item.property.fifthArg = action.payload;
+          }
         }
-      } else if (inputArray[last_idx].Argument === 'while' && isThereVariable) {
+      } else if (
+        inputArray[last_idx].Argument === 'for' &&
+        inputArray[last_idx].property.thirdOperator !== '' &&
+        inputArray[last_idx].property.completeForBlock !== ''
+      ) {
+        const newArray = [
+          ...inputArray,
+          {
+            Argument: 'variable',
+            hasAction: false,
+            property: {
+              varName: action.payload,
+              varValue: '',
+              hasValue: false,
+            },
+          },
+        ];
+        state.EngineInput = newArray;
+      } else if (
+        inputArray[last_idx].Argument === 'while' &&
+        isThereVariable &&
+        item.property.completeWhileBlock === ''
+      ) {
         const item = inputArray[last_idx];
         if (
           item.property.firstArg === '' &&
@@ -692,6 +770,25 @@ export const actionSlice = createSlice({
             item.property.thirdArg = action.payload;
           }
         }
+      } else if (
+        item.Argument === 'while' &&
+        item.property.secondOperator !== '' &&
+        item.property.secondArg !== '' &&
+        item.property.completeWhileBlock !== ''
+      ) {
+        const newArray = [
+          ...inputArray,
+          {
+            Argument: 'variable',
+            hasAction: false,
+            property: {
+              varName: action.payload,
+              varValue: '',
+              hasValue: false,
+            },
+          },
+        ];
+        state.EngineInput = newArray;
       } else {
         return;
       }
@@ -835,6 +932,7 @@ export const actionSlice = createSlice({
               fifthArg: '',
               thirdOperator: '',
               for_Action: [],
+              completeForBlock: '',
             },
           },
         ];
@@ -852,6 +950,7 @@ export const actionSlice = createSlice({
               while_Action: [],
               thirdArg: '',
               secondOperator: '',
+              completeWhileBlock: '',
             },
           },
         ];
@@ -877,6 +976,7 @@ export const actionSlice = createSlice({
               fifthArg: '',
               thirdOperator: '',
               for_Action: [],
+              completeForBlock: '',
             },
           },
         ];
@@ -902,6 +1002,7 @@ export const actionSlice = createSlice({
                 fifthArg: '',
                 thirdOperator: '',
                 for_Action: [],
+                completeForBlock: '',
               },
             },
           ];
@@ -925,6 +1026,7 @@ export const actionSlice = createSlice({
               while_Action: [],
               thirdArg: '',
               secondOperator: '',
+              completeWhileBlock: '',
             },
           },
         ];
@@ -951,6 +1053,7 @@ export const actionSlice = createSlice({
                 while_Action: [],
                 thirdArg: '',
                 secondOperator: '',
+                completeWhileBlock: '',
               },
             },
           ];
@@ -980,6 +1083,7 @@ export const actionSlice = createSlice({
                 fifthArg: '',
                 thirdOperator: '',
                 for_Action: [],
+                completeForBlock: '',
               },
             },
           ];
@@ -1005,6 +1109,7 @@ export const actionSlice = createSlice({
                   while_Action: [],
                   thirdArg: '',
                   secondOperator: '',
+                  completeWhileBlock: '',
                 },
               },
             ];
@@ -1031,6 +1136,7 @@ export const actionSlice = createSlice({
                 fifthArg: '',
                 thirdOperator: '',
                 for_Action: [],
+                completeForBlock: '',
               },
             },
           ];
@@ -1053,6 +1159,7 @@ export const actionSlice = createSlice({
                 while_Action: [],
                 thirdArg: '',
                 secondOperator: '',
+                completeWhileBlock: '',
               },
             },
           ];
@@ -1078,6 +1185,7 @@ export const actionSlice = createSlice({
                 fifthArg: '',
                 thirdOperator: '',
                 for_Action: [],
+                completeForBlock: '',
               },
             },
           ];
@@ -1103,6 +1211,7 @@ export const actionSlice = createSlice({
                 fifthArg: '',
                 thirdOperator: '',
                 for_Action: [],
+                completeForBlock: '',
               },
             },
           ];
@@ -1125,6 +1234,7 @@ export const actionSlice = createSlice({
                 while_Action: [],
                 thirdArg: '',
                 secondOperator: '',
+                completeWhileBlock: '',
               },
             },
           ];
@@ -1147,6 +1257,7 @@ export const actionSlice = createSlice({
                 while_Action: [],
                 thirdArg: '',
                 secondOperator: '',
+                completeWhileBlock: '',
               },
             },
           ];
@@ -1232,7 +1343,8 @@ export const actionSlice = createSlice({
       } else if (
         action.payload === 'else' &&
         inputArray[last_idx].Argument === 'if' &&
-        inputArray[last_idx].property.if_Action.length !== 0
+        inputArray[last_idx].property.if_Action.length !== 0 &&
+        inputArray[last_idx].property.IfblockComplete !== ''
       ) {
         const action_last_idx =
           inputArray[last_idx].property.if_Action.length - 1;
@@ -1250,7 +1362,8 @@ export const actionSlice = createSlice({
       } else if (
         inputArray[last_idx].Argument === 'if' &&
         inputArray[last_idx].property.if_Action.length !== 0 &&
-        action.payload === 'if'
+        action.payload === 'if' &&
+        inputArray[last_idx].property.IfblockComplete !== ''
       ) {
         console.log('from if after if ');
 
@@ -1296,7 +1409,6 @@ export const actionSlice = createSlice({
             inputArray[last_idx].property.if_Action[last_Ifaction_idx];
           if (lastIfAction.hasValue) {
             inputArray[last_idx].property.IfblockComplete = action.payload;
-            console.log('yes we can! ');
           }
         } else if (
           inputArray[last_idx].property.actionNameIf.length !== 0 &&
@@ -1308,7 +1420,37 @@ export const actionSlice = createSlice({
             inputArray[last_idx].property.else_Action[last_Elseaction_idx];
           if (lastElseAction.hasValue) {
             inputArray[last_idx].property.ElseblockComplete = action.payload;
-            console.log('yes we can! ');
+          }
+        }
+      } else if (
+        inputArray[last_idx].Argument === 'for' &&
+        inputArray[last_idx].hasAction
+      ) {
+        if (inputArray[last_idx].property.for_Action.length !== 0) {
+          console.log('from for close block');
+          const last_Foraction_idx =
+            inputArray[last_idx].property.for_Action.length - 1;
+          const lastForAction =
+            inputArray[last_idx].property.for_Action[last_Foraction_idx];
+          if (lastForAction.hasValue) {
+            inputArray[last_idx].property.completeForBlock = action.payload;
+          }
+        }
+      } else if (
+        inputArray[last_idx].Argument === 'while' &&
+        inputArray[last_idx].hasAction
+      ) {
+        if (
+          inputArray[last_idx].property.while_Action.length !== 0 &&
+          inputArray[last_idx].property.secondOperator !== ''
+        ) {
+          console.log('from while close block');
+          const last_Whileaction_idx =
+            inputArray[last_idx].property.while_Action.length - 1;
+          const lastWhileAction =
+            inputArray[last_idx].property.while_Action[last_Whileaction_idx];
+          if (lastWhileAction.hasValue) {
+            inputArray[last_idx].property.completeWhileBlock = action.payload;
           }
         }
       }

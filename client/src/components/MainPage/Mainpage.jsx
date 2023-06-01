@@ -36,6 +36,9 @@ function Mainpage() {
         <div className="level" onClick={() => navigate('/level3')}>
           level 3
         </div>
+        <div className="level" onClick={() => navigate('/level4')}>
+          level 4
+        </div>
       </div>
     </div>
   );
