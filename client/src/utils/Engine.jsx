@@ -221,10 +221,111 @@ const Engine = (data) => {
         )
           ? parseInt(objToModify.varValue)
           : parseInt(item.property.secondArg);
-        while (x > value)
+        while (x > value) {
+          item.property.while_Action.map((i) => {
+            if (i.functionName === 'color') {
+              outArr.push({ name: 'color', value: i.value });
+            } else if (i.functionName === 'move') {
+              outArr.push({ name: 'move', value: 'move' });
+            } else if (i.functionName === 'turn') {
+              outArr.push({ name: 'turn', value: 'turn' });
+            } else if (i.functionName === 'dropBox') {
+              outArr.push({ name: 'dropBox', value: 'dropbox' });
+            } else {
+              console.log('error');
+            }
+          });
+          x++;
+        }
+      } else if (
+        item.property.firstOperator === '<' &&
+        item.property.secondOperator === '++'
+      ) {
+        let objToModify = varObj.find(
+          (obj) => obj.varName === item.property.secondArg
+        );
+        let x;
+        let value = varObj.some(
+          (obj) => obj.varName === item.property.secondArg
+        )
+          ? parseInt(objToModify.varValue)
+          : parseInt(item.property.secondArg);
+        while (x < value) {
+          item.property.while_Action.map((i) => {
+            if (i.functionName === 'color') {
+              outArr.push({ name: 'color', value: i.value });
+            } else if (i.functionName === 'move') {
+              outArr.push({ name: 'move', value: 'move' });
+            } else if (i.functionName === 'turn') {
+              outArr.push({ name: 'turn', value: 'turn' });
+            } else if (i.functionName === 'dropBox') {
+              outArr.push({ name: 'dropBox', value: 'dropbox' });
+            } else {
+              console.log('error');
+            }
+          });
+          x++;
+        }
+      } else if (
+        item.property.firstOperator === '>' &&
+        item.property.secondOperator === '--'
+      ) {
+        let objToModify = varObj.find(
+          (obj) => obj.varName === item.property.secondArg
+        );
+        let x;
+        let value = varObj.some(
+          (obj) => obj.varName === item.property.secondArg
+        )
+          ? parseInt(objToModify.varValue)
+          : parseInt(item.property.secondArg);
+        while (x > value) {
+          item.property.while_Action.map((i) => {
+            if (i.functionName === 'color') {
+              outArr.push({ name: 'color', value: i.value });
+            } else if (i.functionName === 'move') {
+              outArr.push({ name: 'move', value: 'move' });
+            } else if (i.functionName === 'turn') {
+              outArr.push({ name: 'turn', value: 'turn' });
+            } else if (i.functionName === 'dropBox') {
+              outArr.push({ name: 'dropBox', value: 'dropbox' });
+            } else {
+              console.log('error');
+            }
+          });
+          x--;
+        }
+      } else if (
+        item.property.firstOperator === '<' &&
+        item.property.secondOperator === '--'
+      ) {
+        let objToModify = varObj.find(
+          (obj) => obj.varName === item.property.secondArg
+        );
+        let x;
+        let value = varObj.some(
+          (obj) => obj.varName === item.property.secondArg
+        )
+          ? parseInt(objToModify.varValue)
+          : parseInt(item.property.secondArg);
+        while (x < value) {
+          item.property.while_Action.map((i) => {
+            if (i.functionName === 'color') {
+              outArr.push({ name: 'color', value: i.value });
+            } else if (i.functionName === 'move') {
+              outArr.push({ name: 'move', value: 'move' });
+            } else if (i.functionName === 'turn') {
+              outArr.push({ name: 'turn', value: 'turn' });
+            } else if (i.functionName === 'dropBox') {
+              outArr.push({ name: 'dropBox', value: 'dropbox' });
+            } else {
+              console.log('error');
+            }
+          });
+          x--;
+        }
       }
     }
-    console.log(outArr);
   });
   return outArr;
 };
