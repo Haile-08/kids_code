@@ -32,7 +32,13 @@ const Engine = (data) => {
         if (item.property.firstArg == item.property.secondArg) {
           item.property.if_Action.map((i) => {
             if (i.functionName === 'color') {
-              outArr.push({ name: 'color', value: i.value });
+              let objExists = varObj.some((obj) => obj.varName === i.value);
+              if (objExists) {
+                let objToModify = varObj.find((obj) => obj.varName === i.value);
+                outArr.push({ name: 'color', value: objToModify.varValue });
+              } else {
+                outArr.push({ name: 'color', value: i.value });
+              }
             } else if (i.functionName === 'move') {
               outArr.push({ name: 'move', value: 'move' });
             } else if (i.functionName === 'turn') {
@@ -46,7 +52,13 @@ const Engine = (data) => {
         } else {
           item.property.else_Action.map((i) => {
             if (i.functionName === 'color') {
-              outArr.push({ name: 'color', value: i.value });
+              let objExists = varObj.some((obj) => obj.varName === i.value);
+              if (objExists) {
+                let objToModify = varObj.find((obj) => obj.varName === i.value);
+                outArr.push({ name: 'color', value: objToModify.varValue });
+              } else {
+                outArr.push({ name: 'color', value: i.value });
+              }
             } else if (i.functionName === 'move') {
               outArr.push({ name: 'move', value: 'move' });
             } else if (i.functionName === 'turn') {
@@ -62,7 +74,13 @@ const Engine = (data) => {
         if (item.property.firstArg != item.property.secondArg) {
           item.property.if_Action.map((i) => {
             if (i.functionName === 'color') {
-              outArr.push({ name: 'color', value: i.value });
+              let objExists = varObj.some((obj) => obj.varName === i.value);
+              if (objExists) {
+                let objToModify = varObj.find((obj) => obj.varName === i.value);
+                outArr.push({ name: 'color', value: objToModify.varValue });
+              } else {
+                outArr.push({ name: 'color', value: i.value });
+              }
             } else if (i.functionName === 'move') {
               outArr.push({ name: 'move', value: 'move' });
             } else if (i.functionName === 'turn') {
@@ -76,7 +94,13 @@ const Engine = (data) => {
         } else {
           item.property.else_Action.map((i) => {
             if (i.functionName === 'color') {
-              outArr.push({ name: 'color', value: i.value });
+              let objExists = varObj.some((obj) => obj.varName === i.value);
+              if (objExists) {
+                let objToModify = varObj.find((obj) => obj.varName === i.value);
+                outArr.push({ name: 'color', value: objToModify.varValue });
+              } else {
+                outArr.push({ name: 'color', value: i.value });
+              }
             } else if (i.functionName === 'move') {
               outArr.push({ name: 'move', value: 'move' });
             } else if (i.functionName === 'turn') {
@@ -107,7 +131,13 @@ const Engine = (data) => {
         for (x = item.property.secondArg; x > value; x++) {
           item.property.for_Action.map((i) => {
             if (i.functionName === 'color') {
-              outArr.push({ name: 'color', value: i.value });
+              let objExists = varObj.some((obj) => obj.varName === i.value);
+              if (objExists) {
+                let objToModify = varObj.find((obj) => obj.varName === i.value);
+                outArr.push({ name: 'color', value: objToModify.varValue });
+              } else {
+                outArr.push({ name: 'color', value: i.value });
+              }
             } else if (i.functionName === 'move') {
               outArr.push({ name: 'move', value: 'move' });
             } else if (i.functionName === 'turn') {
@@ -136,7 +166,13 @@ const Engine = (data) => {
         for (x = item.property.secondArg; x < value; x++) {
           item.property.for_Action.map((i) => {
             if (i.functionName === 'color') {
-              outArr.push({ name: 'color', value: i.value });
+              let objExists = varObj.some((obj) => obj.varName === i.value);
+              if (objExists) {
+                let objToModify = varObj.find((obj) => obj.varName === i.value);
+                outArr.push({ name: 'color', value: objToModify.varValue });
+              } else {
+                outArr.push({ name: 'color', value: i.value });
+              }
             } else if (i.functionName === 'move') {
               outArr.push({ name: 'move', value: 'move' });
             } else if (i.functionName === 'turn') {
@@ -165,7 +201,13 @@ const Engine = (data) => {
         for (x = item.property.secondArg; x > value; x--) {
           item.property.for_Action.map((i) => {
             if (i.functionName === 'color') {
-              outArr.push({ name: 'color', value: i.value });
+              let objExists = varObj.some((obj) => obj.varName === i.value);
+              if (objExists) {
+                let objToModify = varObj.find((obj) => obj.varName === i.value);
+                outArr.push({ name: 'color', value: objToModify.varValue });
+              } else {
+                outArr.push({ name: 'color', value: i.value });
+              }
             } else if (i.functionName === 'move') {
               outArr.push({ name: 'move', value: 'move' });
             } else if (i.functionName === 'turn') {
@@ -194,7 +236,13 @@ const Engine = (data) => {
         for (x = item.property.secondArg; x < value; x--) {
           item.property.for_Action.map((i) => {
             if (i.functionName === 'color') {
-              outArr.push({ name: 'color', value: i.value });
+              let objExists = varObj.some((obj) => obj.varName === i.value);
+              if (objExists) {
+                let objToModify = varObj.find((obj) => obj.varName === i.value);
+                outArr.push({ name: 'color', value: objToModify.varValue });
+              } else {
+                outArr.push({ name: 'color', value: i.value });
+              }
             } else if (i.functionName === 'move') {
               outArr.push({ name: 'move', value: 'move' });
             } else if (i.functionName === 'turn') {
@@ -224,7 +272,13 @@ const Engine = (data) => {
         while (x > value) {
           item.property.while_Action.map((i) => {
             if (i.functionName === 'color') {
-              outArr.push({ name: 'color', value: i.value });
+              let objExists = varObj.some((obj) => obj.varName === i.value);
+              if (objExists) {
+                let objToModify = varObj.find((obj) => obj.varName === i.value);
+                outArr.push({ name: 'color', value: objToModify.varValue });
+              } else {
+                outArr.push({ name: 'color', value: i.value });
+              }
             } else if (i.functionName === 'move') {
               outArr.push({ name: 'move', value: 'move' });
             } else if (i.functionName === 'turn') {
@@ -253,7 +307,13 @@ const Engine = (data) => {
         while (x < value) {
           item.property.while_Action.map((i) => {
             if (i.functionName === 'color') {
-              outArr.push({ name: 'color', value: i.value });
+              let objExists = varObj.some((obj) => obj.varName === i.value);
+              if (objExists) {
+                let objToModify = varObj.find((obj) => obj.varName === i.value);
+                outArr.push({ name: 'color', value: objToModify.varValue });
+              } else {
+                outArr.push({ name: 'color', value: i.value });
+              }
             } else if (i.functionName === 'move') {
               outArr.push({ name: 'move', value: 'move' });
             } else if (i.functionName === 'turn') {
@@ -282,7 +342,13 @@ const Engine = (data) => {
         while (x > value) {
           item.property.while_Action.map((i) => {
             if (i.functionName === 'color') {
-              outArr.push({ name: 'color', value: i.value });
+              let objExists = varObj.some((obj) => obj.varName === i.value);
+              if (objExists) {
+                let objToModify = varObj.find((obj) => obj.varName === i.value);
+                outArr.push({ name: 'color', value: objToModify.varValue });
+              } else {
+                outArr.push({ name: 'color', value: i.value });
+              }
             } else if (i.functionName === 'move') {
               outArr.push({ name: 'move', value: 'move' });
             } else if (i.functionName === 'turn') {
@@ -311,7 +377,13 @@ const Engine = (data) => {
         while (x < value) {
           item.property.while_Action.map((i) => {
             if (i.functionName === 'color') {
-              outArr.push({ name: 'color', value: i.value });
+              let objExists = varObj.some((obj) => obj.varName === i.value);
+              if (objExists) {
+                let objToModify = varObj.find((obj) => obj.varName === i.value);
+                outArr.push({ name: 'color', value: objToModify.varValue });
+              } else {
+                outArr.push({ name: 'color', value: i.value });
+              }
             } else if (i.functionName === 'move') {
               outArr.push({ name: 'move', value: 'move' });
             } else if (i.functionName === 'turn') {
