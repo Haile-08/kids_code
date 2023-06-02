@@ -10,6 +10,8 @@ import {
   Home,
   Level1,
   Level2,
+  Level3,
+  Level4,
   Login,
   MainLayout,
   Mainpage,
@@ -66,6 +68,14 @@ function RoutesPath() {
         {
           path: 'level2',
           element: isAuth ? <Level2 /> : <Navigate to="/login" />,
+        },
+        {
+          path: 'level3',
+          element: isAuth ? <Level3 /> : <Navigate to="/login" />,
+        },
+        {
+          path: 'level4',
+          element: isAuth ? <Level4 /> : <Navigate to="/login" />,
         },
         {
           path: 'level/quiz',

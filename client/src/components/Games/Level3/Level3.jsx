@@ -1,10 +1,3 @@
-/* eslint-disable import/named */
-/* eslint-disable quotes */
-/* eslint-disable import/named */
-/* eslint-disable import/no-duplicates */
-/* eslint-disable prettier/prettier */
-/* eslint-disable react/function-component-definition */
-
 import React from 'react';
 import { HiOutlineChevronLeft } from 'react-icons/hi';
 import { useNavigate } from 'react-router-dom';
@@ -16,13 +9,13 @@ import {
   colorAction,
   colorTypeAction,
   resetCode,
-  conditionalAction,
   operatorsAction,
+  loopAction,
   closeBlockAction,
 } from '../../../state/actionSlice';
 import { selectEngineOutput } from '../../../state/actionSlice';
 
-function Level2() {
+function Level3() {
   const dispatch = useDispatch();
   const EngineOutput = useSelector(selectEngineOutput);
   const GameAnswer = [
@@ -51,15 +44,14 @@ function Level2() {
     dispatch(operatorsAction(text));
   };
 
-  const handleConditionals = (text) => {
-    dispatch(conditionalAction(text));
+  const handleLoops = (text) => {
+    dispatch(loopAction(text));
   };
 
   const handleCloseBlock = (text) => {
     dispatch(closeBlockAction(text));
   };
 
-  const closeAction = (text) => {};
   return (
     <div className="game-page-container">
       <div className="exit">
@@ -82,17 +74,23 @@ function Level2() {
           <button type="button" onClick={() => handleVariable('var2')}>
             var2
           </button>
-          <button type="button" onClick={() => handleConditionals('if')}>
-            If
+          <button type="button" onClick={() => handleLoops('for')}>
+            for
           </button>
-          <button type="button" onClick={() => handleConditionals('else')}>
-            else
+          <button type="button" onClick={() => handleOperators('=')}>
+            =
           </button>
-          <button type="button" onClick={() => handleOperators('==')}>
-            ==
+          <button type="button" onClick={() => handleOperators('++')}>
+            ++
           </button>
-          <button type="button" onClick={() => handleOperators('!=')}>
-            !=
+          <button type="button" onClick={() => handleOperators('--')}>
+            --
+          </button>
+          <button type="button" onClick={() => handleOperators('>')}>
+            {`>`}
+          </button>
+          <button type="button" onClick={() => handleOperators('<')}>
+            {`<`}
           </button>
           <button type="button" onClick={() => handleColorType('red')}>
             red
@@ -113,4 +111,4 @@ function Level2() {
   );
 }
 
-export default Level2;
+export default Level3;

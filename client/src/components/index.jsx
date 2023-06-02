@@ -6,3 +6,5 @@ export { default as Mainpage } from './MainPage/Mainpage';
 export { default as MainLayout } from './Layout/MainLayout';
 export { default as Level1 } from './Games/Level1/Level1';
 export { default as Level2 } from './Games/Level2/Level2';
+export { default as Level3 } from './Games/Level3/Level3';
+export { default as Level4 } from './Games/Level4/Level4';

@@ -49,8 +49,7 @@ export const actionSlice = createSlice({
         state.EngineInput = newArray;
       } else if (
         inputArray[last_idx].hasAction === true &&
-        inputArray[last_idx].Argument !== 'variable' &&
-        inputArray[last_idx].Argument !== 'if'
+        inputArray[last_idx].Argument === 'outSide'
       ) {
         const action_id = inputArray[last_idx].property.actions.length;
         const action_last_idx =
@@ -94,13 +93,9 @@ export const actionSlice = createSlice({
       } else if (
         inputArray[last_idx].hasAction === true &&
         inputArray[last_idx].Argument === 'if' &&
-        inputArray[last_idx].property.actionNameElse === ''
+        inputArray[last_idx].property.actionNameElse === '' &&
+        inputArray[last_idx].property.IfblockComplete === ''
       ) {
-        console.log(
-          'inputArray[last_idx].property.actionNameElse ',
-          inputArray[last_idx].property.actionNameElse
-        );
-
         const last_action_idx =
           inputArray[last_idx].property.if_Action.length - 1;
         if (
@@ -111,7 +106,14 @@ export const actionSlice = createSlice({
           console.log('property.if_Action.length === 0 ');
 
           const newArray = [
-            { id: idx, hasValue: false, value: '', functionName: 'color' },
+            {
+              id: idx,
+              hasValue: false,
+              value: '',
+              functionName: 'color',
+              valueWithVariable: false,
+              variableName: '',
+            },
           ];
           inputArray[last_idx].property.if_Action = newArray;
         } else if (
@@ -124,7 +126,14 @@ export const actionSlice = createSlice({
           const idx = inputArray[last_idx].property.if_Action.length;
           const newArray = [
             ...inputArray[last_idx].property.if_Action,
-            { id: idx, hasValue: false, value: '', functionName: 'color' },
+            {
+              id: idx,
+              hasValue: false,
+              value: '',
+              functionName: 'color',
+              valueWithVariable: false,
+              variableName: '',
+            },
           ];
           inputArray[last_idx].property.if_Action = newArray;
         } else {
@@ -132,19 +141,62 @@ export const actionSlice = createSlice({
         }
       } else if (
         inputArray[last_idx].Argument === 'if' &&
-        inputArray[last_idx].property.actionNameElse !== ''
+        inputArray[last_idx].hasAction === true &&
+        inputArray[last_idx].property.actionNameElse === '' &&
+        inputArray[last_idx].property.IfblockComplete !== ''
       ) {
-        console.log(
-          'inputArray[last_idx].property.actionNameElse !==  ',
-          inputArray[last_idx].property.actionNameElse
-        );
-
+        console.log('color after if ');
+        const newArray = [
+          ...inputArray,
+          {
+            Argument: 'outSide',
+            hasAction: true,
+            property: {
+              actions: [
+                { id: 0, hasValue: false, value: '', functionName: 'color' },
+              ],
+            },
+          },
+        ];
+        state.EngineInput = newArray;
+      } else if (
+        inputArray[last_idx].Argument === 'if' &&
+        inputArray[last_idx].hasAction === true &&
+        inputArray[last_idx].property.actionNameElse !== '' &&
+        inputArray[last_idx].property.ElseblockComplete !== ''
+      ) {
+        console.log('color after if ');
+        const newArray = [
+          ...inputArray,
+          {
+            Argument: 'outSide',
+            hasAction: true,
+            property: {
+              actions: [
+                { id: 0, hasValue: false, value: '', functionName: 'color' },
+              ],
+            },
+          },
+        ];
+        state.EngineInput = newArray;
+      } else if (
+        inputArray[last_idx].Argument === 'if' &&
+        inputArray[last_idx].property.actionNameElse !== '' &&
+        inputArray[last_idx].property.ElseblockComplete === ''
+      ) {
         const last_else_action_idx =
           inputArray[last_idx].property.else_Action.length - 1;
         if (inputArray[last_idx].property.else_Action.length === 0) {
           const idx = inputArray[last_idx].property.else_Action;
           const newArray = [
-            { id: idx, hasValue: false, value: '', functionName: 'color' },
+            {
+              id: idx,
+              hasValue: false,
+              value: '',
+              functionName: 'color',
+              valueWithVariable: false,
+              variableName: '',
+            },
           ];
           inputArray[last_idx].property.else_Action = newArray;
         } else if (
@@ -156,11 +208,119 @@ export const actionSlice = createSlice({
           const idx = inputArray[last_idx].property.else_Action.length;
           const newArray = [
             ...inputArray[last_idx].property.else_Action,
-            { id: idx, hasValue: false, value: '', functionName: 'color' },
+            {
+              id: idx,
+              hasValue: false,
+              value: '',
+              functionName: 'color',
+              valueWithVariable: false,
+              variableName: '',
+            },
           ];
           inputArray[last_idx].property.else_Action = newArray;
         } else {
           return;
+        }
+      } else if (
+        inputArray[last_idx].Argument === 'for' &&
+        inputArray[last_idx].property.thirdOperator !== '' &&
+        inputArray[last_idx].property.completeForBlock === ''
+      ) {
+        const last_else_action_idx =
+          inputArray[last_idx].property.for_Action.length - 1;
+        if (inputArray[last_idx].property.for_Action.length === 0) {
+          const idx = inputArray[last_idx].property.for_Action;
+          const newArray = [
+            { id: idx, hasValue: false, value: '', functionName: 'color' },
+          ];
+          inputArray[last_idx].property.for_Action = newArray;
+          inputArray[last_idx].hasAction = true;
+        } else if (
+          inputArray[last_idx].property.for_Action.length !== 0 &&
+          inputArray[last_idx].property.for_Action[last_else_action_idx]
+            .hasValue === true
+        ) {
+          const idx = inputArray[last_idx].property.for_Action.length;
+          const newArray = [
+            ...inputArray[last_idx].property.for_Action,
+            { id: idx, hasValue: false, value: '', functionName: 'color' },
+          ];
+          inputArray[last_idx].property.for_Action = newArray;
+          inputArray[last_idx].hasAction = true;
+        } else {
+          return;
+        }
+      } else if (
+        inputArray[last_idx].Argument === 'for' &&
+        inputArray[last_idx].property.thirdOperator !== '' &&
+        inputArray[last_idx].property.completeForBlock !== ''
+      ) {
+        const newArray = [
+          ...inputArray,
+          {
+            Argument: 'outSide',
+            hasAction: true,
+            property: {
+              actions: [
+                { id: 0, hasValue: false, value: '', functionName: 'color' },
+              ],
+            },
+          },
+        ];
+        state.EngineInput = newArray;
+      } else if (
+        inputArray[last_idx].Argument === 'while' &&
+        inputArray[last_idx].property.firstOperator !== '' &&
+        inputArray[last_idx].property.secondArg !== '' &&
+        inputArray[last_idx].property.completeWhileBlock === ''
+      ) {
+        const last_else_action_idx =
+          inputArray[last_idx].property.while_Action.length - 1;
+        if (inputArray[last_idx].property.while_Action.length === 0) {
+          const idx = inputArray[last_idx].property.while_Action.length;
+          const newArray = [
+            { id: idx, hasValue: false, value: '', functionName: 'color' },
+          ];
+          inputArray[last_idx].property.while_Action = newArray;
+          inputArray[last_idx].hasAction = true;
+        } else if (
+          inputArray[last_idx].property.while_Action.length !== 0 &&
+          inputArray[last_idx].property.while_Action[last_else_action_idx]
+            .hasValue === true
+        ) {
+          const idx = inputArray[last_idx].property.while_Action.length;
+          const newArray = [
+            ...inputArray[last_idx].property.while_Action,
+            { id: idx, hasValue: false, value: '', functionName: 'color' },
+          ];
+          inputArray[last_idx].property.while_Action = newArray;
+          inputArray[last_idx].hasAction = true;
+        } else {
+          return;
+        }
+      } else if (
+        inputArray[last_idx].Argument === 'while' &&
+        inputArray[last_idx].property.thirdArg !== '' &&
+        inputArray[last_idx].property.completeWhileBlock !== ''
+      ) {
+        if (inputArray[last_idx].property.secondOperator !== '') {
+          const newArray = [
+            ...inputArray,
+            {
+              Argument: 'outSide',
+              hasAction: true,
+              property: {
+                actions: [
+                  { id: 0, hasValue: false, value: '', functionName: 'color' },
+                ],
+              },
+            },
+          ];
+          state.EngineInput = newArray;
+        } else {
+          console.log(
+            'finish the incremental condition in the while loop first'
+          );
         }
       }
     },
@@ -250,6 +410,120 @@ export const actionSlice = createSlice({
             elseActionList[elseAction_last_idx].hasValue = true;
             item.property.else_Action = elseActionList;
           }
+        } else if (item.Argument === 'for' && idx === inputArray.length - 1) {
+          const Action_last_idx = item.property.for_Action.length - 1;
+          if (
+            item.property.firstArg === '' &&
+            item.property.firstOperator === ''
+          ) {
+            item.property.firstArg = action.payload;
+          } else if (
+            item.property.secondArg === '' &&
+            item.property.thirdArg === ''
+          ) {
+            item.property.secondArg = action.payload;
+          } else if (
+            item.property.thirdArg === '' &&
+            item.property.fourthArg === ''
+          ) {
+            if (action.payload === item.property.firstArg) {
+              item.property.thirdArg = action.payload;
+            }
+          } else if (
+            item.property.fourthArg === '' &&
+            item.property.fifthArg === ''
+          ) {
+            item.property.fourthArg = action.payload;
+          } else if (
+            item.property.fifthArg === '' &&
+            item.property.thirdOperator === ''
+          ) {
+            if (action.payload === item.property.firstArg) {
+              item.property.fifthArg = action.payload;
+            }
+          } else if (
+            item.property.firstArg !== '' &&
+            item.property.firstOperator === ''
+          ) {
+            item.property.firstArg = action.payload;
+          } else if (
+            item.property.secondArg !== '' &&
+            item.property.thirdArg === ''
+          ) {
+            item.property.secondArg = action.payload;
+          } else if (
+            item.property.thirdArg !== '' &&
+            item.property.secondArg === ''
+          ) {
+            if (action.payload === item.property.firstArg) {
+              item.property.thirdArg = action.payload;
+            }
+          } else if (
+            item.property.fourthArg !== '' &&
+            item.property.fifthArg === ''
+          ) {
+            item.property.fourthArg = action.payload;
+          } else if (
+            item.property.fifthArg !== '' &&
+            item.property.thirdOperator === ''
+          ) {
+            if (action.payload === item.property.firstArg) {
+              item.property.fifthArg = action.payload;
+            }
+          } else {
+            //but what are the values that goes in to the this array
+            const forActionList = item.property.for_Action;
+            forActionList[Action_last_idx].value = action.payload;
+            forActionList[Action_last_idx].hasValue = true;
+          }
+        } else if (item.Argument === 'while') {
+          const Action_last_idx = item.property.while_Action.length - 1;
+          if (
+            item.property.firstArg === '' &&
+            item.property.firstOperator === ''
+          ) {
+            item.property.firstArg = action.payload;
+          } else if (
+            item.property.firstArg !== '' &&
+            item.property.firstOperator === ''
+          ) {
+            item.property.firstArg = action.payload;
+          } else if (
+            item.property.secondArg === '' &&
+            item.property.while_Action.length === 0 &&
+            item.property.firstOperator !== ''
+          ) {
+            item.property.secondArg = action.payload;
+          } else if (
+            item.property.secondArg !== '' &&
+            item.property.while_Action.length === 0 &&
+            item.property.firstOperator !== ''
+          ) {
+            item.property.secondArg = action.payload;
+          }
+          //  else if (
+          //   item.property.thirdArg === '' &&
+          //   item.property.secondOperator !== '' &&
+          //   item.property.while_Action.length !== 0
+          // ) {
+          //   if (
+          //     action.payload === item.property.firstArg ||
+          //     action.payload === item.property.secondArg
+          //   ) {
+          //     item.property.thirdArg = action.payload;
+          //   }
+          // }
+          else if (
+            item.property.firstOperator !== '' &&
+            item.property.secondArg !== '' &&
+            item.property.firstArg !== '' &&
+            item.property.completeWhileBlock === ''
+          ) {
+            //but what are the values that goes in to the this array
+            const whileActionList = item.property.while_Action;
+            whileActionList[Action_last_idx].value = action.payload;
+            whileActionList[Action_last_idx].hasValue = true;
+          }
         }
       });
     },
@@ -260,9 +534,12 @@ export const actionSlice = createSlice({
       let last_action_idx = 0;
       let color_hasvalue = false;
       let var_hasValue = false;
+      const item = inputArray[last_idx];
+
       const isThereVariable = inputArray.some(
         (inP) => inP.property.varName === action.payload
       );
+
       if (inputArray[last_idx] != undefined) {
         if (inputArray[last_idx].Argument === 'outSide') {
           last_action_idx = inputArray[last_idx].property?.actions.length - 1;
@@ -308,7 +585,7 @@ export const actionSlice = createSlice({
         let listOfActions = inputArray[last_idx]?.property.actions;
         console.log('actions last ', listOfActions[last_action_idx].hasValue);
         if (isThereVariable) {
-          //find the last variable in the array
+          //find the last valriable in the array
           const action_last_idx =
             inputArray[last_idx]?.property.actions.length - 1;
           let actions_array = inputArray[last_idx]?.property.actions;
@@ -335,9 +612,9 @@ export const actionSlice = createSlice({
         ];
         state.EngineInput = newArray;
       } else if (inputArray[last_idx].Argument === 'if' && isThereVariable) {
-        console.log(isThereVariable);
         const item = inputArray[last_idx];
         if (!item.property.actionNameElse) {
+          console.log('!item.property.actionNameElse');
           if (item.property.firstArg === '' && item.property.operator === '') {
             item.property.firstArg = action.payload;
           } else if (
@@ -360,6 +637,158 @@ export const actionSlice = createSlice({
             item.property.secondArg = action.payload;
           }
         }
+      } else if (
+        inputArray[last_idx].Argument === 'for' &&
+        isThereVariable &&
+        inputArray[last_idx].property.completeForBlock === ''
+      ) {
+        const item = inputArray[last_idx];
+        if (
+          item.property.firstArg === '' &&
+          item.property.firstOperator === ''
+        ) {
+          item.property.firstArg = action.payload;
+        } else if (
+          item.property.secondArg === '' &&
+          item.property.thirdArg === '' &&
+          item.property.firstOperator !== ''
+        ) {
+          item.property.secondArg = action.payload;
+        } else if (
+          item.property.thirdArg === '' &&
+          item.property.secondArg !== ''
+        ) {
+          if (action.payload === item.property.firstArg) {
+            item.property.thirdArg = action.payload;
+          }
+        } else if (
+          item.property.fourthArg === '' &&
+          item.property.fifthArg === '' &&
+          item.property.secondOperator !== ''
+        ) {
+          item.property.fourthArg = action.payload;
+        } else if (
+          item.property.fifthArg === '' &&
+          item.property.thirdOperator === '' &&
+          item.property.fourthArg !== ''
+        ) {
+          if (action.payload === item.property.firstArg) {
+            item.property.fifthArg = action.payload;
+          }
+        } else if (
+          item.property.firstArg !== '' &&
+          item.property.firstOperator === ''
+        ) {
+          item.property.firstArg = action.payload;
+        } else if (
+          item.property.secondArg !== '' &&
+          item.property.thirdArg === ''
+        ) {
+          item.property.secondArg = action.payload;
+        } else if (
+          item.property.thirdArg !== '' &&
+          item.property.secondArg === ''
+        ) {
+          if (action.payload === item.property.firstArg) {
+            item.property.thirdArg = action.payload;
+          }
+        } else if (
+          item.property.fourthArg !== '' &&
+          item.property.fifthArg === ''
+        ) {
+          item.property.fourthArg = action.payload;
+        } else if (
+          item.property.fifthArg !== '' &&
+          item.property.thirdOperator === ''
+        ) {
+          if (action.payload === item.property.firstArg) {
+            item.property.fifthArg = action.payload;
+          }
+        }
+      } else if (
+        inputArray[last_idx].Argument === 'for' &&
+        inputArray[last_idx].property.thirdOperator !== '' &&
+        inputArray[last_idx].property.completeForBlock !== ''
+      ) {
+        const newArray = [
+          ...inputArray,
+          {
+            Argument: 'variable',
+            hasAction: false,
+            property: {
+              varName: action.payload,
+              varValue: '',
+              hasValue: false,
+            },
+          },
+        ];
+        state.EngineInput = newArray;
+      } else if (
+        inputArray[last_idx].Argument === 'while' &&
+        isThereVariable &&
+        item.property.completeWhileBlock === ''
+      ) {
+        const item = inputArray[last_idx];
+        if (
+          item.property.firstArg === '' &&
+          item.property.firstOperator === ''
+        ) {
+          item.property.firstArg = action.payload;
+        } else if (
+          item.property.firstArg !== '' &&
+          item.property.firstOperator === ''
+        ) {
+          item.property.firstArg = action.payload;
+        } else if (
+          item.property.secondArg === '' &&
+          item.property.while_Action.length == 0
+        ) {
+          item.property.secondArg = action.payload;
+        } else if (
+          item.property.secondArg !== '' &&
+          item.property.while_Action.length == 0
+        ) {
+          item.property.secondArg = action.payload;
+        } else if (
+          item.property.thirdArg === '' &&
+          item.property.secondArg !== ''
+        ) {
+          if (
+            action.payload === item.property.firstArg ||
+            action.payload === item.property.secondArg
+          ) {
+            item.property.thirdArg = action.payload;
+          }
+        } else if (
+          item.property.thirdArg !== '' &&
+          item.property.secondArg !== ''
+        ) {
+          if (
+            action.payload === item.property.firstArg ||
+            action.payload === item.property.secondArg
+          ) {
+            item.property.thirdArg = action.payload;
+          }
+        }
+      } else if (
+        item.Argument === 'while' &&
+        item.property.secondOperator !== '' &&
+        item.property.secondArg !== '' &&
+        item.property.completeWhileBlock !== ''
+      ) {
+        const newArray = [
+          ...inputArray,
+          {
+            Argument: 'variable',
+            hasAction: false,
+            property: {
+              varName: action.payload,
+              varValue: '',
+              hasValue: false,
+            },
+          },
+        ];
+        state.EngineInput = newArray;
       } else {
         return;
       }
@@ -367,7 +796,7 @@ export const actionSlice = createSlice({
     operatorsAction: (state, action) => {
       const inputArray = state.EngineInput;
       const last_idx = inputArray.length - 1;
-      console.log('operator: ', inputArray[last_idx].property.operator !== '');
+      // console.log('operator: ', inputArray[last_idx].property.operator !== '');
 
       if (
         inputArray[last_idx].Argument === 'if' &&
@@ -386,6 +815,455 @@ export const actionSlice = createSlice({
         action_Object.operator = action.payload;
         console.log(action.payload);
         inputArray[last_idx].property = action_Object;
+      } else if (
+        inputArray[last_idx].Argument === 'for' &&
+        inputArray[last_idx].property.firstOperator === '' &&
+        inputArray[last_idx].property.firstArg !== ''
+      ) {
+        if (action.payload === '=') {
+          const action_Object = inputArray[last_idx].property;
+          action_Object.firstOperator = action.payload;
+        }
+
+        console.log('nested if =');
+      } else if (
+        inputArray[last_idx].Argument === 'for' &&
+        inputArray[last_idx].property.firstOperator !== '' &&
+        inputArray[last_idx].property.firstArg !== '' &&
+        inputArray[last_idx].property.secondArg === ''
+      ) {
+        const action_Object = inputArray[last_idx].property;
+        action_Object.firstOperator = action.payload;
+      } else if (
+        inputArray[last_idx].Argument === 'for' &&
+        inputArray[last_idx].property.secondOperator === '' &&
+        inputArray[last_idx].property.thirdArg !== ''
+      ) {
+        if (action.payload === '<' || action.payload === '>') {
+          const action_Object = inputArray[last_idx].property;
+          action_Object.secondOperator = action.payload;
+        }
+      } else if (
+        inputArray[last_idx].Argument === 'for' &&
+        inputArray[last_idx].property.secondOperator !== '' &&
+        inputArray[last_idx].property.thirdArg !== '' &&
+        inputArray[last_idx].property.fourthArg === ''
+      ) {
+        if (action.payload === '<' || action.payload === '>') {
+          const action_Object = inputArray[last_idx].property;
+          action_Object.secondOperator = action.payload;
+        }
+      } else if (
+        inputArray[last_idx].Argument === 'for' &&
+        inputArray[last_idx].property.thirdOperator === '' &&
+        inputArray[last_idx].property.fifthArg !== ''
+      ) {
+        if (action.payload === '++' || action.payload === '--') {
+          const action_Object = inputArray[last_idx].property;
+          action_Object.thirdOperator = action.payload;
+        }
+      } else if (
+        inputArray[last_idx].Argument === 'for' &&
+        inputArray[last_idx].property.thirdOperator !== '' &&
+        inputArray[last_idx].property.firstArg !== '' &&
+        inputArray[last_idx].property.for_Action.length === 0
+      ) {
+        if (action.payload === '++' || action.payload === '--') {
+          const action_Object = inputArray[last_idx].property;
+          action_Object.thirdOperator = action.payload;
+        }
+      } else if (
+        inputArray[last_idx].Argument === 'while' &&
+        inputArray[last_idx].property.firstOperator === '' &&
+        inputArray[last_idx].property.firstArg !== ''
+      ) {
+        if (action.payload === '<' || action.payload === '>') {
+          const action_Object = inputArray[last_idx].property;
+          action_Object.firstOperator = action.payload;
+        }
+      } else if (
+        inputArray[last_idx].Argument === 'while' &&
+        inputArray[last_idx].property.firstOperator !== '' &&
+        inputArray[last_idx].property.firstArg !== '' &&
+        inputArray[last_idx].property.secondArg === ''
+      ) {
+        if (action.payload === '<' || action.payload === '>') {
+          const action_Object = inputArray[last_idx].property;
+          action_Object.firstOperator = action.payload;
+        }
+      } else if (
+        inputArray[last_idx].Argument === 'while' &&
+        inputArray[last_idx].property.secondOperator === '' &&
+        inputArray[last_idx].property.thirdArg !== ''
+      ) {
+        if (action.payload === '++' || action.payload === '--') {
+          const action_Object = inputArray[last_idx].property;
+          action_Object.secondOperator = action.payload;
+        }
+      } else if (
+        inputArray[last_idx].Argument === 'while' &&
+        inputArray[last_idx].property.secondOperator !== '' &&
+        inputArray[last_idx].property.thirdArg !== ''
+      ) {
+        if (action.payload === '++' || action.payload === '--') {
+          const action_Object = inputArray[last_idx].property;
+          action_Object.secondOperator = action.payload;
+        }
+      }
+    },
+    loopAction: (state, action) => {
+      const inputArray = state.EngineInput;
+      const id = inputArray.length;
+      const last_idx = inputArray.length - 1;
+
+      if (id === 0 && action.payload === 'for') {
+        const newArray = [
+          {
+            Argument: 'for',
+            hasAction: false,
+            property: {
+              actionNameFor: 'for',
+              firstArg: '',
+              firstOperator: '',
+              secondArg: '',
+              thirdArg: '',
+              secondOperator: '',
+              fourthArg: '',
+              fifthArg: '',
+              thirdOperator: '',
+              for_Action: [],
+              completeForBlock: '',
+            },
+          },
+        ];
+        state.EngineInput = newArray;
+      } else if (id === 0 && action.payload === 'while') {
+        const newArray = [
+          {
+            Argument: 'while',
+            hasAction: false,
+            property: {
+              actionNameWhile: 'while',
+              firstArg: '',
+              firstOperator: '',
+              secondArg: '',
+              while_Action: [],
+              thirdArg: '',
+              secondOperator: '',
+              completeWhileBlock: '',
+            },
+          },
+        ];
+        state.EngineInput = newArray;
+      } else if (
+        inputArray[last_idx].Argument === 'variable' &&
+        inputArray[last_idx].property.hasValue &&
+        action.payload === 'for'
+      ) {
+        const newArray = [
+          ...inputArray,
+          {
+            Argument: 'for',
+            hasAction: false,
+            property: {
+              actionNameFor: 'for',
+              firstArg: '',
+              firstOperator: '',
+              secondArg: '',
+              thirdArg: '',
+              secondOperator: '',
+              fourthArg: '',
+              fifthArg: '',
+              thirdOperator: '',
+              for_Action: [],
+              completeForBlock: '',
+            },
+          },
+        ];
+        state.EngineInput = newArray;
+      } else if (
+        inputArray[last_idx].Argument === 'while' &&
+        action.payload === 'for'
+      ) {
+        if (inputArray[last_idx].secondOperator !== '') {
+          const newArray = [
+            ...inputArray,
+            {
+              Argument: 'for',
+              hasAction: false,
+              property: {
+                actionNameFor: 'for',
+                firstArg: '',
+                firstOperator: '',
+                secondArg: '',
+                thirdArg: '',
+                secondOperator: '',
+                fourthArg: '',
+                fifthArg: '',
+                thirdOperator: '',
+                for_Action: [],
+                completeForBlock: '',
+              },
+            },
+          ];
+          state.EngineInput = newArray;
+        }
+      } else if (
+        inputArray[last_idx].Argument === 'variable' &&
+        inputArray[last_idx].property.hasValue &&
+        action.payload === 'while'
+      ) {
+        const newArray = [
+          ...inputArray,
+          {
+            Argument: 'while',
+            hasAction: false,
+            property: {
+              actionNameWhile: 'while',
+              firstArg: '',
+              firstOperator: '',
+              secondArg: '',
+              while_Action: [],
+              thirdArg: '',
+              secondOperator: '',
+              completeWhileBlock: '',
+            },
+          },
+        ];
+        state.EngineInput = newArray;
+      } else if (
+        inputArray[last_idx].Argument === 'outSide' &&
+        inputArray[last_idx].hasAction &&
+        action.payload === 'while'
+      ) {
+        const action_Array = inputArray[last_idx].property.actions;
+        const last_action_idx =
+          inputArray[last_idx].property.actions.length - 1;
+        if (action_Array[last_action_idx].hasValue == true) {
+          const newArray = [
+            ...inputArray,
+            {
+              Argument: 'while',
+              hasAction: false,
+              property: {
+                actionNameWhile: 'while',
+                firstArg: '',
+                firstOperator: '',
+                secondArg: '',
+                while_Action: [],
+                thirdArg: '',
+                secondOperator: '',
+                completeWhileBlock: '',
+              },
+            },
+          ];
+          state.EngineInput = newArray;
+        }
+      } else if (
+        inputArray[last_idx].Argument === 'outSide' &&
+        action.payload === 'for'
+      ) {
+        const action_Array = inputArray[last_idx].property.actions;
+        const last_action_idx =
+          inputArray[last_idx].property.actions.length - 1;
+        if (action_Array[last_action_idx].hasValue == true) {
+          const newArray = [
+            ...inputArray,
+            {
+              Argument: 'for',
+              hasAction: false,
+              property: {
+                actionNameFor: 'for',
+                firstArg: '',
+                firstOperator: '',
+                secondArg: '',
+                thirdArg: '',
+                secondOperator: '',
+                fourthArg: '',
+                fifthArg: '',
+                thirdOperator: '',
+                for_Action: [],
+                completeForBlock: '',
+              },
+            },
+          ];
+          state.EngineInput = newArray;
+        }
+      } else if (
+        inputArray[last_idx].Argument === 'outSide' &&
+        action.payload === 'while'
+      ) {
+        const action_Array = inputArray[last_idx].property.actions;
+        const last_action_idx =
+          inputArray[last_idx].property.actions.length - 1;
+        if (action_Array[last_action_idx].hasValue == true) {
+          const newArray = [
+            ...inputArray,
+            {
+              Argument: 'while',
+              hasAction: false,
+              property: {
+                actionNameWhile: 'while',
+                firstArg: '',
+                firstOperator: '',
+                secondArg: '',
+                while_Action: [],
+                thirdArg: '',
+                secondOperator: '',
+                completeWhileBlock: '',
+              },
+            },
+          ];
+          state.EngineInput = newArray;
+        }
+      } else if (
+        inputArray[last_idx].Argument === 'if' &&
+        action.payload === 'for' &&
+        inputArray[last_idx].property.else_Action.length !== 0
+      ) {
+        const newArray = [
+          ...inputArray,
+          {
+            Argument: 'for',
+            hasAction: false,
+            property: {
+              actionNameFor: 'for',
+              firstArg: '',
+              firstOperator: '',
+              secondArg: '',
+              thirdArg: '',
+              secondOperator: '',
+              fourthArg: '',
+              fifthArg: '',
+              thirdOperator: '',
+              for_Action: [],
+              completeForBlock: '',
+            },
+          },
+        ];
+        state.EngineInput = newArray;
+      } else if (
+        inputArray[last_idx].Argument === 'if' &&
+        action.payload === 'while' &&
+        inputArray[last_idx].property.else_Action.length !== 0
+      ) {
+        const newArray = [
+          ...inputArray,
+          {
+            Argument: 'while',
+            hasAction: false,
+            property: {
+              actionNameWhile: 'while',
+              firstArg: '',
+              firstOperator: '',
+              secondArg: '',
+              while_Action: [],
+              thirdArg: '',
+              secondOperator: '',
+              completeWhileBlock: '',
+            },
+          },
+        ];
+        state.EngineInput = newArray;
+      } else if (
+        inputArray[last_idx].Argument === 'for' &&
+        action.payload === 'for' &&
+        inputArray[last_idx].property.completeForBlock !== ''
+      ) {
+        console.log('from for after for');
+        const newArray = [
+          ...inputArray,
+          {
+            Argument: 'for',
+            hasAction: false,
+            property: {
+              actionNameFor: 'for',
+              firstArg: '',
+              firstOperator: '',
+              secondArg: '',
+              thirdArg: '',
+              secondOperator: '',
+              fourthArg: '',
+              fifthArg: '',
+              thirdOperator: '',
+              for_Action: [],
+              completeForBlock: '',
+            },
+          },
+        ];
+        state.EngineInput = newArray;
+      } else if (
+        inputArray[last_idx].Argument === 'while' &&
+        action.payload == 'for' &&
+        inputArray[last_idx].property.secondOperator != ''
+      ) {
+        const newArray = [
+          ...inputArray,
+          {
+            Argument: 'for',
+            hasAction: false,
+            property: {
+              actionNameFor: 'for',
+              firstArg: '',
+              firstOperator: '',
+              secondArg: '',
+              thirdArg: '',
+              secondOperator: '',
+              fourthArg: '',
+              fifthArg: '',
+              thirdOperator: '',
+              for_Action: [],
+              completeForBlock: '',
+            },
+          },
+        ];
+        state.EngineInput = newArray;
+      } else if (
+        inputArray[last_idx].Argument === 'for' &&
+        action.payload == 'while' &&
+        inputArray[last_idx].property.for_Action.length !== 0
+      ) {
+        const newArray = [
+          ...inputArray,
+          {
+            Argument: 'while',
+            hasAction: false,
+            property: {
+              actionNameWhile: 'while',
+              firstArg: '',
+              firstOperator: '',
+              secondArg: '',
+              while_Action: [],
+              thirdArg: '',
+              secondOperator: '',
+              completeWhileBlock: '',
+            },
+          },
+        ];
+        state.EngineInput = newArray;
+      } else if (
+        inputArray[last_idx].Argument === 'while' &&
+        action.payload == 'while' &&
+        inputArray[last_idx].property.completeWhileBlock != ''
+      ) {
+        const newArray = [
+          ...inputArray,
+          {
+            Argument: 'while',
+            hasAction: false,
+            property: {
+              actionNameWhile: 'while',
+              firstArg: '',
+              firstOperator: '',
+              secondArg: '',
+              while_Action: [],
+              thirdArg: '',
+              secondOperator: '',
+              completeWhileBlock: '',
+            },
+          },
+        ];
+        state.EngineInput = newArray;
       }
     },
     conditionalAction: (state, action) => {
@@ -405,13 +1283,16 @@ export const actionSlice = createSlice({
               if_Action: [],
               actionNameElse: '',
               else_Action: [],
+              IfblockComplete: '',
+              ElseblockComplete: '',
             },
           },
         ];
         state.EngineInput = newArray;
       } else if (
         inputArray[last_idx].Argument === 'variable' &&
-        inputArray[last_idx].property.hasValue
+        inputArray[last_idx].property.hasValue &&
+        action.payload === 'if'
       ) {
         const newArray = [
           ...inputArray,
@@ -426,11 +1307,16 @@ export const actionSlice = createSlice({
               if_Action: [],
               actionNameElse: '',
               else_Action: [],
+              IfblockComplete: '',
+              ElseblockComplete: '',
             },
           },
         ];
         state.EngineInput = newArray;
-      } else if (inputArray[last_idx].Argument === 'outSide') {
+      } else if (
+        inputArray[last_idx].Argument === 'outSide' &&
+        action.payload === 'if'
+      ) {
         const action_Array = inputArray[last_idx].property.actions;
         const last_action_idx =
           inputArray[last_idx].property.actions.length - 1;
@@ -448,6 +1334,8 @@ export const actionSlice = createSlice({
                 if_Action: [],
                 actionNameElse: '',
                 else_Action: [],
+                IfblockComplete: '',
+                ElseblockComplete: '',
               },
             },
           ];
@@ -455,7 +1343,9 @@ export const actionSlice = createSlice({
         }
       } else if (
         action.payload === 'else' &&
-        inputArray[last_idx].Argument === 'if'
+        inputArray[last_idx].Argument === 'if' &&
+        inputArray[last_idx].property.if_Action.length !== 0 &&
+        inputArray[last_idx].property.IfblockComplete !== ''
       ) {
         const action_last_idx =
           inputArray[last_idx].property.if_Action.length - 1;
@@ -471,8 +1361,10 @@ export const actionSlice = createSlice({
           }
         }
       } else if (
+        inputArray[last_idx].Argument === 'if' &&
         inputArray[last_idx].property.if_Action.length !== 0 &&
-        action.payload === 'if'
+        action.payload === 'if' &&
+        inputArray[last_idx].property.IfblockComplete !== ''
       ) {
         console.log('from if after if ');
 
@@ -489,12 +1381,79 @@ export const actionSlice = createSlice({
               if_Action: [],
               actionNameElse: '',
               else_Action: [],
+              IfblockComplete: '',
+              ElseblockComplete: '',
             },
           },
         ];
         state.EngineInput = newArray;
       } else {
         return;
+      }
+    },
+
+    closeBlockAction: (state, action) => {
+      const inputArray = state.EngineInput;
+      const last_idx = inputArray.length - 1;
+
+      if (
+        inputArray[last_idx].Argument === 'if' &&
+        inputArray[last_idx].hasAction
+      ) {
+        if (
+          inputArray[last_idx].property.actionNameIf.length !== 0 &&
+          inputArray[last_idx].property.actionNameElse.length === 0
+        ) {
+          const last_Ifaction_idx =
+            inputArray[last_idx].property.if_Action.length - 1;
+          const lastIfAction =
+            inputArray[last_idx].property.if_Action[last_Ifaction_idx];
+          if (lastIfAction.hasValue) {
+            inputArray[last_idx].property.IfblockComplete = action.payload;
+          }
+        } else if (
+          inputArray[last_idx].property.actionNameIf.length !== 0 &&
+          inputArray[last_idx].property.actionNameElse.length !== 0
+        ) {
+          const last_Elseaction_idx =
+            inputArray[last_idx].property.else_Action.length - 1;
+          const lastElseAction =
+            inputArray[last_idx].property.else_Action[last_Elseaction_idx];
+          if (lastElseAction.hasValue) {
+            inputArray[last_idx].property.ElseblockComplete = action.payload;
+          }
+        }
+      } else if (
+        inputArray[last_idx].Argument === 'for' &&
+        inputArray[last_idx].hasAction
+      ) {
+        if (inputArray[last_idx].property.for_Action.length !== 0) {
+          console.log('from for close block');
+          const last_Foraction_idx =
+            inputArray[last_idx].property.for_Action.length - 1;
+          const lastForAction =
+            inputArray[last_idx].property.for_Action[last_Foraction_idx];
+          if (lastForAction.hasValue) {
+            inputArray[last_idx].property.completeForBlock = action.payload;
+          }
+        }
+      } else if (
+        inputArray[last_idx].Argument === 'while' &&
+        inputArray[last_idx].hasAction
+      ) {
+        if (
+          inputArray[last_idx].property.while_Action.length !== 0 &&
+          inputArray[last_idx].property.secondOperator !== ''
+        ) {
+          console.log('from while close block');
+          const last_Whileaction_idx =
+            inputArray[last_idx].property.while_Action.length - 1;
+          const lastWhileAction =
+            inputArray[last_idx].property.while_Action[last_Whileaction_idx];
+          if (lastWhileAction.hasValue) {
+            inputArray[last_idx].property.completeWhileBlock = action.payload;
+          }
+        }
       }
     },
   },
@@ -509,6 +1468,8 @@ export const {
   variableAction,
   conditionalAction,
   operatorsAction,
+  loopAction,
+  closeBlockAction,
 } = actionSlice.actions;
 
 export const selectEngineOutput = (state) => state.action.EngineOutput;
