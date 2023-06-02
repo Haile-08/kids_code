@@ -1088,162 +1088,15 @@ export const actionSlice = createSlice({
             },
           ];
           state.EngineInput = newArray;
-        } else if (
-          inputArray[last_idx].Argument === 'outSide' &&
-          action.payload === 'while'
-        ) {
-          const action_Array = inputArray[last_idx].property.actions;
-          const last_action_idx =
-            inputArray[last_idx].property.actions.length - 1;
-          if (action_Array[last_action_idx].hasValue == true) {
-            const newArray = [
-              ...inputArray,
-              {
-                Argument: 'while',
-                hasAction: false,
-                property: {
-                  actionNameWhile: 'while',
-                  firstArg: '',
-                  firstOperator: '',
-                  secondArg: '',
-                  while_Action: [],
-                  thirdArg: '',
-                  secondOperator: '',
-                  completeWhileBlock: '',
-                },
-              },
-            ];
-            state.EngineInput = newArray;
-          }
-        } else if (
-          inputArray[last_idx].Argument === 'if' &&
-          action.payload === 'for' &&
-          inputArray[last_idx].property.else_Action != []
-        ) {
-          const newArray = [
-            ...inputArray,
-            {
-              Argument: 'for',
-              hasAction: false,
-              property: {
-                actionNameFor: 'for',
-                firstArg: '',
-                firstOperator: '',
-                secondArg: '',
-                thirdArg: '',
-                secondOperator: '',
-                fourthArg: '',
-                fifthArg: '',
-                thirdOperator: '',
-                for_Action: [],
-                completeForBlock: '',
-              },
-            },
-          ];
-          state.EngineInput = newArray;
-        } else if (
-          inputArray[last_idx].Argument === 'if' &&
-          action.payload === 'while' &&
-          inputArray[last_idx].property.else_Action != []
-        ) {
-          const newArray = [
-            ...inputArray,
-            {
-              Argument: 'while',
-              hasAction: false,
-              property: {
-                actionNameWhile: 'while',
-                firstArg: '',
-                firstOperator: '',
-                secondArg: '',
-                while_Action: [],
-                thirdArg: '',
-                secondOperator: '',
-                completeWhileBlock: '',
-              },
-            },
-          ];
-          state.EngineInput = newArray;
-        } else if (
-          inputArray[last_idx].Argument === 'for' &&
-          action.payload == 'for' &&
-          inputArray[last_idx].property.for_Action != []
-        ) {
-          const newArray = [
-            ...inputArray,
-            {
-              Argument: 'for',
-              hasAction: false,
-              property: {
-                actionNameFor: 'for',
-                firstArg: '',
-                firstOperator: '',
-                secondArg: '',
-                thirdArg: '',
-                secondOperator: '',
-                fourthArg: '',
-                fifthArg: '',
-                thirdOperator: '',
-                for_Action: [],
-                completeForBlock: '',
-              },
-            },
-          ];
-          state.EngineInput = newArray;
-        } else if (
-          inputArray[last_idx].Argument === 'while' &&
-          action.payload == 'for' &&
-          inputArray[last_idx].property.secondOperator != ''
-        ) {
-          const newArray = [
-            ...inputArray,
-            {
-              Argument: 'for',
-              hasAction: false,
-              property: {
-                actionNameFor: 'for',
-                firstArg: '',
-                firstOperator: '',
-                secondArg: '',
-                thirdArg: '',
-                secondOperator: '',
-                fourthArg: '',
-                fifthArg: '',
-                thirdOperator: '',
-                for_Action: [],
-                completeForBlock: '',
-              },
-            },
-          ];
-          state.EngineInput = newArray;
-        } else if (
-          inputArray[last_idx].Argument === 'for' &&
-          action.payload == 'while' &&
-          inputArray[last_idx].property.for_Action != []
-        ) {
-          const newArray = [
-            ...inputArray,
-            {
-              Argument: 'while',
-              hasAction: false,
-              property: {
-                actionNameWhile: 'while',
-                firstArg: '',
-                firstOperator: '',
-                secondArg: '',
-                while_Action: [],
-                thirdArg: '',
-                secondOperator: '',
-                completeWhileBlock: '',
-              },
-            },
-          ];
-          state.EngineInput = newArray;
-        } else if (
-          inputArray[last_idx].Argument === 'while' &&
-          action.payload == 'while' &&
-          inputArray[last_idx].property.secondOperator != ''
-        ) {
+        }
+      } else if (
+        inputArray[last_idx].Argument === 'outSide' &&
+        action.payload === 'while'
+      ) {
+        const action_Array = inputArray[last_idx].property.actions;
+        const last_action_idx =
+          inputArray[last_idx].property.actions.length - 1;
+        if (action_Array[last_action_idx].hasValue == true) {
           const newArray = [
             ...inputArray,
             {
@@ -1263,6 +1116,154 @@ export const actionSlice = createSlice({
           ];
           state.EngineInput = newArray;
         }
+      } else if (
+        inputArray[last_idx].Argument === 'if' &&
+        action.payload === 'for' &&
+        inputArray[last_idx].property.else_Action.length !== 0
+      ) {
+        const newArray = [
+          ...inputArray,
+          {
+            Argument: 'for',
+            hasAction: false,
+            property: {
+              actionNameFor: 'for',
+              firstArg: '',
+              firstOperator: '',
+              secondArg: '',
+              thirdArg: '',
+              secondOperator: '',
+              fourthArg: '',
+              fifthArg: '',
+              thirdOperator: '',
+              for_Action: [],
+              completeForBlock: '',
+            },
+          },
+        ];
+        state.EngineInput = newArray;
+      } else if (
+        inputArray[last_idx].Argument === 'if' &&
+        action.payload === 'while' &&
+        inputArray[last_idx].property.else_Action.length !== 0
+      ) {
+        const newArray = [
+          ...inputArray,
+          {
+            Argument: 'while',
+            hasAction: false,
+            property: {
+              actionNameWhile: 'while',
+              firstArg: '',
+              firstOperator: '',
+              secondArg: '',
+              while_Action: [],
+              thirdArg: '',
+              secondOperator: '',
+              completeWhileBlock: '',
+            },
+          },
+        ];
+        state.EngineInput = newArray;
+      } else if (
+        inputArray[last_idx].Argument === 'for' &&
+        action.payload === 'for' &&
+        inputArray[last_idx].property.completeForBlock !== ''
+      ) {
+        console.log('from for after for');
+        const newArray = [
+          ...inputArray,
+          {
+            Argument: 'for',
+            hasAction: false,
+            property: {
+              actionNameFor: 'for',
+              firstArg: '',
+              firstOperator: '',
+              secondArg: '',
+              thirdArg: '',
+              secondOperator: '',
+              fourthArg: '',
+              fifthArg: '',
+              thirdOperator: '',
+              for_Action: [],
+              completeForBlock: '',
+            },
+          },
+        ];
+        state.EngineInput = newArray;
+      } else if (
+        inputArray[last_idx].Argument === 'while' &&
+        action.payload == 'for' &&
+        inputArray[last_idx].property.secondOperator != ''
+      ) {
+        const newArray = [
+          ...inputArray,
+          {
+            Argument: 'for',
+            hasAction: false,
+            property: {
+              actionNameFor: 'for',
+              firstArg: '',
+              firstOperator: '',
+              secondArg: '',
+              thirdArg: '',
+              secondOperator: '',
+              fourthArg: '',
+              fifthArg: '',
+              thirdOperator: '',
+              for_Action: [],
+              completeForBlock: '',
+            },
+          },
+        ];
+        state.EngineInput = newArray;
+      } else if (
+        inputArray[last_idx].Argument === 'for' &&
+        action.payload == 'while' &&
+        inputArray[last_idx].property.for_Action.length !== 0
+      ) {
+        const newArray = [
+          ...inputArray,
+          {
+            Argument: 'while',
+            hasAction: false,
+            property: {
+              actionNameWhile: 'while',
+              firstArg: '',
+              firstOperator: '',
+              secondArg: '',
+              while_Action: [],
+              thirdArg: '',
+              secondOperator: '',
+              completeWhileBlock: '',
+            },
+          },
+        ];
+        state.EngineInput = newArray;
+      } else if (
+        inputArray[last_idx].Argument === 'while' &&
+        action.payload == 'while' &&
+        inputArray[last_idx].property.completeWhileBlock != ''
+      ) {
+        const newArray = [
+          ...inputArray,
+          {
+            Argument: 'while',
+            hasAction: false,
+            property: {
+              actionNameWhile: 'while',
+              firstArg: '',
+              firstOperator: '',
+              secondArg: '',
+              while_Action: [],
+              thirdArg: '',
+              secondOperator: '',
+              completeWhileBlock: '',
+            },
+          },
+        ];
+        state.EngineInput = newArray;
       }
     },
     conditionalAction: (state, action) => {
