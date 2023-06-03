@@ -19,6 +19,8 @@ import {
   conditionalAction,
   operatorsAction,
   closeBlockAction,
+  moveAction,
+  turnAction,
 } from '../../../state/actionSlice';
 import { selectEngineOutput } from '../../../state/actionSlice';
 
@@ -59,7 +61,12 @@ function Level2() {
     dispatch(closeBlockAction(text));
   };
 
-  const closeAction = (text) => {};
+  const handleMovementType = () => {
+    dispatch(moveAction());
+  };
+  const handleTurnType = () => {
+    dispatch(turnAction());
+  };
   return (
     <div className="game-page-container">
       <div className="exit">
@@ -102,6 +109,12 @@ function Level2() {
           </button>
           <button type="button" onClick={() => handleCloseBlock('}')}>
             {'}'}
+          </button>
+          <button type="button" onClick={() => handleMovementType()}>
+            move
+          </button>
+          <button type="button" onClick={() => handleTurnType()}>
+            turnleft
           </button>
         </div>
       </div>

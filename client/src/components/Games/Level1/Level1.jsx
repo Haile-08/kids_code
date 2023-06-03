@@ -16,6 +16,7 @@ import {
   colorAction,
   colorTypeAction,
   resetCode,
+  moveAction,
 } from '../../../state/actionSlice';
 import { selectEngineOutput } from '../../../state/actionSlice';
 
@@ -42,6 +43,9 @@ function Level1() {
   };
   const handleVariable = (text) => {
     dispatch(variableAction(text));
+  };
+  const handleMovementType = () => {
+    dispatch(moveAction());
   };
   return (
     <div className="game-page-container">
@@ -71,6 +75,9 @@ function Level1() {
           </button>
           <button type="button" onClick={() => handleColorType('green')}>
             Green
+          </button>
+          <button type="button" onClick={() => handleMovementType()}>
+            move
           </button>
         </div>
       </div>
