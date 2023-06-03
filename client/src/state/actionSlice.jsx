@@ -339,7 +339,7 @@ export const actionSlice = createSlice({
             Argument: 'outSide',
             hasAction: true,
             property: {
-              actions: [{ id, hasValue: true, functionName: 'turnleft' }],
+              actions: [{ id, hasValue: true, functionName: 'turn' }],
             },
           },
         ];
@@ -358,7 +358,7 @@ export const actionSlice = createSlice({
         ) {
           const newArray = [
             ...actionArray,
-            { id: action_id, hasValue: true, functionName: 'turnleft' },
+            { id: action_id, hasValue: true, functionName: 'turn' },
           ];
           inputArray[last_idx].property.actions = newArray;
         }
@@ -372,7 +372,242 @@ export const actionSlice = createSlice({
             Argument: 'outSide',
             hasAction: true,
             property: {
-              actions: [{ id: 0, hasValue: true, functionName: 'turnleft' }],
+              actions: [{ id: 0, hasValue: true, functionName: 'turn' }],
+            },
+          },
+        ];
+        state.EngineInput = newArray;
+      } else if (
+        inputArray[last_idx].hasAction === true &&
+        inputArray[last_idx].Argument === 'if' &&
+        inputArray[last_idx].property.actionNameElse === '' &&
+        inputArray[last_idx].property.IfblockComplete === ''
+      ) {
+        const last_action_idx =
+          inputArray[last_idx].property.if_Action.length - 1;
+        if (
+          inputArray[last_idx].property.secondArg !== '' &&
+          inputArray[last_idx].property.if_Action.length === 0
+        ) {
+          const idx = inputArray[last_idx].property.if_Action.length;
+          console.log('property.if_Action.length === 0 ');
+
+          const newArray = [{ id: idx, hasValue: true, functionName: 'turn' }];
+          inputArray[last_idx].property.if_Action = newArray;
+        } else if (
+          inputArray[last_idx].property.secondArg !== '' &&
+          inputArray[last_idx].property.if_Action[last_action_idx].hasValue ===
+            true &&
+          inputArray[last_idx].property.if_Action.length !== 0
+        ) {
+          const idx = inputArray[last_idx].property.if_Action.length;
+          const newArray = [
+            ...inputArray[last_idx].property.if_Action,
+            { id: idx, hasValue: true, functionName: 'turn' },
+          ];
+          inputArray[last_idx].property.if_Action = newArray;
+        } else {
+          return;
+        }
+      } else if (
+        inputArray[last_idx].Argument === 'if' &&
+        inputArray[last_idx].hasAction === true &&
+        inputArray[last_idx].property.actionNameElse === '' &&
+        inputArray[last_idx].property.IfblockComplete !== ''
+      ) {
+        const newArray = [
+          ...inputArray,
+          {
+            Argument: 'outSide',
+            hasAction: true,
+            property: {
+              actions: [{ id: 0, hasValue: true, functionName: 'turn' }],
+            },
+          },
+        ];
+        state.EngineInput = newArray;
+      } else if (
+        inputArray[last_idx].Argument === 'if' &&
+        inputArray[last_idx].hasAction === true &&
+        inputArray[last_idx].property.actionNameElse !== '' &&
+        inputArray[last_idx].property.ElseblockComplete !== ''
+      ) {
+        const newArray = [
+          ...inputArray,
+          {
+            Argument: 'outSide',
+            hasAction: true,
+            property: {
+              actions: [{ id: 0, hasValue: true, functionName: 'turn' }],
+            },
+          },
+        ];
+        state.EngineInput = newArray;
+      } else if (
+        inputArray[last_idx].Argument === 'if' &&
+        inputArray[last_idx].property.actionNameElse !== '' &&
+        inputArray[last_idx].property.ElseblockComplete === ''
+      ) {
+        const last_else_action_idx =
+          inputArray[last_idx].property.else_Action.length - 1;
+        if (inputArray[last_idx].property.else_Action.length === 0) {
+          const idx = inputArray[last_idx].property.else_Action;
+          const newArray = [{ id: idx, hasValue: true, functionName: 'turn' }];
+          inputArray[last_idx].property.else_Action = newArray;
+        } else if (
+          inputArray[last_idx].property.else_Action.length !== 0 &&
+          inputArray[last_idx].property.else_Action[last_else_action_idx]
+            .hasValue === true
+        ) {
+          console.log('color after color in the else ');
+          const idx = inputArray[last_idx].property.else_Action.length;
+          const newArray = [
+            ...inputArray[last_idx].property.else_Action,
+            { id: idx, hasValue: true, functionName: 'turn' },
+          ];
+          inputArray[last_idx].property.else_Action = newArray;
+        } else {
+          return;
+        }
+      } else if (
+        inputArray[last_idx].Argument === 'for' &&
+        inputArray[last_idx].property.thirdOperator !== '' &&
+        inputArray[last_idx].property.completeForBlock === ''
+      ) {
+        const last_else_action_idx =
+          inputArray[last_idx].property.for_Action.length - 1;
+        if (inputArray[last_idx].property.for_Action.length === 0) {
+          const idx = inputArray[last_idx].property.for_Action;
+          const newArray = [{ id: idx, hasValue: true, functionName: 'turn' }];
+          inputArray[last_idx].property.for_Action = newArray;
+          inputArray[last_idx].hasAction = true;
+        } else if (
+          inputArray[last_idx].property.for_Action.length !== 0 &&
+          inputArray[last_idx].property.for_Action[last_else_action_idx]
+            .hasValue === true
+        ) {
+          const idx = inputArray[last_idx].property.for_Action.length;
+          const newArray = [
+            ...inputArray[last_idx].property.for_Action,
+            { id: idx, hasValue: true, functionName: 'turn' },
+          ];
+          inputArray[last_idx].property.for_Action = newArray;
+          inputArray[last_idx].hasAction = true;
+        } else {
+          return;
+        }
+      } else if (
+        inputArray[last_idx].Argument === 'for' &&
+        inputArray[last_idx].property.thirdOperator !== '' &&
+        inputArray[last_idx].property.completeForBlock !== ''
+      ) {
+        const newArray = [
+          ...inputArray,
+          {
+            Argument: 'outSide',
+            hasAction: true,
+            property: {
+              actions: [{ id: 0, hasValue: true, functionName: 'turn' }],
+            },
+          },
+        ];
+        state.EngineInput = newArray;
+      } else if (
+        inputArray[last_idx].Argument === 'while' &&
+        inputArray[last_idx].property.firstOperator !== '' &&
+        inputArray[last_idx].property.secondArg !== '' &&
+        inputArray[last_idx].property.completeWhileBlock === ''
+      ) {
+        const last_else_action_idx =
+          inputArray[last_idx].property.while_Action.length - 1;
+        if (inputArray[last_idx].property.while_Action.length === 0) {
+          const idx = inputArray[last_idx].property.while_Action.length;
+          const newArray = [{ id: idx, hasValue: true, functionName: 'turn' }];
+          inputArray[last_idx].property.while_Action = newArray;
+          inputArray[last_idx].hasAction = true;
+        } else if (
+          inputArray[last_idx].property.while_Action.length !== 0 &&
+          inputArray[last_idx].property.while_Action[last_else_action_idx]
+            .hasValue === true
+        ) {
+          const idx = inputArray[last_idx].property.while_Action.length;
+          const newArray = [
+            ...inputArray[last_idx].property.while_Action,
+            { id: idx, hasValue: true, functionName: 'turn' },
+          ];
+          inputArray[last_idx].property.while_Action = newArray;
+          inputArray[last_idx].hasAction = true;
+        } else {
+          return;
+        }
+      } else if (
+        inputArray[last_idx].Argument === 'while' &&
+        inputArray[last_idx].property.thirdArg !== '' &&
+        inputArray[last_idx].property.completeWhileBlock !== ''
+      ) {
+        if (inputArray[last_idx].property.secondOperator !== '') {
+          const newArray = [
+            ...inputArray,
+            {
+              Argument: 'outSide',
+              hasAction: true,
+              property: {
+                actions: [{ id: 0, hasValue: true, functionName: 'turn' }],
+              },
+            },
+          ];
+          state.EngineInput = newArray;
+        } else {
+          console.log(
+            'finish the incremental condition in the while loop first'
+          );
+        }
+      }
+    },
+    dropAction: (state) => {
+      const inputArray = state.EngineInput;
+      const id = inputArray.length;
+      const last_idx = inputArray.length - 1;
+      if (id === 0) {
+        const newArray = [
+          {
+            Argument: 'outSide',
+            hasAction: true,
+            property: {
+              actions: [{ id, hasValue: true, functionName: 'dropBox' }],
+            },
+          },
+        ];
+        state.EngineInput = newArray;
+      } else if (
+        inputArray[last_idx].hasAction === true &&
+        inputArray[last_idx].Argument === 'outSide'
+      ) {
+        const action_id = inputArray[last_idx].property.actions.length;
+        const action_last_idx =
+          inputArray[last_idx].property.actions.length - 1;
+        const actionArray = inputArray[last_idx].property.actions;
+        if (
+          inputArray[last_idx].property.actions[action_last_idx].hasValue ===
+          true
+        ) {
+          const newArray = [
+            ...actionArray,
+            { id: action_id, hasValue: true, functionName: 'dropBox' },
+          ];
+          inputArray[last_idx].property.actions = newArray;
+        }
+      } else if (
+        inputArray[last_idx]?.property.hasValue === true &&
+        inputArray[last_idx].Argument === 'variable'
+      ) {
+        const newArray = [
+          ...inputArray,
+          {
+            Argument: 'outSide',
+            hasAction: true,
+            property: {
+              actions: [{ id: 0, hasValue: true, functionName: 'dropBox' }],
             },
           },
         ];
@@ -393,7 +628,7 @@ export const actionSlice = createSlice({
           console.log('property.if_Action.length === 0 ');
 
           const newArray = [
-            { id: idx, hasValue: true, functionName: 'turnleft' },
+            { id: idx, hasValue: true, functionName: 'dropBox' },
           ];
           inputArray[last_idx].property.if_Action = newArray;
         } else if (
@@ -405,7 +640,7 @@ export const actionSlice = createSlice({
           const idx = inputArray[last_idx].property.if_Action.length;
           const newArray = [
             ...inputArray[last_idx].property.if_Action,
-            { id: idx, hasValue: true, functionName: 'turnleft' },
+            { id: idx, hasValue: true, functionName: 'dropBox' },
           ];
           inputArray[last_idx].property.if_Action = newArray;
         } else {
@@ -423,7 +658,7 @@ export const actionSlice = createSlice({
             Argument: 'outSide',
             hasAction: true,
             property: {
-              actions: [{ id: 0, hasValue: true, functionName: 'turnleft' }],
+              actions: [{ id: 0, hasValue: true, functionName: 'dropBox' }],
             },
           },
         ];
@@ -440,7 +675,7 @@ export const actionSlice = createSlice({
             Argument: 'outSide',
             hasAction: true,
             property: {
-              actions: [{ id: 0, hasValue: true, functionName: 'turnleft' }],
+              actions: [{ id: 0, hasValue: true, functionName: 'dropBox' }],
             },
           },
         ];
@@ -455,7 +690,7 @@ export const actionSlice = createSlice({
         if (inputArray[last_idx].property.else_Action.length === 0) {
           const idx = inputArray[last_idx].property.else_Action;
           const newArray = [
-            { id: idx, hasValue: true, functionName: 'turnleft' },
+            { id: idx, hasValue: true, functionName: 'dropBox' },
           ];
           inputArray[last_idx].property.else_Action = newArray;
         } else if (
@@ -467,7 +702,7 @@ export const actionSlice = createSlice({
           const idx = inputArray[last_idx].property.else_Action.length;
           const newArray = [
             ...inputArray[last_idx].property.else_Action,
-            { id: idx, hasValue: true, functionName: 'turnleft' },
+            { id: idx, hasValue: true, functionName: 'dropBox' },
           ];
           inputArray[last_idx].property.else_Action = newArray;
         } else {
@@ -483,7 +718,7 @@ export const actionSlice = createSlice({
         if (inputArray[last_idx].property.for_Action.length === 0) {
           const idx = inputArray[last_idx].property.for_Action;
           const newArray = [
-            { id: idx, hasValue: true, functionName: 'turnleft' },
+            { id: idx, hasValue: true, functionName: 'dropBox' },
           ];
           inputArray[last_idx].property.for_Action = newArray;
           inputArray[last_idx].hasAction = true;
@@ -495,7 +730,7 @@ export const actionSlice = createSlice({
           const idx = inputArray[last_idx].property.for_Action.length;
           const newArray = [
             ...inputArray[last_idx].property.for_Action,
-            { id: idx, hasValue: true, functionName: 'turnleft' },
+            { id: idx, hasValue: true, functionName: 'dropBox' },
           ];
           inputArray[last_idx].property.for_Action = newArray;
           inputArray[last_idx].hasAction = true;
@@ -513,7 +748,7 @@ export const actionSlice = createSlice({
             Argument: 'outSide',
             hasAction: true,
             property: {
-              actions: [{ id: 0, hasValue: true, functionName: 'turnleft' }],
+              actions: [{ id: 0, hasValue: true, functionName: 'dropBox' }],
             },
           },
         ];
@@ -529,7 +764,7 @@ export const actionSlice = createSlice({
         if (inputArray[last_idx].property.while_Action.length === 0) {
           const idx = inputArray[last_idx].property.while_Action.length;
           const newArray = [
-            { id: idx, hasValue: true, functionName: 'turnleft' },
+            { id: idx, hasValue: true, functionName: 'dropBox' },
           ];
           inputArray[last_idx].property.while_Action = newArray;
           inputArray[last_idx].hasAction = true;
@@ -541,7 +776,7 @@ export const actionSlice = createSlice({
           const idx = inputArray[last_idx].property.while_Action.length;
           const newArray = [
             ...inputArray[last_idx].property.while_Action,
-            { id: idx, hasValue: true, functionName: 'turnleft' },
+            { id: idx, hasValue: true, functionName: 'dropBox' },
           ];
           inputArray[last_idx].property.while_Action = newArray;
           inputArray[last_idx].hasAction = true;
@@ -560,7 +795,7 @@ export const actionSlice = createSlice({
               Argument: 'outSide',
               hasAction: true,
               property: {
-                actions: [{ id: 0, hasValue: true, functionName: 'turnleft' }],
+                actions: [{ id: 0, hasValue: true, functionName: 'dropBox' }],
               },
             },
           ];
@@ -2012,6 +2247,7 @@ export const {
   closeBlockAction,
   moveAction,
   turnAction,
+  dropAction,
 } = actionSlice.actions;
 
 export const selectEngineOutput = (state) => state.action.EngineOutput;

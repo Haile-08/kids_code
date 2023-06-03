@@ -21,6 +21,7 @@ import {
   closeBlockAction,
   moveAction,
   turnAction,
+  dropAction,
 } from '../../../state/actionSlice';
 import { selectEngineOutput } from '../../../state/actionSlice';
 
@@ -66,6 +67,9 @@ function Level2() {
   };
   const handleTurnType = () => {
     dispatch(turnAction());
+  };
+  const handleDropType = () => {
+    dispatch(dropAction());
   };
   return (
     <div className="game-page-container">
@@ -115,6 +119,9 @@ function Level2() {
           </button>
           <button type="button" onClick={() => handleTurnType()}>
             turnleft
+          </button>
+          <button type="button" onClick={() => handleDropType()}>
+            dropBox
           </button>
         </div>
       </div>
