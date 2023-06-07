@@ -14,6 +14,8 @@ import {
   closeBlockAction,
   moveAction,
   numberAction,
+  turnAction,
+  dropAction,
 } from '../../../state/actionSlice';
 import { selectEngineOutput } from '../../../state/actionSlice';
 
@@ -59,6 +61,12 @@ function Level3() {
   const handleNumber = (event) => {
     console.log(event.target.value);
     dispatch(numberAction(event.target.value));
+  };
+  const handleDropType = () => {
+    dispatch(dropAction());
+  };
+  const handleTurnType = () => {
+    dispatch(turnAction());
   };
   return (
     <div className="game-page-container">
@@ -111,6 +119,12 @@ function Level3() {
           </button>
           <button type="button" onClick={() => handleMovementType()}>
             move
+          </button>
+          <button type="button" onClick={() => handleTurnType()}>
+            turnleft
+          </button>
+          <button type="button" onClick={() => handleDropType()}>
+            dropBox
           </button>
           <select id="option" onChange={(e) => handleNumber(e)}>
             <option value="1">1</option>

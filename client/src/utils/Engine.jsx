@@ -4,10 +4,13 @@ const Engine = (data) => {
 
   data.map((item) => {
     if (item.Argument === 'variable') {
+      console.log(`var num = ${item.property.varValue}`);
       if (varObj.length === 0) {
         const obj = {
           varName: item.property.varName,
-          varValue: item.property.varValue,
+          varValue: /\d/.test(item.property.varValue)
+            ? parseInt(item.property.varValue)
+            : item.property.varValue,
         };
         varObj.push(obj);
       } else {
@@ -18,11 +21,15 @@ const Engine = (data) => {
           let objToModify = varObj.find(
             (obj) => obj.varName === item.property.varName
           );
-          objToModify.varValue = item.property.varValue;
+          objToModify.varValue = /\d/.test(item.property.varValue)
+            ? parseInt(item.property.varValue)
+            : item.property.varValue;
         } else {
           const obj = {
             varName: item.property.varName,
-            varValue: item.property.varValue,
+            varValue: /\d/.test(item.property.varValue)
+              ? parseInt(item.property.varValue)
+              : item.property.varValue,
           };
           varObj.push(obj);
         }
@@ -261,15 +268,13 @@ const Engine = (data) => {
         item.property.secondOperator === '++'
       ) {
         let objToModify = varObj.find(
-          (obj) => obj.varName === item.property.secondArg
+          (obj) => obj.varName === item.property.firstArg
         );
-        let x;
-        let value = varObj.some(
-          (obj) => obj.varName === item.property.secondArg
-        )
+        let value = varObj.some((obj) => obj.varName === item.property.firstArg)
           ? parseInt(objToModify.varValue)
           : parseInt(item.property.secondArg);
-        while (x > value) {
+        let x = value;
+        while (x > parseInt(item.property.secondArg)) {
           item.property.while_Action.map((i) => {
             if (i.functionName === 'color') {
               let objExists = varObj.some((obj) => obj.varName === i.value);
@@ -296,15 +301,13 @@ const Engine = (data) => {
         item.property.secondOperator === '++'
       ) {
         let objToModify = varObj.find(
-          (obj) => obj.varName === item.property.secondArg
+          (obj) => obj.varName === item.property.firstArg
         );
-        let x;
-        let value = varObj.some(
-          (obj) => obj.varName === item.property.secondArg
-        )
+        let value = varObj.some((obj) => obj.varName === item.property.firstArg)
           ? parseInt(objToModify.varValue)
           : parseInt(item.property.secondArg);
-        while (x < value) {
+        let x = value;
+        while (x < parseInt(item.property.secondArg)) {
           item.property.while_Action.map((i) => {
             if (i.functionName === 'color') {
               let objExists = varObj.some((obj) => obj.varName === i.value);
@@ -331,15 +334,13 @@ const Engine = (data) => {
         item.property.secondOperator === '--'
       ) {
         let objToModify = varObj.find(
-          (obj) => obj.varName === item.property.secondArg
+          (obj) => obj.varName === item.property.firstArg
         );
-        let x;
-        let value = varObj.some(
-          (obj) => obj.varName === item.property.secondArg
-        )
+        let value = varObj.some((obj) => obj.varName === item.property.firstArg)
           ? parseInt(objToModify.varValue)
           : parseInt(item.property.secondArg);
-        while (x > value) {
+        let x = value;
+        while (x > parseInt(item.property.secondArg)) {
           item.property.while_Action.map((i) => {
             if (i.functionName === 'color') {
               let objExists = varObj.some((obj) => obj.varName === i.value);
@@ -366,15 +367,13 @@ const Engine = (data) => {
         item.property.secondOperator === '--'
       ) {
         let objToModify = varObj.find(
-          (obj) => obj.varName === item.property.secondArg
+          (obj) => obj.varName === item.property.firstArg
         );
-        let x;
-        let value = varObj.some(
-          (obj) => obj.varName === item.property.secondArg
-        )
+        let value = varObj.some((obj) => obj.varName === item.property.firstArg)
           ? parseInt(objToModify.varValue)
           : parseInt(item.property.secondArg);
-        while (x < value) {
+        let x = value;
+        while (x < parseInt(item.property.secondArg)) {
           item.property.while_Action.map((i) => {
             if (i.functionName === 'color') {
               let objExists = varObj.some((obj) => obj.varName === i.value);
