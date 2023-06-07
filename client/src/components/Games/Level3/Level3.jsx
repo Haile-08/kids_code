@@ -13,6 +13,7 @@ import {
   loopAction,
   closeBlockAction,
   moveAction,
+  numberAction,
 } from '../../../state/actionSlice';
 import { selectEngineOutput } from '../../../state/actionSlice';
 
@@ -57,6 +58,7 @@ function Level3() {
   };
   const handleNumber = (event) => {
     console.log(event.target.value);
+    dispatch(numberAction(event.target.value));
   };
   return (
     <div className="game-page-container">

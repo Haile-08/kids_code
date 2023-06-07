@@ -330,7 +330,165 @@ export const actionSlice = createSlice({
       }
     },
     numberAction: (state, action) => {
-
+      const inputArray = state.EngineInput;
+      inputArray.map((item, idx) => {
+        const inputLength = inputArray.length;
+        if (item.Argument === 'variable' && idx === inputArray.length - 1) {
+          if (!item.property.hasValue) {
+            item.property.varValue = action.payload;
+            item.property.hasValue = true;
+          } else if (idx === inputLength - 1) {
+            item.property.varValue = action.payload;
+            item.property.hasValue = true;
+          } else {
+            return;
+          }
+        } else if (item.Argument === 'if' && idx === inputArray.length - 1) {
+          const IfAction_last_idx = item.property.if_Action.length - 1;
+          if (!item.property.actionNameElse) {
+            if (
+              item.property.firstArg === '' &&
+              item.property.operator === ''
+            ) {
+              item.property.firstArg = action.payload;
+            } else if (
+              item.property.firstArg !== '' &&
+              item.property.operator === ''
+            ) {
+              item.property.firstArg = action.payload;
+            } else if (
+              item.property.firstArg !== '' &&
+              item.property.secondArg === '' &&
+              item.property.operator !== ''
+            ) {
+              item.hasAction = true;
+              item.property.secondArg = action.payload;
+            } else if (
+              item.property.secondArg !== '' &&
+              item.property.if_Action.length === 0
+            ) {
+              item.hasAction = true;
+              item.property.secondArg = action.payload;
+            } else if (
+              item.property.if_Action.length !== 0 &&
+              item.hasAction === true
+            ) {
+              //but what are the values that goes in to the this array
+              const ifActionList = item.property.if_Action;
+              ifActionList[IfAction_last_idx].value = action.payload;
+              ifActionList[IfAction_last_idx].hasValue = true;
+              item.property.if_Action = ifActionList;
+            }
+          } else {
+            const elseAction_last_idx = item.property.else_Action.length - 1;
+            const elseActionList = item.property.else_Action;
+            elseActionList[elseAction_last_idx].value = action.payload;
+            elseActionList[elseAction_last_idx].hasValue = true;
+            item.property.else_Action = elseActionList;
+          }
+        } else if (item.Argument === 'for' && idx === inputArray.length - 1) {
+          const Action_last_idx = item.property.for_Action.length - 1;
+          if (
+            item.property.firstArg === '' &&
+            item.property.firstOperator === ''
+          ) {
+            item.property.firstArg = action.payload;
+          } else if (
+            item.property.secondArg === '' &&
+            item.property.thirdArg === ''
+          ) {
+            item.property.secondArg = action.payload;
+          } else if (
+            item.property.thirdArg === '' &&
+            item.property.fourthArg === ''
+          ) {
+            if (action.payload === item.property.firstArg) {
+              item.property.thirdArg = action.payload;
+            }
+          } else if (
+            item.property.fourthArg === '' &&
+            item.property.fifthArg === ''
+          ) {
+            item.property.fourthArg = action.payload;
+          } else if (
+            item.property.fifthArg === '' &&
+            item.property.thirdOperator === ''
+          ) {
+            if (action.payload === item.property.firstArg) {
+              item.property.fifthArg = action.payload;
+            }
+          } else if (
+            item.property.firstArg !== '' &&
+            item.property.firstOperator === ''
+          ) {
+            item.property.firstArg = action.payload;
+          } else if (
+            item.property.secondArg !== '' &&
+            item.property.thirdArg === ''
+          ) {
+            item.property.secondArg = action.payload;
+          } else if (
+            item.property.thirdArg !== '' &&
+            item.property.secondArg === ''
+          ) {
+            if (action.payload === item.property.firstArg) {
+              item.property.thirdArg = action.payload;
+            }
+          } else if (
+            item.property.fourthArg !== '' &&
+            item.property.fifthArg === ''
+          ) {
+            item.property.fourthArg = action.payload;
+          } else if (
+            item.property.fifthArg !== '' &&
+            item.property.thirdOperator === ''
+          ) {
+            if (action.payload === item.property.firstArg) {
+              item.property.fifthArg = action.payload;
+            }
+          } else {
+            //but what are the values that goes in to the this array
+            const forActionList = item.property.for_Action;
+            forActionList[Action_last_idx].value = action.payload;
+            forActionList[Action_last_idx].hasValue = true;
+          }
+        } else if (item.Argument === 'while') {
+          const Action_last_idx = item.property.while_Action.length - 1;
+          if (
+            item.property.firstArg === '' &&
+            item.property.firstOperator === ''
+          ) {
+            item.property.firstArg = action.payload;
+          } else if (
+            item.property.firstArg !== '' &&
+            item.property.firstOperator === ''
+          ) {
+            item.property.firstArg = action.payload;
+          } else if (
+            item.property.secondArg === '' &&
+            item.property.while_Action.length === 0 &&
+            item.property.firstOperator !== ''
+          ) {
+            item.property.secondArg = action.payload;
+          } else if (
+            item.property.secondArg !== '' &&
+            item.property.while_Action.length === 0 &&
+            item.property.firstOperator !== ''
+          ) {
+            item.property.secondArg = action.payload;
+          } else if (
+            item.property.firstOperator !== '' &&
+            item.property.secondArg !== '' &&
+            item.property.firstArg !== '' &&
+            item.property.completeWhileBlock === ''
+          ) {
+            //but what are the values that goes in to the this array
+            const whileActionList = item.property.while_Action;
+            whileActionList[Action_last_idx].value = action.payload;
+            whileActionList[Action_last_idx].hasValue = true;
+          }
+        }
+      });
     },
     turnAction: (state) => {
       const inputArray = state.EngineInput;
@@ -2251,6 +2409,7 @@ export const {
   moveAction,
   turnAction,
   dropAction,
+  numberAction,
 } = actionSlice.actions;
 
 export const selectEngineOutput = (state) => state.action.EngineOutput;
