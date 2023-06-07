@@ -32,5 +32,5 @@ export default function checkMode(varObj, dropBox, modeName, value, mode) {
     console.log('hi');
   }
 
-  return 'blue';
+  return 'green';
 }

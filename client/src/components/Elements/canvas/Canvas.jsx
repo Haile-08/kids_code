@@ -27,7 +27,7 @@ const Canvas = ({ EngineOutput, GameAnswer }) => {
     mode: 0,
     checker: true,
   };
-  let color = 'blue';
+  let color = 'green';
   // eslint-disable-next-line prefer-const
   let mode = ['straight', 'up', 'back', 'down'];
 
@@ -58,9 +58,10 @@ const Canvas = ({ EngineOutput, GameAnswer }) => {
       // eslint-disable-next-line react/prop-types
       const index = EngineOutput.length - 1;
       if (index >= 0) {
-        BallMovement(ctx, varObj.x, varObj.y, color, 20);
+        console.log(color);
+        BallMovement(ctx, varObj.x, varObj.y, color, varObj.mode);
       } else {
-        BallMovement(ctx, varObj.x, varObj.y, 'blue', 20);
+        BallMovement(ctx, varObj.x, varObj.y, 'green', varObj.mode);
       }
       dropBox.forEach((item) => {
         DropBox(ctx, item.x, item.y);
