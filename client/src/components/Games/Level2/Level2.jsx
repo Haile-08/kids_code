@@ -126,8 +126,8 @@ function Level2() {
         </div>
       </div>
       <div className="canvasout">
-        <Canvas EngineOutput={EngineOutput} GameAnswer={GameAnswer} />
-        <Canvas EngineOutput={EngineOutput} GameAnswer={GameAnswer} />
+        <Canvas EngineOutput={EngineOutput} GameAnswer={EngineOutput} />
+        <Canvas EngineOutput={GameAnswer} GameAnswer={GameAnswer} />
       </div>
     </div>
   );
