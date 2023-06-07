@@ -329,6 +329,9 @@ export const actionSlice = createSlice({
         }
       }
     },
+    numberAction: (state, action) => {
+
+    },
     turnAction: (state) => {
       const inputArray = state.EngineInput;
       const id = inputArray.length;
