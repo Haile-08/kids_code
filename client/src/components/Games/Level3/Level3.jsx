@@ -12,6 +12,7 @@ import {
   operatorsAction,
   loopAction,
   closeBlockAction,
+  moveAction,
 } from '../../../state/actionSlice';
 import { selectEngineOutput } from '../../../state/actionSlice';
 
@@ -51,7 +52,9 @@ function Level3() {
   const handleCloseBlock = (text) => {
     dispatch(closeBlockAction(text));
   };
-
+  const handleMovementType = () => {
+    dispatch(moveAction());
+  };
   return (
     <div className="game-page-container">
       <div className="exit">
@@ -100,6 +103,9 @@ function Level3() {
           </button>
           <button type="button" onClick={() => handleCloseBlock('}')}>
             {'}'}
+          </button>
+          <button type="button" onClick={() => handleMovementType()}>
+            move
           </button>
         </div>
       </div>
