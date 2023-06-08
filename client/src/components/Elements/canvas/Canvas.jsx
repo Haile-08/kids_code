@@ -37,7 +37,7 @@ const Canvas = ({ EngineOutput, GameAnswer }) => {
     color = checkMode(varObj, dropBox, obj.name, obj.value, mode);
     WallCollision(varObj, mode[varObj.mode]);
     checkAnswer(varObj, GameAnswer, obj.name, obj.value, index);
-    drawLine.push({ x: varObj.x, y: varObj.y });
+    drawLine.push({ x: varObj.x, y: varObj.y, mode: varObj.mode });
   };
   if (varObj.checker === true) {
     console.log('correct');
@@ -67,7 +67,7 @@ const Canvas = ({ EngineOutput, GameAnswer }) => {
         DropBox(ctx, item.x, item.y);
       });
       drawLine.forEach((item) => {
-        DrawLine(ctx, item.x, item.y);
+        DrawLine(ctx, item.x, item.y, item.mode);
       });
       requestAnimationFrame(render);
     };
