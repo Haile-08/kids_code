@@ -2,7 +2,6 @@ import React, { useEffect, useRef } from 'react';
 import {
   BallMovement,
   DropBox,
-  checkAnswer,
   WallCollision,
   checkMode,
   DrawLine,
@@ -11,7 +10,7 @@ import img2 from '../../../assets/img2.png';
 import './style.css';
 
 // eslint-disable-next-line react/prop-types, react/function-component-definition
-const Canvas = ({ EngineOutput, GameAnswer }) => {
+const Canvas = ({ EngineOutput, GameAnswer, setCorrect }) => {
   const CanvasRef = useRef(null);
   // console.log('engine out put ' + EngineOutput);
   // Canvas Variables
@@ -25,24 +24,32 @@ const Canvas = ({ EngineOutput, GameAnswer }) => {
     dx: 50,
     dy: 50,
     mode: 0,
-    checker: true,
   };
   let color = 'green';
   // eslint-disable-next-line prefer-const
   let mode = ['straight', 'up', 'back', 'down'];
 
   const handleEngineOutput = (obj, index) => {
-    console.log(`loop name: ${obj.name}`);
-    console.log(`loop value: ${obj.value}`);
     color = checkMode(varObj, dropBox, obj.name, obj.value, mode);
     WallCollision(varObj, mode[varObj.mode]);
-    checkAnswer(varObj, GameAnswer, obj.name, obj.value, index);
     drawLine.push({ x: varObj.x, y: varObj.y, mode: varObj.mode });
   };
-  if (varObj.checker === true) {
-    console.log('correct');
-  } else {
-    console.log('fail');
+
+  //compare the two array
+  function checkAnswer(arr1, arr2) {
+    if (arr1.length === arr2.length) {
+      for (let i = 0; i < arr1.length; i++) {
+        if (arr1[i].name !== arr2[i].name || arr1[i].value !== arr2[i].value) {
+          return false;
+        }
+      }
+      return true;
+    } else {
+      return false;
+    }
+  }
+  if (checkAnswer(EngineOutput, GameAnswer)) {
+    setCorrect(1);
   }
   // eslint-disable-next-line react/prop-types
   EngineOutput.forEach(handleEngineOutput);
@@ -58,7 +65,6 @@ const Canvas = ({ EngineOutput, GameAnswer }) => {
       // eslint-disable-next-line react/prop-types
       const index = EngineOutput.length - 1;
       if (index >= 0) {
-        console.log(color);
         BallMovement(ctx, varObj.x, varObj.y, color, varObj.mode);
       } else {
         BallMovement(ctx, varObj.x, varObj.y, 'green', varObj.mode);

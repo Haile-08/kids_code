@@ -5,11 +5,12 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable react/function-component-definition */
 
-import React from 'react';
+import React, { useState } from 'react';
 import { HiOutlineChevronLeft } from 'react-icons/hi';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Canvas, CodeView, Commands } from '../../Elements';
+import Answer from '../../../Data/Answer';
 import '../style.css';
 import {
   variableAction,
@@ -23,13 +24,9 @@ import { selectEngineOutput } from '../../../state/actionSlice';
 function Level1() {
   const dispatch = useDispatch();
   const EngineOutput = useSelector(selectEngineOutput);
-  const GameAnswer = [
-    { name: 'move', value: 'move' },
-    { name: 'move', value: 'move' },
-    { name: 'move', value: 'move' },
-    { name: 'move', value: 'move' },
-  ];
+  const GameAnswer = Answer.level1;
   const navigate = useNavigate();
+  const [correct, setCorrect] = useState(0);
 
   const handleExit = () => {
     dispatch(resetCode());
@@ -49,6 +46,7 @@ function Level1() {
   };
   return (
     <div className="game-page-container">
+      {console.log(correct)}
       <div className="exit">
         {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
         <div className="exitbtn" onClick={handleExit}>
@@ -82,8 +80,16 @@ function Level1() {
         </div>
       </div>
       <div className="canvasout">
-        <Canvas EngineOutput={EngineOutput} GameAnswer={EngineOutput} />
-        <Canvas EngineOutput={GameAnswer} GameAnswer={GameAnswer} />
+        <Canvas
+          EngineOutput={EngineOutput}
+          GameAnswer={GameAnswer}
+          setCorrect={setCorrect}
+        />
+        <Canvas
+          EngineOutput={GameAnswer}
+          GameAnswer={EngineOutput}
+          setCorrect={setCorrect}
+        />
       </div>
     </div>
   );

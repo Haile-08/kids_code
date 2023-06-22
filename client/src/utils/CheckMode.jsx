@@ -1,6 +1,4 @@
 export default function checkMode(varObj, dropBox, modeName, value, mode) {
-  console.log(`function value: ${value}`);
-  console.log(`modename: ${modeName}`);
   if (modeName === 'move') {
     switch (mode[varObj.mode]) {
       case 'straight':
@@ -29,7 +27,7 @@ export default function checkMode(varObj, dropBox, modeName, value, mode) {
   } else if (modeName === 'dropBox') {
     dropBox.push({ x: varObj.x, y: varObj.y });
   } else {
-    console.log('hi');
+    console.log();
   }
 
   return 'green';

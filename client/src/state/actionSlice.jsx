@@ -13,7 +13,6 @@ export const actionSlice = createSlice({
   initialState,
   reducers: {
     runCode: (state) => {
-      console.log(`input: ${state.EngineInput}`);
       const newArray = Engine(state.EngineInput);
       // console.log(`output: ${newArray}`);
       state.EngineOutput = newArray;
