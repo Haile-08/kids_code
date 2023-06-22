@@ -142,7 +142,7 @@ function Level3() {
       </div>
       <div className="canvasout">
         <Canvas EngineOutput={EngineOutput} GameAnswer={GameAnswer} />
-        <Canvas EngineOutput={EngineOutput} GameAnswer={GameAnswer} />
+        <Canvas EngineOutput={GameAnswer} GameAnswer={GameAnswer} />
       </div>
     </div>
   );
