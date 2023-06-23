@@ -1,6 +1,3 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable react/button-has-type */
-/* eslint-disable react/function-component-definition */
 import React from 'react';
 
 const QuizStartPage = ({ setGameState }) => {
@@ -8,7 +5,7 @@ const QuizStartPage = ({ setGameState }) => {
     <div>
       <h1>
         Congratulation on Finishing the game now test your comperhension using
-        the quiz
+        this quiz
       </h1>
       <button
         className="startBtn"

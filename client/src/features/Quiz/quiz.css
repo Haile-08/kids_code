@@ -7,7 +7,7 @@
 
 .quiz-app {
   min-height: 50%;
-  max-width: 30%;
+  width: 40%;
   /* background: rgb(92, 199, 209); */
   border-radius: 40px;
   text-align: center;

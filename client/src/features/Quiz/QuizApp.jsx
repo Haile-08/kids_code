@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/function-component-definition */
 import React, { useState } from 'react';
 import QuizStartPage from './QuizStartPage';
 import Quiz from './Quiz';
@@ -19,7 +17,11 @@ const QuizApp = () => {
           <Quiz setGameState={setGameState} setScore={setScore} score={score} />
         )}
         {gameState === 'endScreen' && (
-          <EndScreen setGameState={setGameState} score={score} />
+          <EndScreen
+            setGameState={setGameState}
+            score={score}
+            setScore={setScore}
+          />
         )}
       </div>
     </div>

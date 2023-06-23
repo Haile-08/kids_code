@@ -1,12 +1,8 @@
-/* eslint-disable no-nested-ternary */
-/* eslint-disable react/button-has-type */
-/* eslint-disable react/function-component-definition */
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { QuestionsList } from './QuestionsList';
 
-const EndScreen = ({ score }) => {
+const EndScreen = ({ score, setGameState, setScore }) => {
   return (
     <div>
       <h1> You have Finished the quiz</h1>
@@ -22,9 +18,26 @@ const EndScreen = ({ score }) => {
         {score}/{QuestionsList.length}
       </h2>
 
-      <Link to="/level">
-        <button>Go back to the Game</button>
-      </Link>
+      {score >= QuestionsList.length - 1 ? (
+        <Link to="/level">
+          <button
+            onClick={() => {
+              setScore(0);
+            }}
+          >
+            Go back to the Game
+          </button>
+        </Link>
+      ) : (
+        <button
+          onClick={() => {
+            setGameState('quiz');
+            setScore(0);
+          }}
+        >
+          retake the exam
+        </button>
+      )}
     </div>
   );
 };

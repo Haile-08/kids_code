@@ -1,10 +1,3 @@
-/* eslint-disable import/named */
-/* eslint-disable quotes */
-/* eslint-disable import/named */
-/* eslint-disable import/no-duplicates */
-/* eslint-disable prettier/prettier */
-/* eslint-disable react/function-component-definition */
-
 import React, { useState } from 'react';
 import { HiOutlineChevronLeft } from 'react-icons/hi';
 import { useNavigate } from 'react-router-dom';
@@ -64,6 +57,7 @@ function Level1() {
   const handleModal = () => {
     dispatch(resetCode());
     dispatch(modalOff());
+    navigate('quiz');
   };
   return (
     <div className="game-page-container">
@@ -110,7 +104,11 @@ function Level1() {
       {correct && (
         <div className="modal">
           <div className="modal-container">
-            <p>modal</p>
+            <p>
+              {' '}
+              Congratulation on Finishing the game now test your comperhension
+              using this quiz
+            </p>
             <button onClick={() => handleModal()}>take quiz</button>
           </div>
         </div>

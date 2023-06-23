@@ -1,10 +1,11 @@
 .codeSpace {
-    text-align: center;
-    background-color: aquamarine;
-    margin: 10px;
-    border-radius: 10px;
-    width: 600px;
-    color: var(--code-space-color);
-    width: 100%;
-  }
-  
+  text-align: center;
+  background-color: aquamarine;
+  margin: 10px;
+  border-radius: 10px;
+  width: 600px;
+  color: var(--code-space-color);
+  width: 100%;
+  overflow: scroll;
+  height: 70vh;
+}
