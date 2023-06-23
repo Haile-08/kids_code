@@ -19,7 +19,11 @@ const QuizApp = () => {
           <Quiz setGameState={setGameState} setScore={setScore} score={score} />
         )}
         {gameState === 'endScreen' && (
-          <EndScreen setGameState={setGameState} score={score} />
+          <EndScreen
+            setGameState={setGameState}
+            score={score}
+            setScore={setScore}
+          />
         )}
       </div>
     </div>
