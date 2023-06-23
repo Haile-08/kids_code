@@ -20,7 +20,6 @@ class Line {
         ctx.fillRect(this.x + 40, this.y + 35.5, 75, 2);
       }
     }
-    console.log(this.name);
 
     ctx.strokeStyle = 'blue';
     ctx.fill();

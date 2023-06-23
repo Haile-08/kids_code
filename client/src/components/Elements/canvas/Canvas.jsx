@@ -30,7 +30,7 @@ const Canvas = ({ EngineOutput }) => {
   let mode = ['straight', 'up', 'back', 'down'];
 
   const handleEngineOutput = (obj) => {
-    color = checkMode(varObj, dropBox, obj.name, obj.value, mode);
+    color = checkMode(varObj, dropBox, obj.name, obj.value, mode, color);
     WallCollision(varObj, mode[varObj.mode]);
     drawLine.push({
       x: varObj.x,
@@ -39,6 +39,7 @@ const Canvas = ({ EngineOutput }) => {
       name: obj.name,
     });
   };
+  console.log(color);
 
   // eslint-disable-next-line react/prop-types
   EngineOutput.forEach(handleEngineOutput);

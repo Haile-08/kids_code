@@ -73,6 +73,7 @@ function Level2() {
   };
   return (
     <div className="game-page-container">
+      {console.log(EngineOutput)}
       <div className="exit">
         <div className="exitbtn" onClick={handleExit}>
           <HiOutlineChevronLeft />
