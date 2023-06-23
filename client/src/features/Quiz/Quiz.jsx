@@ -9,6 +9,9 @@ const Quiz = ({ setScore, score, setGameState }) => {
   const handleAnswer = () => {
     const rightAnswer = QuestionsList[currentQuestion].answer;
     if (currentQuestion === QuestionsList.length - 1) {
+      if (chosenAnswer === rightAnswer) {
+        setScore(score + 1);
+      }
       setEnableErrMsg(false);
       setGameState('endScreen');
     } else if (chosenAnswer !== '') {
@@ -25,7 +28,6 @@ const Quiz = ({ setScore, score, setGameState }) => {
   return (
     <>
       <h1>quiz(?)</h1>
-      {currentQuestion}
       <h2>{QuestionsList[currentQuestion].prompt}</h2>
       <div className="options">
         <button onClick={() => setChosenAnswer('A')}>

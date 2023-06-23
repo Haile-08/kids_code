@@ -62,7 +62,7 @@ function RoutesPath() {
           element: isAuth ? <Mainpage /> : <Navigate to="/login" />,
         },
         {
-          path: 'level',
+          path: '/level',
           element: isAuth ? <Level1 /> : <Navigate to="/login" />,
         },
         {
