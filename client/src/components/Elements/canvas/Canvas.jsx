@@ -10,7 +10,7 @@ import img2 from '../../../assets/img2.png';
 import './style.css';
 
 // eslint-disable-next-line react/prop-types, react/function-component-definition
-const Canvas = ({ EngineOutput, GameAnswer, setCorrect }) => {
+const Canvas = ({ EngineOutput, GameAnswer }) => {
   const CanvasRef = useRef(null);
   // console.log('engine out put ' + EngineOutput);
   // Canvas Variables
@@ -35,22 +35,6 @@ const Canvas = ({ EngineOutput, GameAnswer, setCorrect }) => {
     drawLine.push({ x: varObj.x, y: varObj.y, mode: varObj.mode });
   };
 
-  //compare the two array
-  function checkAnswer(arr1, arr2) {
-    if (arr1.length === arr2.length) {
-      for (let i = 0; i < arr1.length; i++) {
-        if (arr1[i].name !== arr2[i].name || arr1[i].value !== arr2[i].value) {
-          return false;
-        }
-      }
-      return true;
-    } else {
-      return false;
-    }
-  }
-  if (checkAnswer(EngineOutput, GameAnswer)) {
-    setCorrect(1);
-  }
   // eslint-disable-next-line react/prop-types
   EngineOutput.forEach(handleEngineOutput);
 

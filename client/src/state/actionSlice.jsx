@@ -6,12 +6,19 @@ const initialState = {
   EngineInput: [],
   EngineOutput: [],
   GameResult: { check: false, optimum: false },
+  modal: false,
 };
 
 export const actionSlice = createSlice({
   name: 'action',
   initialState,
   reducers: {
+    modalOff: (state) => {
+      state.modal = false;
+    },
+    modalOn: (state) => {
+      state.modal = true;
+    },
     runCode: (state) => {
       const newArray = Engine(state.EngineInput);
       // console.log(`output: ${newArray}`);
@@ -2409,6 +2416,8 @@ export const {
   turnAction,
   dropAction,
   numberAction,
+  modalOn,
+  modalOff,
 } = actionSlice.actions;
 
 export const selectEngineOutput = (state) => state.action.EngineOutput;
