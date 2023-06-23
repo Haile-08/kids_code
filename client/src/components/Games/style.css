@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 .game-page-container {
-  background-color: var(--game-page-container-background);
+  background-color: #2f3640;
   display: flex;
   justify-content: center;
   font-size: calc(10px + 2vmin);
