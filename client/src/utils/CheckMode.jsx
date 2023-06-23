@@ -1,4 +1,11 @@
-export default function checkMode(varObj, dropBox, modeName, value, mode) {
+export default function checkMode(
+  varObj,
+  dropBox,
+  modeName,
+  value,
+  mode,
+  color
+) {
   if (modeName === 'move') {
     switch (mode[varObj.mode]) {
       case 'straight':
@@ -16,6 +23,7 @@ export default function checkMode(varObj, dropBox, modeName, value, mode) {
       default:
         break;
     }
+    return color;
   } else if (modeName === 'color') {
     return value;
   } else if (modeName === 'turn') {
@@ -24,11 +32,11 @@ export default function checkMode(varObj, dropBox, modeName, value, mode) {
     } else {
       varObj.mode++;
     }
+    return color;
   } else if (modeName === 'dropBox') {
     dropBox.push({ x: varObj.x, y: varObj.y });
+    return color;
   } else {
-    console.log();
+    return color;
   }
-
-  return 'green';
 }

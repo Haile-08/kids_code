@@ -30,7 +30,7 @@ const Canvas = ({ EngineOutput }) => {
   let mode = ['straight', 'up', 'back', 'down'];
 
   const handleEngineOutput = (obj) => {
-    color = checkMode(varObj, dropBox, obj.name, obj.value, mode);
+    color = checkMode(varObj, dropBox, obj.name, obj.value, mode, color);
     WallCollision(varObj, mode[varObj.mode]);
     drawLine.push({
       x: varObj.x,
@@ -39,6 +39,7 @@ const Canvas = ({ EngineOutput }) => {
       name: obj.name,
     });
   };
+  console.log(color);
 
   // eslint-disable-next-line react/prop-types
   EngineOutput.forEach(handleEngineOutput);
@@ -55,6 +56,9 @@ const Canvas = ({ EngineOutput }) => {
       drawLine.forEach((item) => {
         DrawLine(ctx, item.x, item.y, item.mode, item.name);
       });
+      dropBox.forEach((item) => {
+        DropBox(ctx, item.x, item.y);
+      });
       // eslint-disable-next-line react/prop-types
       const index = EngineOutput.length - 1;
       if (index >= 0) {
@@ -62,9 +66,6 @@ const Canvas = ({ EngineOutput }) => {
       } else {
         BallMovement(ctx, varObj.x, varObj.y, 'green', varObj.mode);
       }
-      dropBox.forEach((item) => {
-        DropBox(ctx, item.x, item.y);
-      });
 
       requestAnimationFrame(render);
     };

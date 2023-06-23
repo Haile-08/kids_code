@@ -1,3 +1,4 @@
+import box from '../assets/box.png';
 class Box {
   constructor(x, y) {
     this.x = x;
@@ -7,9 +8,9 @@ class Box {
   draw(ctx) {
     ctx.beginPath();
     ctx.fillStyle = this.color;
-    ctx.fillRect(this.x - 50, this.y, 60, 80);
-    ctx.strokeStyle = 'blue';
-    ctx.strokeWidth = 4;
+    const image = new Image();
+    image.src = box;
+    ctx.drawImage(image, this.x, this.y, 60, 60);
     ctx.fill();
     ctx.stroke();
   }

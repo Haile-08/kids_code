@@ -11,7 +11,7 @@ class Line {
     ctx.fillStyle = 'blue';
     if (this.name !== 'turn') {
       if (this.mode === 1) {
-        ctx.fillRect(this.x + 35.7, this.y + 35, 2, 54);
+        ctx.fillRect(this.x + 35.7, this.y + 35, 2, 75);
       } else if (this.mode === 3) {
         ctx.fillRect(this.x + 35.7, this.y - 40, 2, 75);
       } else if (this.mode === 0) {
@@ -20,7 +20,6 @@ class Line {
         ctx.fillRect(this.x + 40, this.y + 35.5, 75, 2);
       }
     }
-    console.log(this.name);
 
     ctx.strokeStyle = 'blue';
     ctx.fill();
