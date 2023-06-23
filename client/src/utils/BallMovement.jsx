@@ -30,47 +30,48 @@ class Ball {
     ctx.fillStyle = this.color;
     const image = new Image();
 
-    ctx.drawImage(image, this.x, this.y, 100, 100);
+    ctx.drawImage(image, this.x, this.y, 75, 80);
     if (this.color === 'green' && this.mode === 0) {
       image.src = greenleft;
-      ctx.drawImage(image, this.x, this.y, 100, 100);
+      ctx.drawImage(image, this.x, this.y, 75, 80);
     } else if (this.color === 'green' && this.mode === 1) {
       image.src = greenup;
-      ctx.drawImage(image, this.x, this.y, 100, 100);
+      ctx.drawImage(image, this.x, this.y, 75, 80);
     } else if (this.color === 'green' && this.mode === 2) {
       image.src = greenright;
-      ctx.drawImage(image, this.x, this.y, 100, 100);
+      ctx.drawImage(image, this.x, this.y, 75, 80);
     } else if (this.color === 'green' && this.mode === 3) {
       image.src = greendown;
-      ctx.drawImage(image, this.x, this.y, 100, 100);
+      ctx.drawImage(image, this.x, this.y, 75, 80);
     } else if (this.color === 'red' && this.mode === 0) {
       image.src = redleft;
-      ctx.drawImage(image, this.x, this.y, 100, 100);
+      ctx.drawImage(image, this.x, this.y, 75, 80);
     } else if (this.color === 'red' && this.mode === 1) {
       image.src = redup;
-      ctx.drawImage(image, this.x, this.y, 100, 100);
+      ctx.drawImage(image, this.x, this.y, 75, 80);
     } else if (this.color === 'red' && this.mode === 2) {
       image.src = redright;
-      ctx.drawImage(image, this.x, this.y, 100, 100);
+      ctx.drawImage(image, this.x, this.y, 75, 80);
     } else if (this.color === 'red' && this.mode === 3) {
       image.src = reddown;
-      ctx.drawImage(image, this.x, this.y, 100, 100);
+      ctx.drawImage(image, this.x, this.y, 75, 80);
     } else if (this.color === 'yellow' && this.mode === 0) {
       image.src = yellowleft;
-      ctx.drawImage(image, this.x, this.y, 100, 100);
+      ctx.drawImage(image, this.x, this.y, 75, 80);
     } else if (this.color === 'yellow' && this.mode === 1) {
       image.src = yellowup;
-      ctx.drawImage(image, this.x, this.y, 100, 100);
+      ctx.drawImage(image, this.x, this.y, 75, 80);
     } else if (this.color === 'yellow' && this.mode === 2) {
       image.src = yellowright;
-      ctx.drawImage(image, this.x, this.y, 100, 100);
+      ctx.drawImage(image, this.x, this.y, 75, 80);
     } else if (this.color === 'yellow' && this.mode === 3) {
       image.src = yellowdown;
-      ctx.drawImage(image, this.x, this.y, 100, 100);
+      ctx.drawImage(image, this.x, this.y, 75, 80);
     } else {
       image.src = greenleft;
-      ctx.drawImage(image, this.x, this.y, 100, 100);
+      ctx.drawImage(image, this.x, this.y, 75, 80);
     }
+
     ctx.strokeStyle = 'black';
     ctx.strokeWidth = 4;
     ctx.fill();

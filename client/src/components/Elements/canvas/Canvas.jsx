@@ -10,7 +10,7 @@ import img2 from '../../../assets/img2.png';
 import './style.css';
 
 // eslint-disable-next-line react/prop-types, react/function-component-definition
-const Canvas = ({ EngineOutput, GameAnswer }) => {
+const Canvas = ({ EngineOutput }) => {
   const CanvasRef = useRef(null);
   // console.log('engine out put ' + EngineOutput);
   // Canvas Variables
@@ -19,20 +19,25 @@ const Canvas = ({ EngineOutput, GameAnswer }) => {
   let drawLine = [];
   // eslint-disable-next-line prefer-const
   let varObj = {
-    x: 100,
-    y: 100,
-    dx: 50,
-    dy: 50,
+    x: 75,
+    y: 75,
+    dx: 75,
+    dy: 75,
     mode: 0,
   };
   let color = 'green';
   // eslint-disable-next-line prefer-const
   let mode = ['straight', 'up', 'back', 'down'];
 
-  const handleEngineOutput = (obj, index) => {
+  const handleEngineOutput = (obj) => {
     color = checkMode(varObj, dropBox, obj.name, obj.value, mode);
     WallCollision(varObj, mode[varObj.mode]);
-    drawLine.push({ x: varObj.x, y: varObj.y, mode: varObj.mode });
+    drawLine.push({
+      x: varObj.x,
+      y: varObj.y,
+      mode: varObj.mode,
+      name: obj.name,
+    });
   };
 
   // eslint-disable-next-line react/prop-types
@@ -43,9 +48,13 @@ const Canvas = ({ EngineOutput, GameAnswer }) => {
       const canvas = CanvasRef.current;
       const ctx = canvas.getContext('2d');
       ctx.clearRect(0, 0, canvas.width, canvas.height);
+
       const image = new Image();
       image.src = img2;
       ctx.drawImage(image, 0, 0, 600, 400);
+      drawLine.forEach((item) => {
+        DrawLine(ctx, item.x, item.y, item.mode, item.name);
+      });
       // eslint-disable-next-line react/prop-types
       const index = EngineOutput.length - 1;
       if (index >= 0) {
@@ -56,9 +65,7 @@ const Canvas = ({ EngineOutput, GameAnswer }) => {
       dropBox.forEach((item) => {
         DropBox(ctx, item.x, item.y);
       });
-      drawLine.forEach((item) => {
-        DrawLine(ctx, item.x, item.y, item.mode);
-      });
+
       requestAnimationFrame(render);
     };
     render();
