@@ -5,11 +5,12 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable react/function-component-definition */
 
-import React from 'react';
+import React, { useState } from 'react';
 import { HiOutlineChevronLeft } from 'react-icons/hi';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Canvas, CodeView, Commands } from '../../Elements';
+import Answer from '../../../Data/Answer';
 import '../style.css';
 import {
   variableAction,
@@ -17,20 +18,33 @@ import {
   colorTypeAction,
   resetCode,
   moveAction,
+  modalOff,
+  modalOn,
 } from '../../../state/actionSlice';
 import { selectEngineOutput } from '../../../state/actionSlice';
 
 function Level1() {
   const dispatch = useDispatch();
   const EngineOutput = useSelector(selectEngineOutput);
-  const GameAnswer = [
-    { name: 'move', value: 'move' },
-    { name: 'move', value: 'move' },
-    { name: 'move', value: 'move' },
-    { name: 'move', value: 'move' },
-  ];
+  const GameAnswer = Answer.level1;
   const navigate = useNavigate();
+  const correct = useSelector((state) => state.action.modal);
 
+  function checkAnswer(arr1, arr2) {
+    if (arr1.length === arr2.length) {
+      for (let i = 0; i < arr1.length; i++) {
+        if (arr1[i].name !== arr2[i].name || arr1[i].value !== arr2[i].value) {
+          return false;
+        }
+      }
+      return true;
+    } else {
+      return false;
+    }
+  }
+  if (checkAnswer(EngineOutput, GameAnswer)) {
+    dispatch(modalOn());
+  }
   const handleExit = () => {
     dispatch(resetCode());
     navigate('/main');
@@ -47,8 +61,15 @@ function Level1() {
   const handleMovementType = () => {
     dispatch(moveAction());
   };
+  const handleModal = () => {
+    dispatch(resetCode());
+    dispatch(modalOff());
+  };
   return (
     <div className="game-page-container">
+      {console.log(EngineOutput)}
+      {console.log(GameAnswer)}
+      {console.log(correct)}
       <div className="exit">
         {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
         <div className="exitbtn" onClick={handleExit}>
@@ -58,7 +79,7 @@ function Level1() {
       <div className="Buttons-Codespace--Actions">
         <div className="Buttons-Codespace">
           <CodeView />
-          <Commands />
+          <Commands EngineOutput={EngineOutput} GameAnswer={GameAnswer} />
         </div>
         <div className="actions">
           <button type="button" onClick={() => handleColor()}>
@@ -82,9 +103,18 @@ function Level1() {
         </div>
       </div>
       <div className="canvasout">
-        <Canvas EngineOutput={EngineOutput} GameAnswer={EngineOutput} />
-        <Canvas EngineOutput={GameAnswer} GameAnswer={GameAnswer} />
+        <Canvas EngineOutput={EngineOutput} GameAnswer={GameAnswer} />
+        <Canvas EngineOutput={GameAnswer} GameAnswer={EngineOutput} />
       </div>
+
+      {correct && (
+        <div className="modal">
+          <div className="modal-container">
+            <p>modal</p>
+            <button onClick={() => handleModal()}>take quiz</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

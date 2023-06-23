@@ -137,7 +137,6 @@ function CodeView() {
   const EngineInput = useSelector(selectEngineInput);
   return (
     <div className="codeSpace">
-      {console.log('engine Input inside code view', EngineInput)}
       {EngineInput.map((item) => (
         <>
           {item.Argument === 'outSide' ? (

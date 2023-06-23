@@ -2,7 +2,6 @@ import React, { useEffect, useRef } from 'react';
 import {
   BallMovement,
   DropBox,
-  checkAnswer,
   WallCollision,
   checkMode,
   DrawLine,
@@ -25,25 +24,17 @@ const Canvas = ({ EngineOutput, GameAnswer }) => {
     dx: 50,
     dy: 50,
     mode: 0,
-    checker: true,
   };
   let color = 'green';
   // eslint-disable-next-line prefer-const
   let mode = ['straight', 'up', 'back', 'down'];
 
   const handleEngineOutput = (obj, index) => {
-    console.log(`loop name: ${obj.name}`);
-    console.log(`loop value: ${obj.value}`);
     color = checkMode(varObj, dropBox, obj.name, obj.value, mode);
     WallCollision(varObj, mode[varObj.mode]);
-    checkAnswer(varObj, GameAnswer, obj.name, obj.value, index);
     drawLine.push({ x: varObj.x, y: varObj.y, mode: varObj.mode });
   };
-  if (varObj.checker === true) {
-    console.log('correct');
-  } else {
-    console.log('fail');
-  }
+
   // eslint-disable-next-line react/prop-types
   EngineOutput.forEach(handleEngineOutput);
 
@@ -58,7 +49,6 @@ const Canvas = ({ EngineOutput, GameAnswer }) => {
       // eslint-disable-next-line react/prop-types
       const index = EngineOutput.length - 1;
       if (index >= 0) {
-        console.log(color);
         BallMovement(ctx, varObj.x, varObj.y, color, varObj.mode);
       } else {
         BallMovement(ctx, varObj.x, varObj.y, 'green', varObj.mode);
