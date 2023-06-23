@@ -104,12 +104,10 @@ function Level1() {
       {correct && (
         <div className="modal">
           <div className="modal-container">
-            <p>
-              {' '}
-              Congratulation on Finishing the game now test your comperhension
-              using this quiz
-            </p>
-            <button onClick={() => handleModal()}>take quiz</button>
+            <h2> Congratulations you have finished this level.</h2>
+            <button className="modalBtn" onClick={() => handleModal()}>
+              take quiz
+            </button>
           </div>
         </div>
       )}
