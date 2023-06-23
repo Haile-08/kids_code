@@ -55,6 +55,9 @@ const Canvas = ({ EngineOutput }) => {
       drawLine.forEach((item) => {
         DrawLine(ctx, item.x, item.y, item.mode, item.name);
       });
+      dropBox.forEach((item) => {
+        DropBox(ctx, item.x, item.y);
+      });
       // eslint-disable-next-line react/prop-types
       const index = EngineOutput.length - 1;
       if (index >= 0) {
@@ -62,9 +65,6 @@ const Canvas = ({ EngineOutput }) => {
       } else {
         BallMovement(ctx, varObj.x, varObj.y, 'green', varObj.mode);
       }
-      dropBox.forEach((item) => {
-        DropBox(ctx, item.x, item.y);
-      });
 
       requestAnimationFrame(render);
     };
