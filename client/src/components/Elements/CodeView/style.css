@@ -6,6 +6,6 @@
   width: 600px;
   color: var(--code-space-color);
   width: 100%;
-  overflow: scroll;
+  overflow-y: scroll;
   height: 70vh;
 }

@@ -10,13 +10,13 @@ const Quiz = ({ setScore, score, setGameState }) => {
     const rightAnswer = QuestionsList[currentQuestion].answer;
     if (currentQuestion === QuestionsList.length - 1) {
       if (chosenAnswer === rightAnswer) {
-        setScore(score + 1);
+        setScore((score) => score + 1);
       }
       setEnableErrMsg(false);
       setGameState('endScreen');
     } else if (chosenAnswer !== '') {
       if (chosenAnswer === rightAnswer) {
-        setScore(score + 1);
+        setScore((score) => score + 1);
         setEnableErrMsg(false);
         setcurrentQuestion(currentQuestion + 1);
       } else {
