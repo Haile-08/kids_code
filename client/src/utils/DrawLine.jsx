@@ -10,10 +10,14 @@ class Line {
     ctx.beginPath();
     ctx.fillStyle = 'blue';
     if (this.name !== 'turn') {
-      if (this.mode === 1 || this.mode === 3) {
+      if (this.mode === 1) {
+        ctx.fillRect(this.x + 35.7, this.y + 35, 2, 54);
+      } else if (this.mode === 3) {
         ctx.fillRect(this.x + 35.7, this.y - 40, 2, 75);
-      } else if (this.mode === 0 || this.mode === 2) {
+      } else if (this.mode === 0) {
         ctx.fillRect(this.x - 40, this.y + 35.5, 75, 2);
+      } else if (this.mode === 2) {
+        ctx.fillRect(this.x + 40, this.y + 35.5, 75, 2);
       }
     }
     console.log(this.name);
