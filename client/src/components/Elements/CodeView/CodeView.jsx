@@ -2,6 +2,7 @@ import React from 'react';
 import './style.css';
 import { useSelector } from 'react-redux';
 import { selectEngineInput } from '../../../state/actionSlice';
+import ReactScrollableFeed from 'react-scrollable-feed';
 
 const FormatColorFunction = ({ item }) => (
   <>
@@ -137,21 +138,23 @@ function CodeView() {
   const EngineInput = useSelector(selectEngineInput);
   return (
     <div className="codeSpace">
-      {EngineInput.map((item) => (
-        <>
-          {item.Argument === 'outSide' ? (
-            <FormatColorFunction item={item} />
-          ) : item.Argument === 'variable' ? (
-            <FormatVariableFunction item={item} />
-          ) : item.Argument === 'if' ? (
-            <FormatIfFunction item={item} />
-          ) : item.Argument === 'for' ? (
-            <FormatForFunction item={item} />
-          ) : item.Argument === 'while' ? (
-            <FormatWhileFunction item={item} />
-          ) : null}
-        </>
-      ))}
+      <ReactScrollableFeed>
+        {EngineInput.map((item) => (
+          <>
+            {item.Argument === 'outSide' ? (
+              <FormatColorFunction item={item} />
+            ) : item.Argument === 'variable' ? (
+              <FormatVariableFunction item={item} />
+            ) : item.Argument === 'if' ? (
+              <FormatIfFunction item={item} />
+            ) : item.Argument === 'for' ? (
+              <FormatForFunction item={item} />
+            ) : item.Argument === 'while' ? (
+              <FormatWhileFunction item={item} />
+            ) : null}
+          </>
+        ))}
+      </ReactScrollableFeed>
     </div>
   );
 }
