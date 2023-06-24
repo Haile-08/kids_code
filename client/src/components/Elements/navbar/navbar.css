@@ -5,21 +5,47 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px;
-    background-color: #df1dc5;
+    padding: 60px 190px;
+} 
+.logo img {
+    cursor: pointer;
+}  
+.nav1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 200px;
+    margin: 0px 100px;
+    color: #DFE6E9;
+    opacity: 50%;
+    font-size: 22px;
+}
+.nav1 p {
+    cursor: pointer;
+    font-family: 'Rajdhani', sans-serif;
+}
+.nav2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 200px;
+    margin: 0px 100px;
+    color: #DFE6E9;
+    opacity: 50%;
+    font-size: 22px;
+    font-family: 'Rajdhani', sans-serif;
+}
+.nav2 p {
+    cursor: pointer;
 }
 
-.signin button {
-    outline: none;
-    border: none;
-    width: 100px;
-    height: 50px;
-    font-size: 20px;
-    text-decoration: none;
-    margin-right: 50px;
-    background-color: #e84118;
-    border-radius: 5px;
-    color: #2f3640;
-    font-family: 'Rajdhani', sans-serif;
-    cursor: pointer;
-    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+.active {
+    text-decoration: underline #55efc4 2px;
+    color: #DFE6E9;
+    background-size: 100% 0.1em, 0 0.1em;
+}
+
+.active:hover {
+    color: #ffffff;
+    text-decoration: underline #55efc4 2px;
 }
