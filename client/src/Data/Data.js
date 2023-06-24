@@ -63,7 +63,21 @@ const Answer = {
     { name: 'move', value: 'move' },
     { name: 'color', value: 'red' },
   ],
-  level5: [{ name: 'color', value: 'red' }],
+  level5: [
+    { name: 'move', value: 'move' },
+    { name: 'turn', value: 'turn' },
+    { name: 'turn', value: 'turn' },
+    { name: 'turn', value: 'turn' },
+    { name: 'move', value: 'move' },
+    { name: 'turn', value: 'turn' },
+    { name: 'move', value: 'move' },
+    { name: 'turn', value: 'turn' },
+    { name: 'turn', value: 'turn' },
+    { name: 'turn', value: 'turn' },
+    { name: 'move', value: 'move' },
+    { name: 'turn', value: 'turn' },
+    { name: 'move', value: 'move' },
+  ],
 };
 
 export const QuestionsList = {

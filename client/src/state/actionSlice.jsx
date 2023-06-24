@@ -42,6 +42,35 @@ export const actionSlice = createSlice({
       ];
       state.EngineInput = newArray;
     },
+    dispatchIfVar: (state) => {
+      const newArray = [
+        {
+          Argument: 'variable',
+          hasAction: true,
+          property: {
+            varName: 'var1',
+            varValue: 'red',
+            hasValue: true,
+          },
+        },
+        {
+          Argument: 'if',
+          hasAction: true,
+          property: {
+            actionNameIf: 'if',
+            firstArg: 'var1',
+            operator: '==',
+            secondArg: 'green',
+            if_Action: [],
+            actionNameElse: '',
+            else_Action: [],
+            IfblockComplete: '',
+            ElseblockComplete: '',
+          },
+        },
+      ];
+      state.EngineInput = newArray;
+    },
     undoCode: (state) => {
       const inputarray = [...state.EngineInput];
       const ouputarray = [...state.EngineOutput];
@@ -2432,6 +2461,7 @@ export const {
   modalOn,
   modalOff,
   dispatchRedVar,
+  dispatchIfVar,
 } = actionSlice.actions;
 
 export const selectEngineOutput = (state) => state.action.EngineOutput;
