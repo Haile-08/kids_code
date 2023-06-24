@@ -1913,7 +1913,6 @@ export const actionSlice = createSlice({
         state.EngineInput = newArray;
       } else if (
         inputArray[last_idx].Argument === 'variable' &&
-        !inputArray[last_idx].property.hasValue &&
         action.payload === 'for'
       ) {
         const newArray = [
