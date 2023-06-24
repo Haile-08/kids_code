@@ -23,10 +23,10 @@ const FormatColorFunction = ({ item }) => (
 
 const FormatVariableFunction = ({ item }) => (
   <h3>
-    {item?.property?.varName ? `${item.property.varName} =` : null}{' '}
+    {item?.property?.varName ? `${item.property.varName} =` : null}
     {/\d+/.test(item.property.varValue)
       ? ` ${item.property.varValue}`
-      : `" ${item.property.varValue}"`}
+      : `" ${item.property.varValue} "`}
   </h3>
 );
 
