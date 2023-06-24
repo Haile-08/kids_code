@@ -14,22 +14,25 @@ import Answer from '../../../Data/Data';
 import { QuestionsList } from '../../../Data/Data';
 import '../style.css';
 import {
-  resetCode,
-  moveAction,
-  turnAction,
   variableAction,
   colorAction,
   colorTypeAction,
+  resetCode,
+  conditionalAction,
+  operatorsAction,
+  closeBlockAction,
+  moveAction,
+  turnAction,
+  dropAction,
   modalOff,
   modalOn,
-  dispatchRedVar,
 } from '../../../state/actionSlice';
 import { selectEngineOutput } from '../../../state/actionSlice';
 
-function Level3() {
+function Level5() {
   const dispatch = useDispatch();
   const EngineOutput = useSelector(selectEngineOutput);
-  const GameAnswer = Answer.level4;
+  const GameAnswer = Answer.level5;
   const navigate = useNavigate();
   const correct = useSelector((state) => state.action.modal);
 
@@ -58,20 +61,35 @@ function Level3() {
   const handleColorType = (text) => {
     dispatch(colorTypeAction(text));
   };
+  const handleVariable = (text) => {
+    dispatch(variableAction(text));
+  };
+  const handleOperators = (text) => {
+    dispatch(operatorsAction(text));
+  };
+
+  const handleConditionals = (text) => {
+    dispatch(conditionalAction(text));
+  };
+
+  const handleCloseBlock = (text) => {
+    dispatch(closeBlockAction(text));
+  };
+
   const handleMovementType = () => {
     dispatch(moveAction());
   };
   const handleTurnType = () => {
     dispatch(turnAction());
   };
-  const handleVariable = (text) => {
-    dispatch(variableAction(text));
+  const handleDropType = () => {
+    dispatch(dropAction());
   };
   const handleModal = () => {
     dispatch(resetCode());
     dispatch(modalOff());
     console.log('i was here');
-    navigate('/quiz', { state: { data: QuestionsList.quiz4 } });
+    navigate('/quiz', { state: { data: QuestionsList.quiz5 } });
   };
   return (
     <div className="game-page-container">
@@ -86,11 +104,26 @@ function Level3() {
           <Commands />
         </div>
         <div className="actions">
+          <button type="button" onClick={() => handleColor()}>
+            Color()
+          </button>
           <button type="button" onClick={() => handleVariable('var1')}>
             var1
           </button>
           <button type="button" onClick={() => handleVariable('var2')}>
             var2
+          </button>
+          <button type="button" onClick={() => handleConditionals('if')}>
+            If
+          </button>
+          <button type="button" onClick={() => handleConditionals('else')}>
+            else
+          </button>
+          <button type="button" onClick={() => handleOperators('==')}>
+            ==
+          </button>
+          <button type="button" onClick={() => handleOperators('!=')}>
+            !=
           </button>
           <button type="button" onClick={() => handleColorType('red')}>
             red
@@ -98,8 +131,8 @@ function Level3() {
           <button type="button" onClick={() => handleColorType('green')}>
             Green
           </button>
-          <button type="button" onClick={() => handleColorType('yellow')}>
-            yellow
+          <button type="button" onClick={() => handleCloseBlock('}')}>
+            {'}'}
           </button>
           <button type="button" onClick={() => handleMovementType()}>
             move
@@ -107,8 +140,8 @@ function Level3() {
           <button type="button" onClick={() => handleTurnType()}>
             turnleft
           </button>
-          <button type="button" onClick={() => handleColor()}>
-            Color()
+          <button type="button" onClick={() => handleDropType()}>
+            dropBox
           </button>
         </div>
       </div>
@@ -130,4 +163,4 @@ function Level3() {
   );
 }
 
-export default Level3;
+export default Level5;

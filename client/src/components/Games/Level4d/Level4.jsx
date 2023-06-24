@@ -1,10 +1,3 @@
-/* eslint-disable import/named */
-/* eslint-disable quotes */
-/* eslint-disable import/named */
-/* eslint-disable import/no-duplicates */
-/* eslint-disable prettier/prettier */
-/* eslint-disable react/function-component-definition */
-
 import React from 'react';
 import { HiOutlineChevronLeft } from 'react-icons/hi';
 import { useNavigate } from 'react-router-dom';
@@ -16,16 +9,15 @@ import {
   colorAction,
   colorTypeAction,
   resetCode,
-  conditionalAction,
   operatorsAction,
+  loopAction,
   closeBlockAction,
+  numberAction,
   moveAction,
-  turnAction,
-  dropAction,
 } from '../../../state/actionSlice';
 import { selectEngineOutput } from '../../../state/actionSlice';
 
-function Level2() {
+function Level4() {
   const dispatch = useDispatch();
   const EngineOutput = useSelector(selectEngineOutput);
   const GameAnswer = [
@@ -49,26 +41,24 @@ function Level2() {
   const handleVariable = (text) => {
     dispatch(variableAction(text));
   };
+
   const handleOperators = (text) => {
     dispatch(operatorsAction(text));
   };
 
-  const handleConditionals = (text) => {
-    dispatch(conditionalAction(text));
+  const handleLoops = (text) => {
+    dispatch(loopAction(text));
   };
 
   const handleCloseBlock = (text) => {
     dispatch(closeBlockAction(text));
   };
-
   const handleMovementType = () => {
     dispatch(moveAction());
   };
-  const handleTurnType = () => {
-    dispatch(turnAction());
-  };
-  const handleDropType = () => {
-    dispatch(dropAction());
+  const handleNumber = (event) => {
+    console.log(event.target.value);
+    dispatch(numberAction(event.target.value));
   };
   return (
     <div className="game-page-container">
@@ -92,17 +82,14 @@ function Level2() {
           <button type="button" onClick={() => handleVariable('var2')}>
             var2
           </button>
-          <button type="button" onClick={() => handleConditionals('if')}>
-            If
+          <button type="button" onClick={() => handleLoops('while')}>
+            while
           </button>
-          <button type="button" onClick={() => handleConditionals('else')}>
-            else
+          <button type="button" onClick={() => handleOperators('>')}>
+            {`>`}
           </button>
-          <button type="button" onClick={() => handleOperators('==')}>
-            ==
-          </button>
-          <button type="button" onClick={() => handleOperators('!=')}>
-            !=
+          <button type="button" onClick={() => handleOperators('<')}>
+            {`<`}
           </button>
           <button type="button" onClick={() => handleColorType('red')}>
             red
@@ -110,26 +97,38 @@ function Level2() {
           <button type="button" onClick={() => handleColorType('green')}>
             Green
           </button>
+          <button type="button" onClick={() => handleOperators('++')}>
+            ++
+          </button>
+          <button type="button" onClick={() => handleOperators('--')}>
+            --
+          </button>
           <button type="button" onClick={() => handleCloseBlock('}')}>
             {'}'}
           </button>
           <button type="button" onClick={() => handleMovementType()}>
             move
           </button>
-          <button type="button" onClick={() => handleTurnType()}>
-            turnleft
-          </button>
-          <button type="button" onClick={() => handleDropType()}>
-            dropBox
-          </button>
+          <select id="option" onChange={(e) => handleNumber(e)}>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select>
         </div>
       </div>
       <div className="canvasout">
-        <Canvas EngineOutput={EngineOutput} GameAnswer={EngineOutput} />
+        <Canvas EngineOutput={EngineOutput} GameAnswer={GameAnswer} />
         <Canvas EngineOutput={GameAnswer} GameAnswer={GameAnswer} />
       </div>
     </div>
   );
 }
 
-export default Level2;
+export default Level4;

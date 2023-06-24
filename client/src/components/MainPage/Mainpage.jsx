@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import './style.css';
 import image from '../../assets/a.png';
 import { setLogout } from '../../state/authSlice';
+import { dispatchRedVar } from '../../state/actionSlice';
 
 function Mainpage() {
   const dispatch = useDispatch();
@@ -14,6 +15,14 @@ function Mainpage() {
   const handleLogout = () => {
     dispatch(setLogout());
     navigate('/');
+  };
+  const handlelevel4nav = () => {
+    dispatch(dispatchRedVar());
+    navigate('/level4');
+  };
+  const handlelevel5nav = () => {
+    dispatch(dispatchRedVar());
+    navigate('/level5');
   };
   return (
     <div className="mainpage">
@@ -36,8 +45,11 @@ function Mainpage() {
         <div className="level" onClick={() => navigate('/level3')}>
           level 3
         </div>
-        <div className="level" onClick={() => navigate('/level4')}>
+        <div className="level" onClick={() => handlelevel4nav()}>
           level 4
+        </div>
+        <div className="level" onClick={() => handlelevel5nav()}>
+          level 5
         </div>
       </div>
     </div>

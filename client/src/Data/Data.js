@@ -48,6 +48,22 @@ const Answer = {
     { name: 'turn', value: 'turn' },
     { name: 'turn', value: 'turn' },
   ],
+  level4: [
+    { name: 'move', value: 'move' },
+    { name: 'move', value: 'move' },
+    { name: 'move', value: 'move' },
+    { name: 'turn', value: 'turn' },
+    { name: 'turn', value: 'turn' },
+    { name: 'turn', value: 'turn' },
+    { name: 'move', value: 'move' },
+    { name: 'move', value: 'move' },
+    { name: 'turn', value: 'turn' },
+    { name: 'move', value: 'move' },
+    { name: 'move', value: 'move' },
+    { name: 'move', value: 'move' },
+    { name: 'color', value: 'red' },
+  ],
+  level5: [],
 };
 
 export const QuestionsList = {
@@ -106,6 +122,58 @@ export const QuestionsList = {
   quiz3: [
     {
       prompt: 'level3 which one of the following is not programming language?',
+      optionA: 'c++',
+      optionB: 'python',
+      optionC: 'javascript',
+      optionD: 'html',
+      answer: 'C',
+    },
+    {
+      prompt: 'what is  react?',
+      optionA: 'programming language',
+      optionB: 'library',
+      optionC: 'framework',
+      optionD: 'browser engine',
+      answer: 'B',
+    },
+    {
+      prompt: 'what is my name?',
+      optionA: 'nebil',
+      optionB: 'abel',
+      optionC: 'tehut',
+      optionD: 'jack',
+      answer: 'C',
+    },
+  ],
+  quiz4: [
+    {
+      prompt: 'level4 which one of the following is not programming language?',
+      optionA: 'c++',
+      optionB: 'python',
+      optionC: 'javascript',
+      optionD: 'html',
+      answer: 'C',
+    },
+    {
+      prompt: 'what is  react?',
+      optionA: 'programming language',
+      optionB: 'library',
+      optionC: 'framework',
+      optionD: 'browser engine',
+      answer: 'B',
+    },
+    {
+      prompt: 'what is my name?',
+      optionA: 'nebil',
+      optionB: 'abel',
+      optionC: 'tehut',
+      optionD: 'jack',
+      answer: 'C',
+    },
+  ],
+  quiz5: [
+    {
+      prompt: 'level5 which one of the following is not programming language?',
       optionA: 'c++',
       optionB: 'python',
       optionC: 'javascript',

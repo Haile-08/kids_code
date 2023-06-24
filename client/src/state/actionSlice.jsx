@@ -28,6 +28,20 @@ export const actionSlice = createSlice({
       state.EngineInput = [];
       state.EngineOutput = [];
     },
+    dispatchRedVar: (state) => {
+      const newArray = [
+        {
+          Argument: 'variable',
+          hasAction: true,
+          property: {
+            varName: 'var1',
+            varValue: 'red',
+            hasValue: true,
+          },
+        },
+      ];
+      state.EngineInput = newArray;
+    },
     undoCode: (state) => {
       const inputarray = [...state.EngineInput];
       const ouputarray = [...state.EngineOutput];
@@ -2418,6 +2432,7 @@ export const {
   numberAction,
   modalOn,
   modalOff,
+  dispatchRedVar,
 } = actionSlice.actions;
 
 export const selectEngineOutput = (state) => state.action.EngineOutput;
