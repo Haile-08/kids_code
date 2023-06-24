@@ -78,6 +78,29 @@ const Answer = {
     { name: 'turn', value: 'turn' },
     { name: 'move', value: 'move' },
   ],
+  level6: [
+    { name: 'move', value: 'move' },
+    { name: 'move', value: 'move' },
+    { name: 'move', value: 'move' },
+    { name: 'move', value: 'move' },
+    { name: 'move', value: 'move' },
+    { name: 'move', value: 'move' },
+    { name: 'turn', value: 'turn' },
+    { name: 'turn', value: 'turn' },
+    { name: 'turn', value: 'turn' },
+    { name: 'move', value: 'move' },
+    { name: 'dropBox', value: 'dropbox' },
+    { name: 'move', value: 'move' },
+    { name: 'turn', value: 'turn' },
+    { name: 'turn', value: 'turn' },
+    { name: 'turn', value: 'turn' },
+    { name: 'move', value: 'move' },
+    { name: 'move', value: 'move' },
+    { name: 'move', value: 'move' },
+    { name: 'move', value: 'move' },
+    { name: 'move', value: 'move' },
+    { name: 'move', value: 'move' },
+  ],
 };
 
 export const QuestionsList = {
@@ -188,6 +211,32 @@ export const QuestionsList = {
   quiz5: [
     {
       prompt: 'level5 which one of the following is not programming language?',
+      optionA: 'c++',
+      optionB: 'python',
+      optionC: 'javascript',
+      optionD: 'html',
+      answer: 'C',
+    },
+    {
+      prompt: 'what is  react?',
+      optionA: 'programming language',
+      optionB: 'library',
+      optionC: 'framework',
+      optionD: 'browser engine',
+      answer: 'B',
+    },
+    {
+      prompt: 'what is my name?',
+      optionA: 'nebil',
+      optionB: 'abel',
+      optionC: 'tehut',
+      optionD: 'jack',
+      answer: 'C',
+    },
+  ],
+  quiz6: [
+    {
+      prompt: 'level6 which one of the following is not programming language?',
       optionA: 'c++',
       optionB: 'python',
       optionC: 'javascript',

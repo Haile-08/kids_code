@@ -1624,7 +1624,6 @@ export const actionSlice = createSlice({
         }
       } else if (
         inputArray[last_idx].Argument === 'for' &&
-        isThereVariable &&
         inputArray[last_idx].property.completeForBlock === ''
       ) {
         const item = inputArray[last_idx];

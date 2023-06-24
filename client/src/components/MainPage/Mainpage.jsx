@@ -24,6 +24,9 @@ function Mainpage() {
     dispatch(dispatchIfVar());
     navigate('/level5');
   };
+  const handlelevel6nav = () => {
+    navigate('/level6');
+  };
   return (
     <div className="mainpage">
       <div className="profile">
@@ -50,6 +53,9 @@ function Mainpage() {
         </div>
         <div className="level" onClick={() => handlelevel5nav()}>
           level 5
+        </div>
+        <div className="level" onClick={() => handlelevel6nav()}>
+          level 6
         </div>
       </div>
     </div>

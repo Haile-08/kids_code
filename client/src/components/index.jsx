@@ -9,4 +9,5 @@ export { default as Level2 } from './Games/Level2/Level2';
 export { default as Level3 } from './Games/Level3/Level3';
 export { default as Level4 } from './Games/Level4/Level4';
 export { default as Level5 } from './Games/Level5/Level5';
+export { default as Level6 } from './Games/Level6/Level6';
 export { default as QuizApp } from './Quiz/QuizApp';
