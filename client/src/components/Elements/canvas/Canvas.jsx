@@ -39,7 +39,6 @@ const Canvas = ({ EngineOutput }) => {
       name: obj.name,
     });
   };
-  console.log(color);
 
   // eslint-disable-next-line react/prop-types
   EngineOutput.forEach(handleEngineOutput);

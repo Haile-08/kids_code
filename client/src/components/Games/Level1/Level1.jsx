@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { HiOutlineChevronLeft } from 'react-icons/hi';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Canvas, CodeView, Commands } from '../../Elements';
-import Answer from '../../../Data/Answer';
+import Answer from '../../../Data/Data';
+import { QuestionsList } from '../../../Data/Data';
 import '../style.css';
 import {
-  variableAction,
   colorAction,
   colorTypeAction,
   resetCode,
@@ -48,22 +48,18 @@ function Level1() {
   const handleColorType = (text) => {
     dispatch(colorTypeAction(text));
   };
-  const handleVariable = (text) => {
-    dispatch(variableAction(text));
-  };
+
   const handleMovementType = () => {
     dispatch(moveAction());
   };
   const handleModal = () => {
     dispatch(resetCode());
     dispatch(modalOff());
-    navigate('quiz');
+    console.log('i was here');
+    navigate('/quiz', { state: { data: QuestionsList.quiz1 } });
   };
   return (
     <div className="game-page-container">
-      {console.log(EngineOutput)}
-      {console.log(GameAnswer)}
-      {console.log(correct)}
       <div className="exit">
         {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
         <div className="exitbtn" onClick={handleExit}>
@@ -79,17 +75,15 @@ function Level1() {
           <button type="button" onClick={() => handleColor()}>
             Color()
           </button>
-          <button type="button" onClick={() => handleVariable('var1')}>
-            var1
-          </button>
-          <button type="button" onClick={() => handleVariable('var2')}>
-            var2
-          </button>
+
           <button type="button" onClick={() => handleColorType('red')}>
             red
           </button>
           <button type="button" onClick={() => handleColorType('green')}>
             Green
+          </button>
+          <button type="button" onClick={() => handleColorType('yellow')}>
+            yellow
           </button>
           <button type="button" onClick={() => handleMovementType()}>
             move

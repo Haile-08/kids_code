@@ -16,9 +16,8 @@ import {
   MainLayout,
   Mainpage,
   Register,
+  QuizApp,
 } from '../components';
-
-import QuizApp from '../features/Quiz/QuizApp';
 
 // Error handling
 function ErrorPage() {
@@ -66,19 +65,19 @@ function RoutesPath() {
           element: isAuth ? <Level1 /> : <Navigate to="/login" />,
         },
         {
-          path: 'level2',
+          path: '/level2',
           element: isAuth ? <Level2 /> : <Navigate to="/login" />,
         },
         {
-          path: 'level3',
+          path: '/level3',
           element: isAuth ? <Level3 /> : <Navigate to="/login" />,
         },
         {
-          path: 'level4',
+          path: '/level4',
           element: isAuth ? <Level4 /> : <Navigate to="/login" />,
         },
         {
-          path: 'level/quiz',
+          path: '/quiz',
           element: isAuth ? <QuizApp /> : <Navigate to="/login" />,
         },
       ],

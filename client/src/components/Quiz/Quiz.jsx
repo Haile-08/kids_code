@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
-import { QuestionsList } from './QuestionsList';
+import { useLocation } from 'react-router-dom';
 
 const Quiz = ({ setScore, score, setGameState }) => {
   const [chosenAnswer, setChosenAnswer] = useState('');
   const [enableErrMsg, setEnableErrMsg] = useState(false);
   const [currentQuestion, setcurrentQuestion] = useState(0);
+  const { state } = useLocation();
+  const { data } = state;
+
+  const QuestionsList = data;
+  console.log(QuestionsList);
 
   const handleAnswer = () => {
     const rightAnswer = QuestionsList[currentQuestion].answer;

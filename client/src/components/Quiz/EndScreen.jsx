@@ -19,7 +19,7 @@ const EndScreen = ({ score, setGameState, setScore }) => {
       </h2>
 
       {score >= QuestionsList.length - 1 ? (
-        <Link to="/level">
+        <Link to="/main">
           <button
             onClick={() => {
               setScore(0);
