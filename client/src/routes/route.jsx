@@ -19,6 +19,7 @@ import {
   QuizApp,
   Level5,
   Level6,
+  Level7,
 } from '../components';
 
 // Error handling
@@ -85,6 +86,10 @@ function RoutesPath() {
         {
           path: '/level6',
           element: isAuth ? <Level6 /> : <Navigate to="/login" />,
+        },
+        {
+          path: '/level7',
+          element: isAuth ? <Level7 /> : <Navigate to="/login" />,
         },
         {
           path: '/quiz',

@@ -3,6 +3,8 @@ import { HiOutlineChevronLeft } from 'react-icons/hi';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Canvas, CodeView, Commands } from '../../Elements';
+import Answer from '../../../Data/Data';
+import { QuestionsList } from '../../../Data/Data';
 import '../style.css';
 import {
   variableAction,
@@ -14,20 +16,34 @@ import {
   closeBlockAction,
   numberAction,
   moveAction,
+  turnAction,
+  modalOff,
+  modalOn,
 } from '../../../state/actionSlice';
 import { selectEngineOutput } from '../../../state/actionSlice';
 
-function Level4() {
+function Level7() {
   const dispatch = useDispatch();
   const EngineOutput = useSelector(selectEngineOutput);
-  const GameAnswer = [
-    { name: 'move', value: 'move' },
-    { name: 'move', value: 'move' },
-    { name: 'move', value: 'move' },
-    { name: 'move', value: 'move' },
-  ];
+  const GameAnswer = Answer.level7;
   const navigate = useNavigate();
+  const correct = useSelector((state) => state.action.modal);
 
+  function checkAnswer(arr1, arr2) {
+    if (arr1.length === arr2.length) {
+      for (let i = 0; i < arr1.length; i++) {
+        if (arr1[i].name !== arr2[i].name || arr1[i].value !== arr2[i].value) {
+          return false;
+        }
+      }
+      return true;
+    } else {
+      return false;
+    }
+  }
+  if (checkAnswer(EngineOutput, GameAnswer)) {
+    dispatch(modalOn());
+  }
   const handleExit = () => {
     dispatch(resetCode());
     navigate('/main');
@@ -59,6 +75,15 @@ function Level4() {
   const handleNumber = (event) => {
     console.log(event.target.value);
     dispatch(numberAction(event.target.value));
+  };
+  const handleTurnType = () => {
+    dispatch(turnAction());
+  };
+  const handleModal = () => {
+    dispatch(resetCode());
+    dispatch(modalOff());
+    console.log('i was here');
+    navigate('/quiz', { state: { data: QuestionsList.quiz7 } });
   };
   return (
     <div className="game-page-container">
@@ -97,6 +122,9 @@ function Level4() {
           <button type="button" onClick={() => handleColorType('green')}>
             Green
           </button>
+          <button type="button" onClick={() => handleColorType('yellow')}>
+            yellow
+          </button>
           <button type="button" onClick={() => handleOperators('++')}>
             ++
           </button>
@@ -108,6 +136,9 @@ function Level4() {
           </button>
           <button type="button" onClick={() => handleMovementType()}>
             move
+          </button>
+          <button type="button" onClick={() => handleTurnType()}>
+            turnleft
           </button>
           <select id="option" onChange={(e) => handleNumber(e)}>
             <option value="1">1</option>
@@ -127,8 +158,18 @@ function Level4() {
         <Canvas EngineOutput={EngineOutput} GameAnswer={GameAnswer} />
         <Canvas EngineOutput={GameAnswer} GameAnswer={GameAnswer} />
       </div>
+      {correct && (
+        <div className="modal">
+          <div className="modal-container">
+            <h2> Congratulations you have finished this level.</h2>
+            <button className="modalBtn" onClick={() => handleModal()}>
+              take quiz
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
 
-export default Level4;
+export default Level7;

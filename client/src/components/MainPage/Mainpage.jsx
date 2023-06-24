@@ -27,6 +27,9 @@ function Mainpage() {
   const handlelevel6nav = () => {
     navigate('/level6');
   };
+  const handlelevel7nav = () => {
+    navigate('/level7');
+  };
   return (
     <div className="mainpage">
       <div className="profile">
@@ -56,6 +59,9 @@ function Mainpage() {
         </div>
         <div className="level" onClick={() => handlelevel6nav()}>
           level 6
+        </div>
+        <div className="level" onClick={() => handlelevel7nav()}>
+          level 7
         </div>
       </div>
     </div>
