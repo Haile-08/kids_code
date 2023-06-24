@@ -8,7 +8,7 @@ class Line {
 
   draw(ctx) {
     ctx.beginPath();
-    ctx.fillStyle = 'blue';
+    ctx.fillStyle = '#0984e3';
     if (this.name !== 'turn') {
       if (this.name !== 'dropBox') {
         if (this.mode === 1) {
@@ -23,7 +23,7 @@ class Line {
       }
     }
 
-    ctx.strokeStyle = 'blue';
+    ctx.strokeStyle = '#0984e3';
     ctx.fill();
     ctx.stroke();
   }

@@ -63,7 +63,7 @@ const Answer = {
     { name: 'move', value: 'move' },
     { name: 'color', value: 'red' },
   ],
-  level5: [],
+  level5: [{ name: 'color', value: 'red' }],
 };
 
 export const QuestionsList = {

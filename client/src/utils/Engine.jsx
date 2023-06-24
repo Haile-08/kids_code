@@ -1,6 +1,6 @@
 const Engine = (data) => {
   const outArr = [];
-  const varObj = [];
+  const varObj = []; //var1 = red
 
   data.map((item) => {
     if (item.Argument === 'variable') {
@@ -36,7 +36,21 @@ const Engine = (data) => {
       }
     } else if (item.Argument === 'if') {
       if (item.property.operator === '==') {
-        if (item.property.firstArg == item.property.secondArg) {
+        let firstArg = item.property.firstArg; //var1
+        let secondArg = item.property.secondArg; //red
+        let firstArgCheck = varObj.some((obj) => obj.varName === firstArg);
+        let secondArgCheck = varObj.some((obj) => obj.varName === secondArg);
+        if (firstArgCheck) {
+          let firstobjToModify = varObj.find((obj) => obj.varName === firstArg);
+          firstArg = firstobjToModify.varValue;
+        }
+        if (secondArgCheck) {
+          let secondobjToModify = varObj.find(
+            (obj) => obj.varName === secondArg
+          );
+          secondArg = secondobjToModify.varValue;
+        }
+        if (firstArg == secondArg) {
           item.property.if_Action.map((i) => {
             if (i.functionName === 'color') {
               let objExists = varObj.some((obj) => obj.varName === i.value);
@@ -78,7 +92,21 @@ const Engine = (data) => {
           });
         }
       } else if (item.property.operator === '!=') {
-        if (item.property.firstArg != item.property.secondArg) {
+        let firstArg = item.property.firstArg; //var1
+        let secondArg = item.property.secondArg; //red
+        let firstArgCheck = varObj.some((obj) => obj.varName === firstArg);
+        let secondArgCheck = varObj.some((obj) => obj.varName === secondArg);
+        if (firstArgCheck) {
+          let firstobjToModify = varObj.find((obj) => obj.varName === firstArg);
+          firstArg = firstobjToModify.varValue;
+        }
+        if (secondArgCheck) {
+          let secondobjToModify = varObj.find(
+            (obj) => obj.varName === secondArg
+          );
+          secondArg = secondobjToModify.varValue;
+        }
+        if (firstArg != secondArg) {
           item.property.if_Action.map((i) => {
             if (i.functionName === 'color') {
               let objExists = varObj.some((obj) => obj.varName === i.value);
