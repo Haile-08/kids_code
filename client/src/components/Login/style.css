@@ -1,12 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap');
 #root {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    background-color: #2d3436;
 }
 
 .login {
+  width: 100vw;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -15,39 +19,51 @@
 }
 
 .login form {
-    width: 500px;
-    height: 500px;
+    width: 742px;
+    height: 625px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;    
 }
 
+.login form img{
+    margin-bottom: 60px;
+}
 .login p {
     font-size: 20px;
 }
 .login input {
-    margin: 10px 20px;
-    width: 300px;
+    margin: 15px 20px;
+    width: 403px;
     height: 60px;
-    padding-left: 50px;
+    padding: 30px 30px;
     font-size: 20px;
-    border-radius: 10px;
     outline: none;
-    border: none;
-    background-color: rgba(26, 30, 36, 0.301);    
+    border: none;   
     font-family: 'Quicksand', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:#DFE6E9 ;
+    background-color: #636e724d;
+    box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
 }
 .login button {
     margin: 10px;
+    margin-top: 50px;
     border: none;
     outline: none;
-    width: 100px;
-    height: 50px;
-    border-radius: 10px;
-    background-color: #e84118;
+    width: 403px;
+    height: 60px;
+    background-color: #55efc386;
     font-family: 'Quicksand', sans-serif;
     font-size: 20px;
     box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
     cursor: pointer;
+}
+
+.login span {
+    width: 403px;
+    font-family: 'Quicksand', sans-serif;
 }

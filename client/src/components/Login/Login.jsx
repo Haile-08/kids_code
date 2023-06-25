@@ -5,8 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-
 import { setLogin } from '../../state/authSlice';
+import bot from '../../assets/logo.png';
 import './style.css';
 
 function Login() {
@@ -57,13 +57,13 @@ function Login() {
   return (
     <div className="login">
       <form onSubmit={handleSubmit(onSubmit)}>
-        <p>Login</p>
+        <img src={bot} alt="bot" />
         {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-        <input placeholder="email" {...register('email', { required: true })} />
+        <input placeholder="Email" {...register('email', { required: true })} />
         <span>{errors.email?.message}</span>
         {/* eslint-disable-next-line react/jsx-props-no-spreading */}
         <input
-          placeholder="password"
+          placeholder="Password"
           // eslint-disable-next-line react/jsx-props-no-spreading
           {...register('password', { required: true })}
           type="password"
