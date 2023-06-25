@@ -4,6 +4,7 @@ export { default as Login } from './Login/Login';
 export { default as Register } from './Register/Register';
 export { default as Mainpage } from './MainPage/Mainpage';
 export { default as MainLayout } from './Layout/MainLayout';
+export { default as About } from './About/About';
 export { default as Level1 } from './Games/Level1/Level1';
 export { default as Level2 } from './Games/Level2/Level2';
 export { default as Level3 } from './Games/Level3/Level3';

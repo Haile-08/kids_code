@@ -4,7 +4,6 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import './style.css';
-import image from '../../assets/a.png';
 import { setLogout } from '../../state/authSlice';
 import { dispatchIfVar, dispatchRedVar } from '../../state/actionSlice';
 
@@ -34,7 +33,6 @@ function Mainpage() {
     <div className="mainpage">
       <div className="profile">
         <div className="nav">
-          <img src={image} alt="profileimage" />
           <p>Haile</p>
           <button onClick={() => handleLogout()} type="button">
             Logout
