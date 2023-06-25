@@ -20,11 +20,17 @@ function NavBar() {
         <NavLink to="/">
           <p>Home</p>
         </NavLink>
-        <p>About</p>
+        <NavLink to="/about">
+          <p>About</p>
+        </NavLink>
       </div>
       <div className="nav2">
-        <p>Login</p>
-        <p>Signup</p>
+        <NavLink to="/login">
+          <p>Login</p>
+        </NavLink>
+        <NavLink to="/register">
+          <p>SignUp</p>
+        </NavLink>
       </div>
       <div className="navlogo">
         <img src={nav} alt="nav" />

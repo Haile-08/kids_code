@@ -19,10 +19,14 @@
     color: #DFE6E9;
     opacity: 50%;
     font-size: 22px;
+    text-decoration: none  !important;
+    
 }
-.nav1 p {
+.nav1 a  {
+    color: #DFE6E9;
     cursor: pointer;
     font-family: 'Rajdhani', sans-serif;
+    text-decoration: none; 
 }
 .nav2 {
     display: flex;
@@ -34,18 +38,18 @@
     opacity: 50%;
     font-size: 22px;
     font-family: 'Rajdhani', sans-serif;
+    
 }
-.nav2 p {
+.nav2 a  {
+    color: #DFE6E9;
     cursor: pointer;
+    font-family: 'Rajdhani', sans-serif;
+    text-decoration: none; 
 }
+
 
 .active {
-    text-decoration: underline #55efc4 2px;
-    color: #DFE6E9;
-    background-size: 100% 0.1em, 0 0.1em;
+    text-decoration: underline #55efc4 3px !important;
+    color: #fff;
 }
 
-.active:hover {
-    color: #ffffff;
-    text-decoration: underline #55efc4 2px;
-}
