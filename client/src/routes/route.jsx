@@ -20,6 +20,7 @@ import {
   Level5,
   Level6,
   Level7,
+  About,
 } from '../components';
 
 // Error handling
@@ -56,8 +57,8 @@ function RoutesPath() {
           element: <Login />,
         },
         {
-          path: '/register',
-          element: isAuth ? <Register /> : <Navigate to="/login" />,
+          path: '/signup',
+          element: <Register />,
         },
         {
           path: '/main',
@@ -94,6 +95,10 @@ function RoutesPath() {
         {
           path: '/quiz',
           element: isAuth ? <QuizApp /> : <Navigate to="/login" />,
+        },
+        {
+          path: '/about',
+          element: <About />,
         },
       ],
     },

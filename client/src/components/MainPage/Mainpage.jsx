@@ -118,6 +118,7 @@ function Mainpage() {
               Logout
             </button>
           </div>
+
         </div>
       </div>
       <div className="mainpage-main-container">
