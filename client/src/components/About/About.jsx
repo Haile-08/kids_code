@@ -2,10 +2,11 @@ import React from 'react';
 import NavBar from '../Elements/navbar/NavBar';
 import bot from '../../assets/bot.svg';
 import './About.css';
+import { motion } from 'framer-motion';
 
 function About() {
   return (
-    <div className="about_main">
+    <motion.div className="about_main">
       <NavBar />
       <div className="about_container">
         <div className="about_text">
@@ -24,11 +25,21 @@ function About() {
             stage.
           </p>
         </div>
-        <div className="bot_image">
+        <motion.div
+          className="bot_image"
+          initial={{ y: '100vh' }}
+          animate={{ y: 0 }}
+          transition={{
+            delay: 0.4,
+            duration: 2,
+            type: 'spring',
+            stiffness: 100,
+          }}
+        >
           <img src={bot} alt="bot" />
-        </div>
+        </motion.div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

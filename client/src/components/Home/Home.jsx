@@ -5,6 +5,7 @@ import bot from '../../assets/bot.svg';
 import redbot from '../../assets/redbot.png';
 import greenbot from '../../assets/greenbot.png';
 import yellowbot from '../../assets/yellowbot.png';
+import { motion } from 'framer-motion';
 
 function Home() {
   return (
@@ -12,7 +13,13 @@ function Home() {
       <NavBar />
       <div className="mainHome">
         <h1>Codie Kid</h1>
-        <img src={bot} alt="bot" />
+        <motion.img
+          src={bot}
+          alt="bot"
+          initial={{ y: '-100vh' }}
+          animate={{ y: 0 }}
+          transition={{ delay: 0.5, type: 'spring', stiffness: 140 }}
+        />
       </div>
       <div className="foot">
         <div className="line"></div>

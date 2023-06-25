@@ -57,8 +57,8 @@ function RoutesPath() {
           element: <Login />,
         },
         {
-          path: '/register',
-          element: isAuth ? <Register /> : <Navigate to="/login" />,
+          path: '/signup',
+          element: <Register />,
         },
         {
           path: '/main',

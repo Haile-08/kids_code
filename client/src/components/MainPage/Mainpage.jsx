@@ -33,7 +33,6 @@ function Mainpage() {
     <div className="mainpage">
       <div className="profile">
         <div className="nav">
-          <img src={image} alt="profileimage" />
           <p>Haile</p>
           <button onClick={() => handleLogout()} type="button">
             Logout
