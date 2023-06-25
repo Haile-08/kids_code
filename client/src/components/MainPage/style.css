@@ -1,64 +1,110 @@
 @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300&display=swap');
 
-#root{
-    display: block;
+#root {
+  display: block;
 }
 .mainpage {
-    display: flex;
-    justify-content: flex-end;
-    flex-direction: column;
-    align-items: center;
-    width: 100vw;
-    height: auto;
+  background-color: #2d3436;
+  padding: 0 40px;
+  font-family: 'Rajdhani', sans-serif;
+  color: #fff;
 }
 .nav {
-    width: 100vw;
-    height: 100px;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    padding: 20px;
-    background-color: #353b48;
+  margin: 40px 120px 0 120px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.nav img{
-    width: 100px;
-    border-radius: 50%;
-    margin: 10px;
+.left-mainpage-nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.nav .profileImage {
+  width: 100px;
+  border-radius: 50%;
+  margin: 0 40px;
+}
+.nav .medalImage {
+  width: 30px;
+  height: 30px;
+  margin-right: 5px;
 }
 
-.nav p{
-    margin: 10px;
-    font-family: 'Rajdhani', sans-serif;
+.nav p {
+  margin: 10px;
+  font-size: 20px;
 }
 
-.nav button{
-    width: 100px;
-    height: 40px;
-    outline: none;
-    border: none;
-    border-radius: 5px;
-    font-family: 'Rajdhani', sans-serif;
-    background-color: #e84118;
-    cursor: pointer;
+.nav button {
+  width: 100px;
+  height: 40px;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  font-family: 'Rajdhani', sans-serif;
+  background-color: #00b894;
+  cursor: pointer;
 }
 
-.mainpart {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100vw;
-    margin: 40px 0px;
+.mainpage-main-container {
+  height: 75vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 1.7;
 }
+
+.mainpage-main-container .mainpage-robot {
+  height: 45vh;
+  width: 25%;
+}
+
+.mainpage-main-container .mainpage-description {
+  width: 20%;
+  height: 45vh;
+  line-height: 1.5;
+  font-size: 24px;
+}
+
+.mainpage-main-container .mainpage-slides {
+  width: 40%;
+  height: 90%;
+  padding-top: 30px;
+  padding-left: 50px;
+}
+
 .level {
-    width: 200px;
-    height: 200px;
-    background-color: #487eb0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 10px;
-    border-radius: 50%;
-    cursor: pointer;
+  width: 20rem;
+  height: 50vh;
+  background-color: #487eb0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5%;
+  cursor: pointer;
+}
+
+.level:hover {
+  transform: scale(1.01, 1.01);
+  border-radius: 5%;
+  transition: 0.2s ease-in;
+}
+
+.slider-controller {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.slider-controler .slider-button-next {
+  left: 58% !important;
+  transform: translateX(-58%) !important;
+}
+
+@media screen and (max-width: 480px) {
+  .mainpage-main-container {
+    flex-direction: column;
+  }
 }
