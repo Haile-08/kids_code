@@ -4,7 +4,6 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import './style.css';
-import image from '../../assets/a.png';
 import { setLogout } from '../../state/authSlice';
 import { dispatchIfVar, dispatchRedVar } from '../../state/actionSlice';
 
