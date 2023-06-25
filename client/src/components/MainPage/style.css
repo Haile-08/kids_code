@@ -5,14 +5,15 @@
 }
 .mainpage {
   background-color: #2d3436;
-  padding: 0 50px;
+  padding: 0 40px;
+  font-family: 'Rajdhani', sans-serif;
+  color: #fff;
 }
 .nav {
   margin: 40px 120px 0 120px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-family: 'Rajdhani', sans-serif;
 }
 
 .left-mainpage-nav {
@@ -48,22 +49,62 @@
 }
 
 .mainpage-main-container {
-  height: 60vh;
+  height: 75vh;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
+  line-height: 1.7;
 }
 
-.mainpage-main-container > div {
-  width: 30%;
+.mainpage-main-container .mainpage-robot {
+  height: 45vh;
+  width: 25%;
 }
+
+.mainpage-main-container .mainpage-description {
+  width: 20%;
+  height: 45vh;
+  line-height: 1.5;
+  font-size: 24px;
+}
+
+.mainpage-main-container .mainpage-slides {
+  width: 40%;
+  height: 90%;
+  padding-top: 30px;
+  padding-left: 50px;
+}
+
 .level {
-  width: 100px;
+  width: 20rem;
+  height: 50vh;
   background-color: #487eb0;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 10px;
-  border-radius: 50%;
+  border-radius: 5%;
   cursor: pointer;
+}
+
+.level:hover {
+  transform: scale(1.01, 1.01);
+  border-radius: 5%;
+  transition: 0.2s ease-in;
+}
+
+.slider-controller {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.slider-controler .slider-button-next {
+  left: 58% !important;
+  transform: translateX(-58%) !important;
+}
+
+@media screen and (max-width: 480px) {
+  .mainpage-main-container {
+    flex-direction: column;
+  }
 }
