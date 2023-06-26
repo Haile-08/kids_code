@@ -36,7 +36,7 @@ function Register() {
 
   const onSubmit = (data) => {
     axios
-      .post('https://api.kidscode.com/auth/register', {
+      .post('https://localhost:2000/auth/register', {
         firstname: data.firstname,
         lastname: data.lastname,
         email: data.lastname,

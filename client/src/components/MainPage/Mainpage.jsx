@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import './style.css';
 import { setLogout } from '../../state/authSlice';
@@ -24,6 +24,7 @@ import { EffectCoverflow, Pagination, Navigation } from 'swiper';
 function Mainpage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const user = useSelector((state) => state.auth.user);
   const [currentLevelDescriptionIndex, setcurrentLevelDescriptionIndex] =
     useState(0);
 
@@ -107,18 +108,17 @@ function Mainpage() {
           <img src={logoCK} alt="logo" className="logo" />
           <div className="left-mainpage-nav">
             <img src={medal1} alt="medal" className="medalImage" />
-            <h3>Score:50</h3>
+            <h3>Score: {user.score}</h3>
             <img
               src={mainpageYellow}
               alt="profileimage"
               className="profileImage"
             />
-            <p>Haile</p>
+            <p>{user.firstName}</p>
             <button onClick={() => handleLogout()} type="button">
               Logout
             </button>
           </div>
-
         </div>
       </div>
       <div className="mainpage-main-container">

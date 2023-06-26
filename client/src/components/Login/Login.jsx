@@ -29,7 +29,7 @@ function Login() {
   });
   const onSubmit = (data) => {
     axios
-      .post('https://api.kidscode.com/auth/login', {
+      .post('https://localhost:2000/auth/login', {
         email: data.email,
         password: data.password,
       })
@@ -47,7 +47,6 @@ function Login() {
             token: resData?.data.token,
           })
         );
-        console.log(`login token ${token}`);
         navigate('/main');
       })
       .catch(function (err) {
