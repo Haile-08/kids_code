@@ -1,20 +1,24 @@
 import React from 'react';
+import { motion } from 'framer-motion';
+import './quiz.css';
 
 const QuizStartPage = ({ setGameState }) => {
   return (
-    <div>
+    <div className="mpage">
       <h1>
         Congratulation on Finishing the game now test your comperhension using
         this quiz
       </h1>
-      <button
+      <motion.button
         className="startBtn"
         onClick={() => {
           setGameState('quiz');
         }}
+        initial={{ scale: 0 }}
+        animate={{ scale: 1 }}
       >
         Start Quiz
-      </button>
+      </motion.button>
     </div>
   );
 };

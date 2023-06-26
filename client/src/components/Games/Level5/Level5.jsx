@@ -25,6 +25,7 @@ import {
   modalOn,
 } from '../../../state/actionSlice';
 import { selectEngineOutput } from '../../../state/actionSlice';
+import { motion } from 'framer-motion';
 
 function Level5() {
   const dispatch = useDispatch();

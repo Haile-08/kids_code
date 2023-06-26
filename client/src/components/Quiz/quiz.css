@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani&display=swap');
+
 .quiz-container {
   display: flex;
   justify-content: center;
@@ -14,10 +16,16 @@
   border-radius: 40px;
   text-align: center;
   color: #fff;
-  background: rgb(118, 148, 150);
+  font-family: 'Rajdhani', sans-serif;
 }
 .quiz-app h2 {
   margin-top: 50px;
+}
+
+.mpage button {
+  outline: none;
+  border: none;
+  background-color: #00b894;
 }
 button {
   padding: 10px 20px;
