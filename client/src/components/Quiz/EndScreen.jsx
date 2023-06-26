@@ -1,5 +1,4 @@
 import React from 'react';
-import { QuestionsList } from './QuestionsList';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { setLogin } from '../../state/authSlice';
@@ -30,7 +29,6 @@ const EndScreen = ({ score, setGameState, setScore }) => {
             token: resData?.data.token,
           })
         );
-        navigate('/main');
       });
   };
   const handleScore = () => {
@@ -57,18 +55,16 @@ const EndScreen = ({ score, setGameState, setScore }) => {
     <div>
       <h2> You have Finished the quiz</h2>
 
-      {score >= QuestionsList.length - 1 ? (
+      {score >= 2 ? (
         <h1 className="endScreen-msg">Excellent keep going </h1>
       ) : score >= QuestionsList.length - 2 ? (
         <h2 className="endScreen-msg">good one keep it up </h2>
       ) : (
         <h1 className="endScreen-msg">you will do better next time</h1>
       )}
-      <h2>
-        {score}/{QuestionsList.length}
-      </h2>
+      <h2>{score}/3</h2>
 
-      {score >= QuestionsList.length - 1 ? (
+      {score > 2 ? (
         <button
           onClick={() => {
             handleLevel();
