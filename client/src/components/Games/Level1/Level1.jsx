@@ -76,7 +76,6 @@ function Level1() {
           <button type="button" onClick={() => handleColor()}>
             Color()
           </button>
-
           <button type="button" onClick={() => handleColorType('red')}>
             red
           </button>

@@ -98,7 +98,9 @@
   display: flex;
   justify-content: space-around;
 }
-
+.slider-arrow {
+  cursor: pointer;
+}
 .slider-controler .slider-button-next {
   left: 58% !important;
   transform: translateX(-58%) !important;

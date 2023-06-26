@@ -59,3 +59,44 @@ if condition
 must var before while 
 var used in arg1 || arg2 and 
 arg3
+
+
+for 
+{
+            Argument: 'for',
+            hasAction: false,
+            property: {
+              actionNameFor: 'for',
+              firstArg: '',
+              firstOperator: '',
+              secondArg: '',
+              thirdArg: '',
+              secondOperator: '',
+              fourthArg: '',
+              fifthArg: '',
+              thirdOperator: '',
+              for_Action: [],
+              completeForBlock: '',
+            },
+          },
+
+
+    while
+
+
+        const newArray = [
+          {
+            Argument: 'while',
+            hasAction: false,
+            property: {
+              actionNameWhile: 'while',
+              firstArg: '',
+              firstOperator: '',
+              secondArg: '',
+              while_Action: [],
+              thirdArg: '',
+              secondOperator: '',
+              completeWhileBlock: '',
+            },
+          },
+        ];

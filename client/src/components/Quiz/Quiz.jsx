@@ -9,7 +9,6 @@ const Quiz = ({ setScore, score, setGameState }) => {
   const { data } = state;
 
   const QuestionsList = data;
-  console.log(QuestionsList);
 
   const handleAnswer = () => {
     const rightAnswer = QuestionsList[currentQuestion].answer;

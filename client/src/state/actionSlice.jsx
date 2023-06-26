@@ -74,8 +74,78 @@ export const actionSlice = createSlice({
     undoCode: (state) => {
       const inputarray = [...state.EngineInput];
       const ouputarray = [...state.EngineOutput];
-      inputarray.pop();
-      ouputarray.pop();
+
+      console.log(typeof inputarray);
+      const lastInputArray = inputarray[inputarray.length - 1];
+
+      if (lastInputArray.Argument === 'outSide') {
+        const OutSideActionLength = lastInputArray?.property?.actions.length;
+        if (OutSideActionLength === 1) {
+          inputarray.pop();
+        } else {
+          const outSideActions = lastInputArray.property.actions;
+          outSideActions.pop();
+          lastInputArray.property.actions = outSideActions;
+          inputarray[inputarray.length - 1] = { ...lastInputArray };
+        }
+      } else if (lastInputArray.Argument === 'variable') {
+        inputarray.pop();
+      } else if (
+        lastInputArray.Argument === 'if' &&
+        lastInputArray?.property?.else_Action.length !== 0
+      ) {
+        const elseActionLength = lastInputArray?.property?.else_Action.length;
+        if (elseActionLength === 0) {
+          inputarray.pop();
+        } else {
+          const elseActions = lastInputArray.property.else_Action;
+          elseActions.pop();
+          lastInputArray.property.else_Action = elseActions;
+          inputarray[inputarray.length - 1] = { ...lastInputArray };
+        }
+      } else if (
+        lastInputArray.Argument === 'if' &&
+        lastInputArray?.property?.if_Action.length !== 0
+      ) {
+        const ifActionLength = lastInputArray?.property?.if_Action.length;
+        if (ifActionLength === 0) {
+          inputarray.pop();
+        } else {
+          const ifActions = lastInputArray.property.if_Action;
+          ifActions.pop();
+          lastInputArray.property.if_Action = ifActions;
+          inputarray[inputarray.length - 1] = { ...lastInputArray };
+        }
+      } else if (
+        lastInputArray.Argument === 'if' &&
+        lastInputArray?.property?.else_Action.length === 0 &&
+        lastInputArray?.property?.if_Action.length === 0
+      ) {
+        inputarray.pop();
+      } else if (lastInputArray.Argument === 'for') {
+        const forActionLength = lastInputArray?.property?.for_Action.length;
+        if (forActionLength === 0) {
+          inputarray.pop();
+        } else {
+          const forActions = lastInputArray.property.for_Action;
+          forActions.pop();
+          lastInputArray.property.for_Action = forActions;
+          inputarray[inputarray.length - 1] = { ...lastInputArray };
+        }
+      } else if (lastInputArray.Argument === 'while') {
+        const whileActionLength = lastInputArray?.property?.while_Action.length;
+        if (whileActionLength === 0) {
+          inputarray.pop();
+        } else {
+          const whileActions = lastInputArray.property.while_Action;
+          whileActions.pop();
+          lastInputArray.property.while_Action = whileActions;
+          inputarray[inputarray.length - 1] = { ...lastInputArray };
+        }
+      }
+
+      // inputarray.pop();
+      // ouputarray.pop();
       state.EngineInput = inputarray;
       state.EngineOutput = ouputarray;
     },
