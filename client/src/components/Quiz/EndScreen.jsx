@@ -1,8 +1,58 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { QuestionsList } from './QuestionsList';
+import { useDispatch, useSelector } from 'react-redux';
+import axios from 'axios';
+import { setLogin } from '../../state/authSlice';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const EndScreen = ({ score, setGameState, setScore }) => {
+  const user = useSelector((state) => state.auth.user);
+  const token = useSelector((state) => state.auth.token);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { state } = useLocation();
+  const { level } = state;
+
+  const handleLevel = () => {
+    axios
+      .post('http://localhost:2550/update/level', {
+        email: user.email,
+        value: level,
+        token: token,
+      })
+      .then(function (res) {
+        return res;
+      })
+      .then(function (resData) {
+        dispatch(
+          setLogin({
+            user: resData?.data.user,
+            token: resData?.data.token,
+          })
+        );
+        navigate('/main');
+      });
+  };
+  const handleScore = () => {
+    axios
+      .post('http://localhost:2550/update/score', {
+        email: user.email,
+        value: 50,
+        token: token,
+      })
+      .then(function (res) {
+        return res;
+      })
+      .then(function (resData) {
+        dispatch(
+          setLogin({
+            user: resData?.data.user,
+            token: resData?.data.token,
+          })
+        );
+        navigate('/main');
+      });
+  };
   return (
     <div>
       <h2> You have Finished the quiz</h2>
@@ -19,15 +69,15 @@ const EndScreen = ({ score, setGameState, setScore }) => {
       </h2>
 
       {score >= QuestionsList.length - 1 ? (
-        <Link to="/main">
-          <button
-            onClick={() => {
-              setScore(0);
-            }}
-          >
-            Go back to the Game
-          </button>
-        </Link>
+        <button
+          onClick={() => {
+            handleLevel();
+            handleScore();
+            setScore(0);
+          }}
+        >
+          Go back to the Game
+        </button>
       ) : (
         <button
           onClick={() => {

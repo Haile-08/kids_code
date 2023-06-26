@@ -64,7 +64,7 @@ function Level3() {
     dispatch(resetCode());
     dispatch(modalOff());
     console.log('i was here');
-    navigate('/quiz', { state: { data: QuestionsList.quiz3 } });
+    navigate('/quiz', { state: { data: QuestionsList.quiz3, level: 3 } });
   };
   return (
     <div className="game-page-container">

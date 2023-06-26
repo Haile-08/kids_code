@@ -29,7 +29,7 @@ function Login() {
   });
   const onSubmit = (data) => {
     axios
-      .post('https://localhost:2000/auth/login', {
+      .post('http://localhost:2550/auth/login', {
         email: data.email,
         password: data.password,
       })
@@ -52,6 +52,7 @@ function Login() {
       .catch(function (err) {
         console.log(err);
       });
+
     reset();
   };
   return (

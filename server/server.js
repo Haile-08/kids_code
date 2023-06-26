@@ -1,5 +1,5 @@
-require('dotenv').config();
-const express=require('express');
+require("dotenv").config();
+const express = require("express");
 const app = express();
 const cors = require("cors");
 const morgan = require("morgan");
@@ -10,6 +10,7 @@ const PORT = process.env.PORT || 3500;
 // const verifyToken = require("./middleware/verifyToken");
 // const coreOptions = require("./config/coreOptions");
 const connectDB = require("./config/dbConn");
+const allowedOrigins = require("./config/allowedOrigins");
 
 // connect to mongodb
 connectDB();
@@ -19,12 +20,13 @@ app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 app.use(morgan("common"));
 app.use(bodyParser.json({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cors());
+app.use(cors(allowedOrigins));
 //routes
 app.use("/auth", require("./routes/auth"));
+app.use("/update", require("./routes/update"));
 
-//check the connection and server run on the given port 
-mongoose.connection.once('open',()=>{
-    console.log('connected to MongoDB');
-    app.listen(PORT,()=>console.log(`Server run on ${PORT}`));
+//check the connection and server run on the given port
+mongoose.connection.once("open", () => {
+  console.log("connected to MongoDB");
+  app.listen(PORT, () => console.log(`Server run on ${PORT}`));
 });
