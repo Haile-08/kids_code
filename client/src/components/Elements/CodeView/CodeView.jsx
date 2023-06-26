@@ -4,40 +4,54 @@ import { useSelector } from 'react-redux';
 import { selectEngineInput } from '../../../state/actionSlice';
 import ReactScrollableFeed from 'react-scrollable-feed';
 
+const keyWordColor = 'blue';
+const valuesColor = 'black';
+const operatorColor = 'red';
+
 const FormatColorFunction = ({ item }) => (
-  <>
+  <span>
     {item?.hasAction
       ? item?.property?.actions.map((action) => (
           <span key={action.id}>
-            <h3>
+            <h3 style={{ color: `${keyWordColor}` }}>
               {action.functionName}
               {action.functionName ? '(' : ''}
-              {action.hasValue ? action.value : null}
+              <span style={{ color: `${valuesColor}` }}>
+                {' '}
+                {action.hasValue ? action.value : null}
+              </span>
               {action.functionName ? ')' : ''}
             </h3>
           </span>
         ))
       : null}
-  </>
+  </span>
 );
 
 const FormatVariableFunction = ({ item }) => (
-  <h3>
+  <h3 style={{ color: `${keyWordColor}` }}>
     {item?.property?.varName ? `${item.property.varName} =` : null}
-    {/\d+/.test(item.property.varValue)
-      ? ` ${item.property.varValue}`
-      : `" ${item.property.varValue} "`}
+    <span style={{ color: `${valuesColor}` }}>
+      {/\d+/.test(item.property.varValue)
+        ? ` ${item.property.varValue}`
+        : `" ${item.property.varValue} "`}
+    </span>
   </h3>
 );
 
 const FormatIfFunction = ({ item }) => (
-  <h3>
+  <h3 style={{ color: `${keyWordColor}` }}>
     {`${item.property.actionNameIf}(`}
 
-    {item.property.actionNameIf ? ` ${item?.property?.firstArg} ` : null}
-    {item.property.operator}
+    <span style={{ color: `${valuesColor}` }}>
+      {' '}
+      {item.property.actionNameIf ? ` ${item?.property?.firstArg} ` : null}
+    </span>
+    <span style={{ style: 'red' }}>{item.property.operator}</span>
 
-    {item.property.actionNameIf ? ` ${item?.property?.secondArg}` : null}
+    <span style={{ color: `${valuesColor}` }}>
+      {item.property.actionNameIf ? ` ${item?.property?.secondArg}` : null}
+    </span>
 
     {item.property.actionNameIf ? `)` : null}
     {item.hasAction && '{'}
@@ -49,7 +63,9 @@ const FormatIfFunction = ({ item }) => (
             <br />
             {unitAction.functionName}
             {unitAction.functionName ? '(' : ''}
-            {unitAction.hasValue ? unitAction.value : null}
+            <span style={{ color: `${valuesColor}` }}>
+              {unitAction.hasValue ? unitAction.value : null}
+            </span>
             {unitAction.functionName ? ')' : ''}
           </>
         ))
@@ -81,25 +97,52 @@ const FormatIfFunction = ({ item }) => (
 );
 
 const FormatForFunction = ({ item }) => (
-  <h3>
+  <h3 style={{ color: `${keyWordColor}` }}>
     {`${item.property.actionNameFor}(`}
 
-    {item.property.actionNameFor ? ` ${item?.property?.firstArg} ` : null}
-    {item.property.firstOperator}
-    {item.property.actionNameFor ? ` ${item?.property?.secondArg} ;` : null}
-    {item.property.actionNameFor ? ` ${item?.property?.thirdArg} ` : null}
-    {item.property.secondOperator}
-    {item.property.actionNameFor ? ` ${item?.property?.fourthArg} ;` : null}
-    {item.property.actionNameFor ? ` ${item?.property?.fifthArg} ` : null}
-    {item.property.thirdOperator}
+    <span style={{ color: `${valuesColor}` }}>
+      {' '}
+      {item.property.actionNameFor ? ` ${item?.property?.firstArg} ` : null}
+    </span>
+    <span style={{ color: `${operatorColor}` }}>
+      {item.property.firstOperator}
+    </span>
+    <span style={{ color: `${valuesColor}` }}>
+      {item.property.actionNameFor ? ` ${item?.property?.secondArg} ;` : null}
+    </span>
+    <span style={{ color: `${valuesColor}` }}>
+      {item.property.actionNameFor ? ` ${item?.property?.thirdArg} ` : null}
+    </span>
+    <span style={{ color: `${operatorColor}` }}>
+      {' '}
+      {item.property.secondOperator}
+    </span>
+    <span style={{ color: `${valuesColor}` }}>
+      {' '}
+      {item.property.actionNameFor ? ` ${item?.property?.fourthArg} ;` : null}
+    </span>
+    <span style={{ color: `${valuesColor}` }}>
+      {' '}
+      {item.property.actionNameFor ? ` ${item?.property?.fifthArg} ` : null}
+    </span>
+
+    <span style={{ color: `${operatorColor}` }}>
+      {' '}
+      {item.property.thirdOperator}
+    </span>
     {`)`}
     {item.hasAction && '{'}
     {item.property.for_Action.map((unitAction) => (
       <>
         <br />
-        {unitAction.functionName}
-        {unitAction.functionName ? '(' : ''}
-        {unitAction.hasValue ? unitAction.value : null}
+        <span style={{ color: `${keyWordColor}` }}>
+          {unitAction.functionName}
+          {unitAction.functionName ? '(' : ''}{' '}
+        </span>
+
+        <span style={{ color: `${valuesColor}` }}>
+          {unitAction.hasValue ? unitAction.value : null}
+        </span>
         {unitAction.functionName ? ')' : ''}
       </>
     ))}
@@ -138,8 +181,10 @@ const FormatWhileFunction = ({ item }) => (
 
 function CodeView() {
   const EngineInput = useSelector(selectEngineInput);
+
   return (
     <div className="codeSpace">
+      {console.log(EngineInput)}
       <ReactScrollableFeed>
         {EngineInput.map((item) => (
           <>

@@ -9,7 +9,6 @@ import { setLogin } from '../../state/authSlice';
 import bot from '../../assets/logo.png';
 import './style.css';
 
-
 function Login() {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.auth.token);
@@ -41,17 +40,18 @@ function Login() {
         //   user: resData.data?.user,
         //   token: resData.data?.token,
         // });
-        dispatch(
-          setLogin({
-            user: resData?.data.user,
-            token: resData?.data.token,
-          })
-        );
         navigate('/main');
       })
       .catch(function (err) {
         console.log(err);
       });
+    dispatch(
+      setLogin({
+        user: 'resData?.data.user',
+        token: 'resData?.data.token',
+      })
+    );
+    navigate('/main');
     reset();
   };
   return (

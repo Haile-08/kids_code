@@ -98,7 +98,7 @@ function Level7() {
           <CodeView />
           <Commands />
         </div>
-        <div className="actions">
+        <div className="actions-bg-size">
           <button type="button" onClick={() => handleColor()}>
             Color()
           </button>

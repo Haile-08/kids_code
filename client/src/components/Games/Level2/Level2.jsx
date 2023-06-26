@@ -1,10 +1,3 @@
-/* eslint-disable import/named */
-/* eslint-disable quotes */
-/* eslint-disable import/named */
-/* eslint-disable import/no-duplicates */
-/* eslint-disable prettier/prettier */
-/* eslint-disable react/function-component-definition */
-
 import React from 'react';
 import { HiOutlineChevronLeft } from 'react-icons/hi';
 import { useNavigate } from 'react-router-dom';
@@ -24,7 +17,6 @@ import {
   modalOn,
 } from '../../../state/actionSlice';
 import { selectEngineOutput } from '../../../state/actionSlice';
-import { motion } from 'framer-motion';
 
 function Level2() {
   const dispatch = useDispatch();
@@ -85,7 +77,7 @@ function Level2() {
           <CodeView />
           <Commands />
         </div>
-        <div className="actions">
+        <div className="actions-sm-size">
           <button type="button" onClick={() => handleColor()}>
             Color()
           </button>

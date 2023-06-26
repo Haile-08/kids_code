@@ -53,7 +53,7 @@ function Level5() {
     dispatch(resetCode());
     navigate('/main');
   };
- 
+
   const handleVariable = (text) => {
     dispatch(variableAction(text));
   };
@@ -94,7 +94,7 @@ function Level5() {
           <CodeView />
           <Commands />
         </div>
-        <div className="actions">
+        <div className="actions-bg-size">
           <button type="button" onClick={() => handleVariable('var1')}>
             var1
           </button>

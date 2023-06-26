@@ -6,7 +6,7 @@
   box-sizing: border-box;
 }
 .game-page-container {
-  background-color: #2D3436;
+  /* background-color: #2d3436; */
   display: flex;
   justify-content: center;
   font-size: calc(10px + 2vmin);
@@ -20,7 +20,7 @@
   display: flex;
   flex-direction: column;
   width: 65%;
-} 
+}
 .Buttons-Codespace {
   background-color: var(--Buttons-Codespace-background);
   margin: 5px;
@@ -36,7 +36,7 @@
   flex-direction: column;
 }
 
-.actions button {
+.actions-bg-size button {
   width: 177px;
   height: 50px;
   margin: 0px 10px;
@@ -44,30 +44,55 @@
   outline: none;
   border: none;
   cursor: pointer;
-  background-color: #00B894;
+  background-color: #00b894;
   color: #dfe6e9;
   box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px,
     rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px,
     rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
 }
 
-
-.actions {
+.actions-bg-size {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  height: 200px;
-  width: 950px;
+  height: 250px;
+  min-width: 40vw;
+  max-width: 55vw;
   border-radius: 5px;
-  background-color: #636E72;
-  opacity: 20%;
+  /* background-color: #636e72; */
 }
 
+.actions-sm-size button {
+  width: 177px;
+  height: 50px;
+  margin: 0px 5px;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  background-color: #00b894;
+  color: #dfe6e9;
+  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px,
+    rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px,
+    rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+}
 
+.actions-sm-size {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  height: 220px;
+  min-width: 40vw;
+  max-width: 50vw;
+  border-radius: 5px;
+  margin-left: 40px;
+  /* background-color: #636e72; */
+}
 
 #option {
-  width: 200px;
+  width: 177px;
   height: 50px;
   font-size: 20px;
   padding: 0px 10px;
@@ -111,8 +136,8 @@
 }
 
 .modal-container {
-  padding:40px;
-  background-color: #2D3436;
+  padding: 40px;
+  background-color: #2d3436;
   width: 40%;
   height: 40%;
   display: flex;

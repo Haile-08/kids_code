@@ -1,10 +1,3 @@
-/* eslint-disable import/named */
-/* eslint-disable quotes */
-/* eslint-disable import/named */
-/* eslint-disable import/no-duplicates */
-/* eslint-disable prettier/prettier */
-/* eslint-disable react/function-component-definition */
-
 import React from 'react';
 import { HiOutlineChevronLeft } from 'react-icons/hi';
 import { useNavigate } from 'react-router-dom';
@@ -78,7 +71,7 @@ function Level3() {
           <CodeView />
           <Commands />
         </div>
-        <div className="actions">
+        <div className="actions-sm-size">
           <button type="button" onClick={() => handleMovementType()}>
             move
           </button>

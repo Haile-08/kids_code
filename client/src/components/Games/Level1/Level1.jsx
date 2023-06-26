@@ -72,7 +72,7 @@ function Level1() {
           <CodeView />
           <Commands EngineOutput={EngineOutput} GameAnswer={GameAnswer} />
         </div>
-        <div className="actions">
+        <div className="actions-sm-size">
           <button type="button" onClick={() => handleColor()}>
             Color()
           </button>

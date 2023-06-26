@@ -102,7 +102,7 @@ function Level6() {
           <CodeView />
           <Commands />
         </div>
-        <div className="actions">
+        <div className="actions-bg-size">
           <button type="button" onClick={() => handleVariable('var1')}>
             var1
           </button>
