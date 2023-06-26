@@ -2,6 +2,9 @@ import React from 'react';
 import './style.css';
 import { useDispatch } from 'react-redux';
 import { resetCode, runCode, undoCode } from '../../../state/actionSlice';
+import run from '../../../assets/play.png';
+import reset from '../../../assets/reset.png';
+import undo from '../../../assets/undo.png';
 
 function Commands() {
   const dispatch = useDispatch();
@@ -24,7 +27,7 @@ function Commands() {
           }}
           type="button"
         >
-          Run
+          <img src={run} alt="run" />
         </button>
       </div>
 
@@ -35,7 +38,7 @@ function Commands() {
           }}
           type="button"
         >
-          Reset
+          <img src={reset} alt="reset" />
         </button>
       </div>
 
@@ -46,7 +49,7 @@ function Commands() {
           }}
           type="button"
         >
-          undo
+          <img src={undo} alt="undo" />
         </button>
       </div>
     </div>

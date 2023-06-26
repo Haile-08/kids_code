@@ -1,5 +1,4 @@
 .Commands {
-  background-color: bisque;
   margin: 10px;
   border-radius: 10px;
   display: flex;
@@ -12,9 +11,9 @@
   text-align: center;
   margin: 50px 10px;
   outline: none;
-  background-color: #e84118;
+  background-color: #2D3436;
   border: none;
-  padding: 1.5rem 2rem;
+  padding: 0px;
   border-radius: 50%;
   font-size: 20px;
   font-family: var(--font-fam);

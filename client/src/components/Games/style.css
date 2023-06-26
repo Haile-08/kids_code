@@ -1,10 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani&display=swap');
+
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
 .game-page-container {
-  background-color: #2f3640;
+  background-color: #2D3436;
   display: flex;
   justify-content: center;
   font-size: calc(10px + 2vmin);
@@ -18,7 +20,7 @@
   display: flex;
   flex-direction: column;
   width: 65%;
-}
+} 
 .Buttons-Codespace {
   background-color: var(--Buttons-Codespace-background);
   margin: 5px;
@@ -33,28 +35,36 @@
   display: flex;
   flex-direction: column;
 }
-.actions {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  height: 200px;
-  background-color: #00a8ff;
-}
 
 .actions button {
-  width: 150px;
+  width: 177px;
   height: 50px;
   margin: 0px 10px;
   border-radius: 5px;
   outline: none;
   border: none;
   cursor: pointer;
-  background-color: #e84118;
+  background-color: #00B894;
+  color: #dfe6e9;
   box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px,
     rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px,
     rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
 }
+
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  width: 950px;
+  border-radius: 5px;
+  background-color: #636E72;
+  opacity: 20%;
+}
+
+
 
 #option {
   width: 200px;
@@ -101,26 +111,29 @@
 }
 
 .modal-container {
-  background-color: #00a8ff;
+  padding:40px;
+  background-color: #2D3436;
   width: 40%;
   height: 40%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border-radius: 8%;
-}
-.modalBtn {
-  padding: 15px 25px;
-  background: blue;
-  border: 1px solid;
-  color: #fff;
-  font-size: 20px;
+  border-radius: 7px;
+  font-family: 'Rajdhani', sans-serif;
 }
 
-.modalBtn:hover {
-  background: none;
-  color: #000;
+.modal-container h2 {
+  font-size: 30px;
+  margin: 30px 0px;
+}
+.modalBtn {
+  outline: none;
+  border: none;
+  padding: 15px 25px;
+  background: #00b894;
+  color: #fff;
+  font-size: 20px;
 }
 
 @media only screen and (max-width: 700px) {

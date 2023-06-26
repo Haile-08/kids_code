@@ -115,10 +115,23 @@ function Level2() {
       {correct && (
         <div className="modal">
           <div className="modal-container">
-            <h2> Congratulations you have finished this level.</h2>
-            <button className="modalBtn" onClick={() => handleModal()}>
+            <motion.h2
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ delay: 0.5, type: 'spring', stiffness: 140 }}
+            >
+              {' '}
+              Congratulations you have finished this level.
+            </motion.h2>
+            <motion.button
+              className="modalBtn"
+              onClick={() => handleModal()}
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              whileHover={{ scale: 1.2 }}
+            >
               take quiz
-            </button>
+            </motion.button>
           </div>
         </div>
       )}

@@ -1,8 +1,8 @@
 .codeSpace {
   text-align: center;
-  background-color: aquamarine;
+  background-color: #B2BEC3;
   margin: 10px;
-  border-radius: 10px;
+  border-radius: 5px;
   width: 600px;
   color: var(--code-space-color);
   width: 100%;

@@ -48,6 +48,7 @@ body {
 
 .redbot {
     position: absolute;
+    color: #dfe6e9;
     top: 300px;
     left: -30px;
     background-color: #00B894;
@@ -84,6 +85,7 @@ body {
     position: absolute;
     top: 400px;
     left: -30px;
+    color: #dfe6e9;
     background-color: #00B894;
     font-family: 'Rajdhani', sans-serif;
     border-radius: 23px;
@@ -117,6 +119,7 @@ body {
     position: absolute;
     top: 500px;
     left: -30px;
+    color: #dfe6e9;
     background-color: #00B894;
     font-family: 'Rajdhani', sans-serif;
     border-radius: 23px;
