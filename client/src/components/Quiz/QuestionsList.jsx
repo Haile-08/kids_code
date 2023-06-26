@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/prefer-default-export
 export const QuestionsList = [
   {
     prompt: 'which one of the following is not programming language?',

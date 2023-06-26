@@ -5,16 +5,18 @@
   height: 100vh;
 }
 
+.endScreen-msg {
+  font-size: 54px;
+}
 .quiz-app {
   min-height: 50%;
   width: 40%;
-  /* background: rgb(92, 199, 209); */
   border-radius: 40px;
   text-align: center;
   color: #fff;
   background: rgb(118, 148, 150);
 }
-h1 {
+.quiz-app h2 {
   margin-top: 50px;
 }
 button {

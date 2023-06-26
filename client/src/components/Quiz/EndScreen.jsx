@@ -5,14 +5,14 @@ import { QuestionsList } from './QuestionsList';
 const EndScreen = ({ score, setGameState, setScore }) => {
   return (
     <div>
-      <h1> You have Finished the quiz</h1>
+      <h2> You have Finished the quiz</h2>
 
       {score >= QuestionsList.length - 1 ? (
-        <h2>Excellent keep going </h2>
+        <h1 className="endScreen-msg">Excellent keep going </h1>
       ) : score >= QuestionsList.length - 2 ? (
-        <h2>good one keep it up </h2>
+        <h2 className="endScreen-msg">good one keep it up </h2>
       ) : (
-        <h2>will do better next time</h2>
+        <h1 className="endScreen-msg">you will do better next time</h1>
       )}
       <h2>
         {score}/{QuestionsList.length}

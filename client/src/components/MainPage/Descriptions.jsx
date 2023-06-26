@@ -14,35 +14,35 @@ export const descriptions = [
     footerText: 'dropBox',
   },
   {
-    title: 'Change Color',
+    title: 'Turn-Drop-Move',
     mission: `Our mission is to help our trusty robot companion reach her
     destination and avoid detection by the enemy bots. How do we do
     that, you ask? By changing her color to look the same as the Enemy.`,
     footerText: 'Color(red)',
   },
   {
-    title: 'Deliver Box',
+    title: 'Use Variables',
     mission: `Our mission is to help our trusty robot companion reach her
     destination and avoid detection by the enemy bots. How do we do
     that, you ask? By changing her color to look the same as the Enemy.`,
     footerText: 'dropBox',
   },
   {
-    title: 'Change Color',
+    title: 'Conditionals',
     mission: `Our mission is to help our trusty robot companion reach her
     destination and avoid detection by the enemy bots. How do we do
     that, you ask? By changing her color to look the same as the Enemy.`,
     footerText: 'Color(red)',
   },
   {
-    title: 'Deliver Box',
+    title: 'For Loop',
     mission: `Our mission is to help our trusty robot companion reach her
     destination and avoid detection by the enemy bots. How do we do
     that, you ask? By changing her color to look the same as the Enemy.`,
     footerText: 'dropBox',
   },
   {
-    title: 'Change Color',
+    title: 'While Loop',
     mission: `Our mission is to help our trusty robot companion reach her
     destination and avoid detection by the enemy bots. How do we do
     that, you ask? By changing her color to look the same as the Enemy.`,
