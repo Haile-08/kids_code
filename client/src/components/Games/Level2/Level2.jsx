@@ -63,7 +63,7 @@ function Level2() {
   const handleModal = () => {
     dispatch(resetCode());
     dispatch(modalOff());
-    navigate('/quiz', { state: { data: QuestionsList.quiz2 } });
+    navigate('/quiz', { state: { data: QuestionsList.quiz2, level: 2 } });
   };
   return (
     <div className="game-page-container">

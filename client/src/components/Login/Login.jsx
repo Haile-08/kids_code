@@ -28,7 +28,7 @@ function Login() {
   });
   const onSubmit = (data) => {
     axios
-      .post('https://localhost:2000/auth/login', {
+      .post('http://localhost:2550/auth/login', {
         email: data.email,
         password: data.password,
       })
@@ -45,6 +45,7 @@ function Login() {
       .catch(function (err) {
         console.log(err);
       });
+<<<<<<< HEAD
     dispatch(
       setLogin({
         user: 'resData?.data.user',
@@ -52,6 +53,9 @@ function Login() {
       })
     );
     navigate('/main');
+=======
+
+>>>>>>> 7e975e45676112387ee88f7d04010f917ac7dd29
     reset();
   };
   return (
