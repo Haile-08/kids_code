@@ -40,22 +40,17 @@ function Login() {
         //   user: resData.data?.user,
         //   token: resData.data?.token,
         // });
+        dispatch(
+          setLogin({
+            user: resData?.data.user,
+            token: resData?.data.token,
+          })
+        );
         navigate('/main');
       })
       .catch(function (err) {
         console.log(err);
       });
-<<<<<<< HEAD
-    dispatch(
-      setLogin({
-        user: 'resData?.data.user',
-        token: 'resData?.data.token',
-      })
-    );
-    navigate('/main');
-=======
-
->>>>>>> 7e975e45676112387ee88f7d04010f917ac7dd29
     reset();
   };
   return (
