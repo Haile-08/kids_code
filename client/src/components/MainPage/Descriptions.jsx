@@ -5,6 +5,7 @@ export const descriptions = [
     destination and avoid detection by the enemy bots. How do we do
     that, you ask? By changing her color to look the same as the Enemy.`,
     footerText: 'Color(red)',
+    image: '../../assets/bot1.svg',
   },
   {
     title: 'Deliver Box',
@@ -12,6 +13,7 @@ export const descriptions = [
     destination and avoid detection by the enemy bots. How do we do
     that, you ask? By changing her color to look the same as the Enemy.`,
     footerText: 'dropBox',
+    image: '../../assets/bot2.svg',
   },
   {
     title: 'Turn-Drop-Move',
@@ -19,6 +21,7 @@ export const descriptions = [
     destination and avoid detection by the enemy bots. How do we do
     that, you ask? By changing her color to look the same as the Enemy.`,
     footerText: 'Color(red)',
+    image: '../../assets/bot3.svg',
   },
   {
     title: 'Use Variables',
@@ -26,6 +29,7 @@ export const descriptions = [
     destination and avoid detection by the enemy bots. How do we do
     that, you ask? By changing her color to look the same as the Enemy.`,
     footerText: 'dropBox',
+    image: '../../assets/bot4.svg',
   },
   {
     title: 'Conditionals',
@@ -33,6 +37,7 @@ export const descriptions = [
     destination and avoid detection by the enemy bots. How do we do
     that, you ask? By changing her color to look the same as the Enemy.`,
     footerText: 'Color(red)',
+    image: '../../assets/bot5.svg',
   },
   {
     title: 'For Loop',
@@ -40,6 +45,7 @@ export const descriptions = [
     destination and avoid detection by the enemy bots. How do we do
     that, you ask? By changing her color to look the same as the Enemy.`,
     footerText: 'dropBox',
+    image: '../../assets/bot6.svg',
   },
   {
     title: 'While Loop',
@@ -47,5 +53,6 @@ export const descriptions = [
     destination and avoid detection by the enemy bots. How do we do
     that, you ask? By changing her color to look the same as the Enemy.`,
     footerText: 'Color(red)',
+    image: '../../assets/bot7.svg',
   },
 ];

@@ -81,13 +81,37 @@
   height: 50vh;
   background-color: #487eb0;
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
+  flex-direction: column;
   align-items: center;
   border-radius: 5%;
   cursor: pointer;
 }
+.level img {
+  margin-left: 20px;
+}
 
 .level:hover {
+  transform: scale(1.01, 1.01);
+  border-radius: 5%;
+  transition: 0.2s ease-in;
+}
+
+.lockedlevel {
+  width: 20rem;
+  height: 50vh;
+  background-color: #487eb0;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 5%;
+  cursor: pointer;
+}
+.lockedlevel img {
+  margin-left: 20px;
+}
+.lockedlevel:hover {
   transform: scale(1.01, 1.01);
   border-radius: 5%;
   transition: 0.2s ease-in;

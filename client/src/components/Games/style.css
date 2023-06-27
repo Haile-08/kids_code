@@ -84,10 +84,11 @@
   justify-content: center;
   align-items: center;
   height: 220px;
-  min-width: 40vw;
+  min-width: 45vw;
   max-width: 50vw;
   border-radius: 5px;
-  margin-left: 40px;
+  margin-left: 10px;
+  background-color: #636e7263;
   /* background-color: #636e72; */
 }
 

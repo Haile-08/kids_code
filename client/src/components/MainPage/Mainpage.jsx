@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import './style.css';
@@ -7,7 +7,8 @@ import { dispatchIfVar, dispatchRedVar } from '../../state/actionSlice';
 import logoCK from '../../assets/logo CK.svg';
 import medal1 from '../../assets/medal 1.svg';
 import mainpageYellow from '../../assets/main page yellowdown.svg';
-import mainpageChar from '../../assets/mainpage character.svg';
+import run from '../../assets/run.png';
+import lock from '../../assets/lock.png';
 import prevArrow from '../../assets/backward arrow.svg';
 import nextArrow from '../../assets/forward arrow.svg';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -28,6 +29,9 @@ function Mainpage() {
   const [currentLevelDescriptionIndex, setcurrentLevelDescriptionIndex] =
     useState(0);
 
+  useEffect(() => {
+    console.log('reload');
+  }, [user]);
   const descVariants = {
     hidden: {
       opacity: 0,
@@ -123,7 +127,17 @@ function Mainpage() {
       </div>
       <div className="mainpage-main-container">
         <div className="mainpage-robot">
-          <img src={mainpageChar} alt="" />
+          <motion.img
+            src={
+              new URL(
+                descriptions[currentLevelDescriptionIndex].image,
+                import.meta.url
+              ).href
+            }
+            alt="image"
+            initial={{ scale: 0 }}
+            animate={{ scale: 1.5 }}
+          />
         </div>
         <motion.div
           className="mainpage-description"
@@ -170,39 +184,113 @@ function Mainpage() {
           >
             <SwiperSlide>
               <div className="level" onClick={() => navigate('/level')}>
-                <h2>level 1</h2>
+                <h1>{descriptions[currentLevelDescriptionIndex].title}</h1>
+                <img src={run} alt="run" />
+                <h2> level 1</h2>
               </div>
             </SwiperSlide>
-            <SwiperSlide>
-              <div className="level" onClick={() => navigate('/level2')}>
-                <h2> level 2</h2>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="level" onClick={() => navigate('/level3')}>
-                <h2>level 3</h2>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="level" onClick={() => handlelevel4nav()}>
-                <h2> level 4</h2>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="level" onClick={() => handlelevel5nav()}>
-                <h2> level 5</h2>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="level" onClick={() => handlelevel6nav()}>
-                <h2>level 6</h2>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="level" onClick={() => handlelevel7nav()}>
-                <h2>level 7</h2>
-              </div>
-            </SwiperSlide>
+            {user.level >= 2 ? (
+              <SwiperSlide>
+                <div className="level" onClick={() => navigate('/level2')}>
+                  <h1>{descriptions[currentLevelDescriptionIndex].title}</h1>
+                  <img src={run} alt="run" />
+                  <h2> level 2</h2>
+                </div>
+              </SwiperSlide>
+            ) : (
+              <SwiperSlide>
+                <div className="lockedlevel">
+                  <h1>{descriptions[currentLevelDescriptionIndex].title}</h1>
+                  <img src={lock} alt="lock" />
+                  <h2> level 2</h2>
+                </div>
+              </SwiperSlide>
+            )}
+            {user.level >= 3 ? (
+              <SwiperSlide>
+                <div className="level" onClick={() => navigate('/level3')}>
+                  <h1>{descriptions[currentLevelDescriptionIndex].title}</h1>
+                  <img src={run} alt="run" />
+                  <h2> level 3</h2>
+                </div>
+              </SwiperSlide>
+            ) : (
+              <SwiperSlide>
+                <div className="lockedlevel">
+                  <h1>{descriptions[currentLevelDescriptionIndex].title}</h1>
+                  <img src={lock} alt="lock" />
+                  <h2> level 3</h2>
+                </div>
+              </SwiperSlide>
+            )}
+            {user.level >= 4 ? (
+              <SwiperSlide>
+                <div className="level" onClick={() => handlelevel4nav()}>
+                  <h1>{descriptions[currentLevelDescriptionIndex].title}</h1>
+                  <img src={run} alt="run" />
+                  <h2> level 4</h2>
+                </div>
+              </SwiperSlide>
+            ) : (
+              <SwiperSlide>
+                <div className="lockedlevel">
+                  <h1>{descriptions[currentLevelDescriptionIndex].title}</h1>
+                  <img src={lock} alt="lock" />
+                  <h2> level 4</h2>
+                </div>
+              </SwiperSlide>
+            )}
+            {user.level >= 5 ? (
+              <SwiperSlide>
+                <div className="level" onClick={() => handlelevel5nav()}>
+                  <h1>{descriptions[currentLevelDescriptionIndex].title}</h1>
+                  <img src={run} alt="run" />
+                  <h2> level 5</h2>
+                </div>
+              </SwiperSlide>
+            ) : (
+              <SwiperSlide>
+                <div className="lockedlevel">
+                  <h1>{descriptions[currentLevelDescriptionIndex].title}</h1>
+                  <img src={lock} alt="lock" />
+                  <h2> level 5</h2>
+                </div>
+              </SwiperSlide>
+            )}
+            {user.level >= 6 ? (
+              <SwiperSlide>
+                <div className="level" onClick={() => handlelevel6nav()}>
+                  <h1>{descriptions[currentLevelDescriptionIndex].title}</h1>
+                  <img src={run} alt="run" />
+                  <h2> level 6</h2>
+                </div>
+              </SwiperSlide>
+            ) : (
+              <SwiperSlide>
+                <div className="lockedlevel">
+                  <h1>{descriptions[currentLevelDescriptionIndex].title}</h1>
+                  <img src={lock} alt="lock" />
+                  <h2> level 6</h2>
+                </div>
+              </SwiperSlide>
+            )}
+            {user.level >= 7 ? (
+              <SwiperSlide>
+                <div className="level" onClick={() => handlelevel7nav()}>
+                  <h1>{descriptions[currentLevelDescriptionIndex].title}</h1>
+                  <img src={run} alt="run" />
+                  <h2> level 7</h2>
+                </div>
+              </SwiperSlide>
+            ) : (
+              <SwiperSlide>
+                <div className="lockedlevel">
+                  <h1>{descriptions[currentLevelDescriptionIndex].title}</h1>
+                  <img src={lock} alt="lock" />
+                  <h2> level 7</h2>
+                </div>
+              </SwiperSlide>
+            )}
 
             <div className="slider-controller">
               <div className="slider-button-prev slider-arrow">

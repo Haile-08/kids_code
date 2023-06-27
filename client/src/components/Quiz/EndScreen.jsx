@@ -13,6 +13,7 @@ const EndScreen = ({ score, setGameState, setScore }) => {
   const { level } = state;
 
   const handleLevel = () => {
+    console.log(level);
     axios
       .post('http://localhost:2550/update/level', {
         email: user.email,
@@ -57,7 +58,7 @@ const EndScreen = ({ score, setGameState, setScore }) => {
 
       {score >= 2 ? (
         <h1 className="endScreen-msg">Excellent keep going </h1>
-      ) : score >= QuestionsList.length - 2 ? (
+      ) : score >= 1 ? (
         <h2 className="endScreen-msg">good one keep it up </h2>
       ) : (
         <h1 className="endScreen-msg">you will do better next time</h1>

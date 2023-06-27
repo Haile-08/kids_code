@@ -24,12 +24,14 @@ body {
 
 .mainHome img{
     position: absolute;
+    margin-top: 200px;
 }
 
 .foot {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-top: 200px;
 }
 
 .line {
