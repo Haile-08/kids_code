@@ -4,9 +4,9 @@ import { useSelector } from 'react-redux';
 import { selectEngineInput } from '../../../state/actionSlice';
 import ReactScrollableFeed from 'react-scrollable-feed';
 
-const keyWordColor = 'blue';
-const valuesColor = 'black';
-const operatorColor = 'red';
+const keyWordColor = '#0984e3';
+const valuesColor = '#636e72';
+const operatorColor = '#6c5ce7';
 
 const FormatColorFunction = ({ item }) => (
   <span>

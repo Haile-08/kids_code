@@ -15,7 +15,7 @@ const EndScreen = ({ score, setGameState, setScore }) => {
   const handleLevel = () => {
     console.log(level);
     axios
-      .post('http://localhost:2550/update/level', {
+      .post('http://localhost:3555/update/level', {
         email: user.email,
         value: level,
         token: token,
@@ -34,7 +34,7 @@ const EndScreen = ({ score, setGameState, setScore }) => {
   };
   const handleScore = () => {
     axios
-      .post('http://localhost:2550/update/score', {
+      .post('http://localhost:3555/update/score', {
         email: user.email,
         value: 50,
         token: token,

@@ -36,7 +36,7 @@ function Register() {
 
   const onSubmit = (data) => {
     axios
-      .post('http://localhost:2550/auth/register', {
+      .post('http://localhost:3555/auth/register', {
         firstName: data.firstname,
         lastName: data.lastname,
         email: data.email,

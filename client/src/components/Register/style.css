@@ -104,4 +104,9 @@
 
 .name_box span {
     width: 203px;
+    color: #dfe6e9;
+}
+
+.register form span {
+    color: #dfe6e9; 
 }

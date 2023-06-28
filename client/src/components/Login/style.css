@@ -67,4 +67,9 @@
 .login span {
     width: 403px;
     font-family: 'Quicksand', sans-serif;
+    color: #dfe6e9;
+}
+
+.name_box {
+    color: #dfe6e9;
 }
